@@ -20,9 +20,11 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
+        <li><a ui-sref="login">Login</a></li>
+        <li><a ui-sref="register">Sign up</a></li>
+        <!--
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login<span class="caret"></span></a>-->
           <!--
           <ul class="dropdown-menu">
             <li><a href="#">Action</a></li>
@@ -38,10 +40,54 @@
   </div><!-- /.container-fluid -->
 </nav>
 
+<body>
+	<div class="container">
+		<h1>Welcome</h1>
+			<button type="button" onclick="playSong()">Play my favorite song!</button>
+			<br><br>
+			<button type="button" onclick="stopSong()">Stop my favorite song :/</button>
+	</div>
+</body>
 
-<div class="container">
-	<h1>Welcome</h1>
-</div>
+<!-- Load the (very useful script) that helps you load audio files. -->
+<script src="http://www.html5rocks.com/en/tutorials/webaudio/intro/js/buffer-loader.js"></script>
+
+<!--- Our code goes here... -->
+<script>
+
+	context = new AudioContext();	// globals make things easier here
+	source = null;
+	gain = null;
+
+	function playSong() {
+		bufferLoader = new BufferLoader(
+	    	context,
+	    	[
+		      '../sounds/mystery2.mp3'
+		    ],
+		    finishedLoading	// this is the callback function - it's called after the file is loaded
+		    				// and is given an array of loaded buffer arrays as an argument  
+		);
+
+	  bufferLoader.load();
+	}
+
+	function stopSong() {
+		source.stop()
+	}
+
+	function finishedLoading(bufferList) {
+	 	// If you had more loops, you could 
+	  	source = context.createBufferSource();
+	  	source.buffer = bufferList[0];
+	  	gain = context.createGain();
+	  	source.connect(gain);
+	  	gain.gain.value = 0.4;
+	  	gain.connect(context.destination);
+	  	source.start(0);
+	}
+
+</script>
 
 <!--<div class="page-wrapper">
 
