@@ -1,19 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="home">
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
-  <body ng-app="home">
-
+  <body>
+    <!-- anything typed in here is magically saved to our Firebase database! -->
+    <!-- anything typed in here is magically saved to our Firebase database! -->
+    <div ng-app="sampleApp" ng-controller="ChatCtrl">
+      <ul class="chatbox">
+        <li ng-repeat="message in messages">{{ message.from }}: {{ message.content }}</li>
+      </ul>
+      <form ng-submit="addMessage()">
+        <input type="text" ng-model="message">
+        <input type="submit" value="Add Message">
+      </form>
+</div>
   </body>
   <!-- AngularJS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+  <!-- Angular -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.0.3/firebase.js"></script>
+
   <!-- AngularFire -->
-  <script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
+  <script src="https://cdn.firebase.com/libs/angularfire/2.0.0/angularfire.min.js"></script>
   <script>
-  	// Initialize Firebase
+  	//Initialize Firebase
   	var config = {
     	apiKey: "AIzaSyBwdXnYKXK3Tk9O1T3Pt3i40Jnem4HYgzk",
     	authDomain: "kelpa-61adc.firebaseapp.com",
@@ -21,5 +35,10 @@
     	storageBucket: "kelpa-61adc.appspot.com",
   	};
   	firebase.initializeApp(config);
+
+    // Get a reference to the database service
+    var database = firebase.database();
+
 	</script>
+  <!--<script src="javascripts/home.js"></script>-->
 </html>
