@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/connect_to_firebase', function(req, res, next) {
-
+	res.render('music_list', { title: 'Express' });
 });
 
 router.get('/music_mixer', function(req, res, next) {
