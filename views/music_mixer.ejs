@@ -1,46 +1,69 @@
 <!DOCTYPE html>
-<html ng-app="home">
+<html lang="en" ng-app="musicMixer">
   <head>
-    <title><%= title %></title>
-    <!-- Latest compiled and minified CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Music Mixer</title>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+  
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
   </head>
+
   <body>
-    <!-- anything typed in here is magically saved to our Firebase database! -->
-    <!-- anything typed in here is magically saved to our Firebase database! -->
     <nav class="navbar navbar-default">
     <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Kelpa</a>
-    </div>
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">KelpShell</a>
+      </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+          <li><a href="#">Link</a></li>
+          
+        </ul>
         
-      </ul>
-      
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Link</a></li>
+          
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+    </nav>
+
     <div>
       <h1>Music Mixer</h1>
     </div>
-  </body>
+    <div ng-controller="musicMixer"> 
+      <h2>Pitch Detector</h2>
+
+      <button type="button" class="btn btn-primary">300 Hz</button>
+      <button type="button" class="btn btn-primary">350 Hz</button>
+      <button type="button" class="btn btn-primary">400 Hz</button>
+      <button type="button" class="btn btn-primary">450 Hz</button>
+      <button type="button" class="btn btn-primary">500 Hz</button>
+      <button type="button" class="btn btn-primary">550 Hz</button>
+      <button type="button" class="btn btn-primary">600 Hz</button>
+      <button type="button" class="btn btn-primary">650 Hz</button>
+      <button type="button" class="btn btn-primary">700 Hz</button>
+    </div>
   
-  <script src="/javascripts/music_mixer.js"></script>
+  </body>
+     
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+   
+   <script src="/javascripts/music_mixer.js"></script>
+
+   
 </html>

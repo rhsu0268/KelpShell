@@ -11,7 +11,7 @@ router.get('/connect_to_firebase', function(req, res, next) {
 });
 
 router.get('/music_mixer', function(req, res, next) {
-	res.render('music_mixer', { title: 'Express' });
+	res.render('music_mixer', { title: 'Music Mixer' });
 });
 
 module.exports = router;

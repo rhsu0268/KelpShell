@@ -1,12 +1,23 @@
-context = new AudioContext();
-console.log(context);
+var app = angular.module('musicMixer', []);
 
 
-osc = context.createOscillator();
-console.log(osc);
-osc.frequency.value = 550;
-osc.connect(context.destination);
+app.controller('musicMixer', function() {
 
-osc.start(0);
+	console.log("music mixer");
 
-osc.stop();
+	context = new AudioContext();
+	console.log(context);
+
+
+	osc = context.createOscillator();
+	console.log(osc);
+	osc.frequency.value = 550;
+	osc.connect(context.destination);
+
+	osc.start(0);
+
+	osc.stop();
+
+});
+
+
