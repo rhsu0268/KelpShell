@@ -46,15 +46,18 @@
     <div ng-controller="musicMixer"> 
       <h2>Pitch Detector</h2>
 
-      <button type="button" class="btn btn-primary">300 Hz</button>
-      <button type="button" class="btn btn-primary">350 Hz</button>
-      <button type="button" class="btn btn-primary">400 Hz</button>
-      <button type="button" class="btn btn-primary">450 Hz</button>
-      <button type="button" class="btn btn-primary">500 Hz</button>
-      <button type="button" class="btn btn-primary">550 Hz</button>
-      <button type="button" class="btn btn-primary">600 Hz</button>
-      <button type="button" class="btn btn-primary">650 Hz</button>
-      <button type="button" class="btn btn-primary">700 Hz</button>
+      <button type="button" class="btn btn-primary" ng-click="generatePitch300()">300 Hz</button>
+      <button type="button" class="btn btn-primary" ng-click="generatePitch350()">350 Hz</button>
+      <button type="button" class="btn btn-primary" ng-click="generatePitch400()">400 Hz</button>
+      <button type="button" class="btn btn-primary" ng-click="generatePitch450()">450 Hz</button>
+      <button type="button" class="btn btn-primary" ng-click="generatePitch500()">500 Hz</button>
+      <button type="button" class="btn btn-primary" ng-click="generatePitch550()">550 Hz</button>
+      <button type="button" class="btn btn-primary" ng-click="generatePitch600()">600 Hz</button>
+      <button type="button" class="btn btn-primary" ng-click="generatePitch650()">650 Hz</button>
+      <button type="button" class="btn btn-primary" ng-click="generatePitch700()">700 Hz</button>
+      <br>
+      <br>
+      <button type="button" class="btn btn-danger" ng-click="stopPitch()">STOP</button>
     </div>
   
   </body>
