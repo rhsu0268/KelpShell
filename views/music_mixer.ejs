@@ -7,6 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
   
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/rzslider.css"/>
     <link rel='stylesheet' href='/stylesheets/style.css'/>
   </head>
 
@@ -58,6 +59,12 @@
       <br>
       <br>
       <button type="button" class="btn btn-danger" ng-click="stopPitch()">STOP</button>
+      <div>
+        <rzslider
+         rz-slider-model="slider.value"
+         rz-slider-options="slider.options"></rzslider>
+      </div>
+
     </div>
   
   </body>
@@ -65,8 +72,10 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-   
-   <script src="/javascripts/music_mixer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/4.0.2/rzslider.min.js"></script>
+  
+  
+  <script src="/javascripts/music_mixer.js"></script>
 
    
 </html>

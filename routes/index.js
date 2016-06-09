@@ -14,4 +14,10 @@ router.get('/music_mixer', function(req, res, next) {
 	res.render('music_mixer', { title: 'Music Mixer' });
 });
 
+
+router.get('/sliderTest', function(req, res, next) {
+	res.render('touch_mixer', { title: 'Touch Slider' });
+
+});
+
 module.exports = router;
