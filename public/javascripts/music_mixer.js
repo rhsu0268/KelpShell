@@ -1,13 +1,16 @@
 var app = angular.module('musicMixer', ['rzModule']);
 
-var context = new AudioContext();
-var osc = context.createOscillator();
+var context;
+var osc;
 
 app.controller('musicMixer', ['$scope', function($scope) {
 
 	console.log("music mixer");
 
+	//var context = new AudioContext();
+	//var osc = context.createOscillator();
 
+	
 
 	$scope.generatePitch300 = function()
 	{
@@ -27,7 +30,19 @@ app.controller('musicMixer', ['$scope', function($scope) {
 
 	$scope.stopPitch = function()
 	{
+
+		osc.disconnect(context.destination);
 		osc.stop();
+
+	};
+
+
+	$scope.startPitch = function()
+	{
+		context = new AudioContext();
+		osc = context.createOscillator()
+		osc.connect(context.destination);
+		osc.start(0);
 	};
 
 	$scope.slider = {
@@ -39,6 +54,9 @@ app.controller('musicMixer', ['$scope', function($scope) {
 	    	onChange: function(sliderId, modelValue, highValue, pointerType)
 	    	{
 	    		console.log(modelValue);
+
+	    		generatePitch(modelValue);
+				//osc.start(0);
 	    	}
   		}
 	};
@@ -49,7 +67,7 @@ function generatePitch(pitch)
 	//console.log(context);
 	//console.log(osc);
 	osc.frequency.value = pitch;
-	osc.connect(context.destination);
+	//osc.connect(context.destination);
 }
 
 
