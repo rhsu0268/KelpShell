@@ -1,9 +1,19 @@
 # Kelpa
 
-https://www.keithmcmillen.com/blog/making-music-in-the-browser-web-audio-api-part-1/
+Here are some great links to Web Audio API:
 
-http://modernweb.com/2014/03/31/creating-sound-with-the-web-audio-api-and-oscillators/
+Making Music in the Browser:
 
-http://www.html5rocks.com/en/tutorials/webaudio/intro/
+<https://www.keithmcmillen.com/blog/making-music-in-the-browser-web-audio-api-part-1/>
 
-https://blog.szynalski.com/2014/04/02/web-audio-api/
+Creating Sound with the Web Audio API:
+
+<http://modernweb.com/2014/03/31/creating-sound-with-the-web-audio-api-and-oscillators/>
+
+Getting started with the Web Audio API:
+
+<http://www.html5rocks.com/en/tutorials/webaudio/intro/>
+
+Web Audio API - Blog:
+
+<https://blog.szynalski.com/2014/04/02/web-audio-api/>
