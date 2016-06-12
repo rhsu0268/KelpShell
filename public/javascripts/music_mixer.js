@@ -2,6 +2,8 @@ var app = angular.module('musicMixer', ['rzModule']);
 
 var context;
 var osc;
+var source;
+var gain;
 
 app.controller('musicMixer', ['$scope', function($scope) {
 
@@ -30,9 +32,11 @@ app.controller('musicMixer', ['$scope', function($scope) {
 
 	$scope.stopPitch = function()
 	{
-
-		osc.disconnect(context.destination);
-		osc.stop();
+		if (osc)
+		{
+			osc.disconnect(context.destination);
+			osc.stop();
+		}
 
 	};
 
@@ -60,6 +64,26 @@ app.controller('musicMixer', ['$scope', function($scope) {
 	    	}
   		}
 	};
+
+	$scope.playSong = function()
+	{
+		context = new AudioContext();
+		bufferLoader = new BufferLoader(
+	    	context,
+	    	[
+		      '../music/feeling_good.mp3'
+		    ],
+		    finishedLoading	// this is the callback function - it's called after the file is loaded
+		    				// and is given an array of loaded buffer arrays as an argument  
+		);
+
+	  	bufferLoader.load();
+	};
+
+	$scope.stopSong = function()
+	{
+		source.stop()
+	};
 }]);
 
 function generatePitch(pitch)
@@ -68,6 +92,17 @@ function generatePitch(pitch)
 	//console.log(osc);
 	osc.frequency.value = pitch;
 	//osc.connect(context.destination);
+}
+
+function finishedLoading(bufferList) {
+ 	// If you had more loops, you could 
+  	source = context.createBufferSource();
+  	source.buffer = bufferList[0];
+  	gain = context.createGain();
+  	source.connect(gain);
+  	gain.gain.value = 0.4;
+  	gain.connect(context.destination);
+  	source.start(0);
 }
 
 

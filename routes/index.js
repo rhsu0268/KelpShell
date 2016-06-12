@@ -15,8 +15,8 @@ router.get('/music_mixer', function(req, res, next) {
 });
 
 
-router.get('/sliderTest', function(req, res, next) {
-	res.render('touch_mixer', { title: 'Touch Slider' });
+router.get('/playSongTest', function(req, res, next) {
+	res.render('playSongTest', { title: 'Play Song Test' });
 
 });
 
