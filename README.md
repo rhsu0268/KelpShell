@@ -19,3 +19,5 @@ Web Audio API - Blog:
 <https://blog.szynalski.com/2014/04/02/web-audio-api/>
 
 https://www.sitepoint.com/5-libraries-html5-audio-api/
+
+http://www.createjs.com/demos/soundjs/playonclick

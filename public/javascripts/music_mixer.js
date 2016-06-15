@@ -89,8 +89,6 @@ app.controller('musicMixer', ['$scope', function($scope) {
 
 app.controller('bandJS', function($scope) {
 
-	
-
 	console.log("Inside bandjs");
 
 	$scope.tempo = 180;
@@ -128,11 +126,6 @@ app.controller('bandJS', function($scope) {
 		$scope.paused = false;
 		player.pause();
 	}
-
-
-
-
-
 
 });
 
