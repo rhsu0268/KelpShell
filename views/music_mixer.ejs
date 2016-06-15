@@ -69,10 +69,12 @@
       <button type="button" class="btn btn-primary" ng-click="playSong()">Play Song</button>
       <button type="button" class="btn btn-danger" ng-click="stopSong()">Stop Song</button>
     </div>
-    <h3>Music Mixer</h3>
+    <div ng-controller="bandJS">
+      <h3>Music Mixer</h3>
 
-      <button type="button" class="btn btn-primary" ng-click="playMixedSong()">Play Mixed Song</button>
-      <button type="button" class="btn btn-primary" ng-click="stopMixedSong()">Stop Mixed Song</button>
+        <button type="button" class="btn btn-primary" ng-click="playMixedSong()">Play Mixed Song</button>
+        <button type="button" class="btn btn-primary" ng-click="stopMixedSong()">Stop Mixed Song</button>
+    </div>
   </body>
      
     <!-- Bootstrap core JavaScript

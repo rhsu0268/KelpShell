@@ -86,6 +86,56 @@ app.controller('musicMixer', ['$scope', function($scope) {
 	};
 }]);
 
+
+app.controller('bandJS', function($scope) {
+
+	
+
+	console.log("Inside bandjs");
+
+	$scope.tempo = 180;
+
+	var conductor = new BandJS();
+
+	conductor.setTimeSignature(2, 2);
+	conductor.setTempo($scope.tempo);
+
+	var rightHand = conductor.createInstrument('square', 'oscillators');
+	var leftHand = conductor.createInstrument('triangle', 'oscillators');
+	var drum = conductor.createInstrument('white', 'noises');
+
+	drum.setVolume(50);
+
+	// Bar 1
+	rightHand.note('quarter', 'E5, F#4');
+	rightHand.note('quarter', 'E5, F#4');
+	rightHand.rest('quarter');
+	rightHand.note('quarter', 'E5, F#4');
+
+
+	$scope.playMixedSong = function()
+	{
+		$scope.playing = true;
+        $scope.paused = false;
+        player.play();
+	}
+
+	var player = conductor.finish();
+
+	$scope.stopMixedSong = function()
+	{
+		$scope.playing = false;
+		$scope.paused = false;
+		player.pause();
+	}
+
+
+
+
+
+
+});
+
 function generatePitch(pitch)
 {
 	//console.log(context);
