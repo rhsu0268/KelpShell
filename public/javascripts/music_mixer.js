@@ -148,6 +148,12 @@ function finishedLoading(bufferList) {
   	source.start(0);
 }
 
+app.controller('mixer', function($scope) {
+	
+	console.log("mixer");
+
+});
+
 
 
 
