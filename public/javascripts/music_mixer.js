@@ -157,7 +157,7 @@ app.controller('mixer', function($scope) {
 	conductor.setTimeSignature(2, 2);
 	conductor.setTempo(120);
 
-	var instrument = conductor.createInstrument();
+	var instrument = conductor.createInstrument('sine', 'oscillators');
 
 	$scope.playE = function()
 	{
@@ -166,7 +166,52 @@ app.controller('mixer', function($scope) {
         console.log("playE");
         instrument.note('quarter', 'E4');
         player.play();
-	}
+	};
+
+	$scope.playF = function()
+	{
+		//$scope.playing = true;
+        //$scope.paused = false;
+        console.log("playF");
+        instrument.note('quarter', 'F4');
+        player.play();
+	};
+
+	$scope.playG = function()
+	{
+		//$scope.playing = true;
+        //$scope.paused = false;
+        console.log("playE");
+        instrument.note('quarter', 'G4');
+        player.play();
+	};
+
+	$scope.playA = function()
+	{
+		//$scope.playing = true;
+        //$scope.paused = false;
+        console.log("playA");
+        instrument.note('quarter', 'A4');
+        player.play();
+	};
+
+	$scope.playB = function()
+	{
+		//$scope.playing = true;
+        //$scope.paused = false;
+        console.log("playB");
+        instrument.note('quarter', 'B4');
+        player.play();
+	};
+
+	$scope.playC = function()
+	{
+		//$scope.playing = true;
+        //$scope.paused = false;
+        console.log("playC");
+        instrument.note('quarter', 'C4');
+        player.play();
+	};
 
 	var player = conductor.finish();
 
