@@ -149,8 +149,26 @@ function finishedLoading(bufferList) {
 }
 
 app.controller('mixer', function($scope) {
-	
+
 	console.log("mixer");
+
+	var conductor = new BandJS();
+
+	conductor.setTimeSignature(2, 2);
+	conductor.setTempo(120);
+
+	var instrument = conductor.createInstrument();
+
+	$scope.playE = function()
+	{
+		//$scope.playing = true;
+        //$scope.paused = false;
+        console.log("playE");
+        instrument.note('quarter', 'E4');
+        player.play();
+	}
+
+	var player = conductor.finish();
 
 });
 

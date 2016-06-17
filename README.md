@@ -21,3 +21,5 @@ Web Audio API - Blog:
 https://www.sitepoint.com/5-libraries-html5-audio-api/
 
 http://www.createjs.com/demos/soundjs/playonclick
+
+http://www.musicnotes.com/blog/2014/04/11/how-to-read-sheet-music/
