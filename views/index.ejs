@@ -1,46 +1,21 @@
 <!DOCTYPE html>
-<html ng-app="home">
+<html>
   <head>
     <title><%= title %></title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
   </head>
   <body>
-    <!-- anything typed in here is magically saved to our Firebase database! -->
-    <!-- anything typed in here is magically saved to our Firebase database! -->
-    <div ng-app="sampleApp" ng-controller="ChatCtrl">
-      <ul class="chatbox">
-        <li ng-repeat="message in messages">{{ message.from }}: {{ message.content }}</li>
-      </ul>
-      <form ng-submit="addMessage()">
-        <input type="text" ng-model="message">
-        <input type="submit" value="Add Message">
-      </form>
-</div>
+     <div ng-include src="'/header/header.ejs'"></div>
+    <h1>Welcome</h1>
   </body>
-  <!-- AngularJS -->
-  <!-- Angular -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
 
   <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/3.0.3/firebase.js"></script>
 
   <!-- AngularFire -->
   <script src="https://cdn.firebase.com/libs/angularfire/2.0.0/angularfire.min.js"></script>
-  <script>
-  	//Initialize Firebase
-  	var config = {
-    	apiKey: "AIzaSyBwdXnYKXK3Tk9O1T3Pt3i40Jnem4HYgzk",
-    	authDomain: "kelpa-61adc.firebaseapp.com",
-    	databaseURL: "https://kelpa-61adc.firebaseio.com",
-    	storageBucket: "kelpa-61adc.appspot.com",
-  	};
-  	firebase.initializeApp(config);
-
-    // Get a reference to the database service
-    var database = firebase.database();
-
-	</script>
-  <!--<script src="javascripts/home.js"></script>-->
 </html>

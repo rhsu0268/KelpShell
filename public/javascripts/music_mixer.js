@@ -173,7 +173,7 @@ app.controller('mixer', function($scope) {
 		//$scope.playing = true;
         //$scope.paused = false;
         console.log("playF");
-        instrument.note('quarter', 'F4');
+        instrument.note('whole', 'F4');
         player.play();
 	};
 
