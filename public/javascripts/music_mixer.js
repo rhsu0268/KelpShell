@@ -154,64 +154,29 @@ app.controller('mixer', function($scope) {
 
 	var conductor = new BandJS();
 
-	conductor.setTimeSignature(2, 2);
+	conductor.setTimeSignature(4, 4);
 	conductor.setTempo(120);
 
-	var instrument = conductor.createInstrument('sine', 'oscillators');
+	//var instrument = conductor.createInstrument('sine', 'oscillators');
+	var instrument = conductor.createInstrument();
+
+	console.log("playE");
+    instrument.note('quarter', 'E4');
+    instrument.note('quarter', 'F4');
+    instrument.note('quarter', 'G4');
+    instrument.note('quarter', 'A4');
+    instrument.note('quarter', 'B4');
+    instrument.note('quarter', 'C4');
+    instrument.note('quarter', 'D4');
 
 	$scope.playE = function()
 	{
 		//$scope.playing = true;
         //$scope.paused = false;
-        console.log("playE");
-        instrument.note('quarter', 'E4');
+        
         player.play();
 	};
 
-	$scope.playF = function()
-	{
-		//$scope.playing = true;
-        //$scope.paused = false;
-        console.log("playF");
-        instrument.note('whole', 'F4');
-        player.play();
-	};
-
-	$scope.playG = function()
-	{
-		//$scope.playing = true;
-        //$scope.paused = false;
-        console.log("playE");
-        instrument.note('quarter', 'G4');
-        player.play();
-	};
-
-	$scope.playA = function()
-	{
-		//$scope.playing = true;
-        //$scope.paused = false;
-        console.log("playA");
-        instrument.note('quarter', 'A4');
-        player.play();
-	};
-
-	$scope.playB = function()
-	{
-		//$scope.playing = true;
-        //$scope.paused = false;
-        console.log("playB");
-        instrument.note('quarter', 'B4');
-        player.play();
-	};
-
-	$scope.playC = function()
-	{
-		//$scope.playing = true;
-        //$scope.paused = false;
-        console.log("playC");
-        instrument.note('quarter', 'C4');
-        player.play();
-	};
 
 	var player = conductor.finish();
 
