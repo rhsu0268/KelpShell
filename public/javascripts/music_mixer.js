@@ -182,6 +182,11 @@ app.controller('mixer', function($scope) {
 
 });
 
+app.controller('pad', function($scope) {
+
+	console.log("Pad");
+
+});
 
 
 
