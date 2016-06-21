@@ -23,3 +23,9 @@ https://www.sitepoint.com/5-libraries-html5-audio-api/
 http://www.createjs.com/demos/soundjs/playonclick
 
 http://www.musicnotes.com/blog/2014/04/11/how-to-read-sheet-music/
+
+https://www.sitepoint.com/html5-web-audio-api-tutorial-building-virtual-synth-pad/
+
+http://codepen.io/matt-west/full/lAFnx
+
+http://blog.teamtreehouse.com/building-a-synthesizer-with-the-web-audio-api
