@@ -186,7 +186,30 @@ app.controller('pad', function($scope) {
 
 	console.log("Pad");
 
+	var context = new AudioContext();
+
+
+
+
 });
+
+
+// function to load audio files 
+function loadAudio(object, url)
+{
+	var request = new XMLHttpRequest();
+	request.open('GET', url, true);
+	request.responseType =  'arrayBuffer';
+
+	request.onload = function() 
+	{
+		context.decodeAudioData(request.response, function(buffer)
+		{
+			object.buffer = buffer;
+		});
+	}
+	request.send();
+}
 
 
 
