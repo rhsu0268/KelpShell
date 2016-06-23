@@ -213,6 +213,7 @@ function loadAudio(object, url)
 
 
 // add properties to object
+// player
 function addAudioProperties(object)
 {
 	object.name = object.id;
