@@ -12,7 +12,7 @@ app.controller('musicMixer', ['$scope', function($scope) {
 	//var context = new AudioContext();
 	//var osc = context.createOscillator();
 
-	
+
 
 	$scope.generatePitch300 = function()
 	{
@@ -74,7 +74,7 @@ app.controller('musicMixer', ['$scope', function($scope) {
 		      '../music/feeling_good.mp3'
 		    ],
 		    finishedLoading	// this is the callback function - it's called after the file is loaded
-		    				// and is given an array of loaded buffer arrays as an argument  
+		    				// and is given an array of loaded buffer arrays as an argument
 		);
 
 	  	bufferLoader.load();
@@ -138,7 +138,7 @@ function generatePitch(pitch)
 }
 
 function finishedLoading(bufferList) {
- 	// If you had more loops, you could 
+ 	// If you had more loops, you could
   	source = context.createBufferSource();
   	source.buffer = bufferList[0];
   	gain = context.createGain();
@@ -173,7 +173,7 @@ app.controller('mixer', function($scope) {
 	{
 		//$scope.playing = true;
         //$scope.paused = false;
-        
+
         player.play();
 	};
 
@@ -194,14 +194,14 @@ app.controller('pad', function($scope) {
 });
 
 
-// function to load audio files 
+// function to load audio files
 function loadAudio(object, url)
 {
 	var request = new XMLHttpRequest();
 	request.open('GET', url, true);
 	request.responseType =  'arrayBuffer';
 
-	request.onload = function() 
+	request.onload = function()
 	{
 		context.decodeAudioData(request.response, function(buffer)
 		{
@@ -212,4 +212,18 @@ function loadAudio(object, url)
 }
 
 
-
+// add properties to object
+function addAudioProperties(object)
+{
+	object.name = object.id;
+	object.source = $(object).data('sound');
+	loadAudio(object, object.source);
+	object.play = function()
+	{
+		var s = context.createBufferSource();
+		s.buffer = object.buffer;
+		s.connect(context.destination);
+		s.start(0);
+		object.s = s;
+	}
+}
