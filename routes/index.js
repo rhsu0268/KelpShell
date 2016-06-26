@@ -14,6 +14,10 @@ router.get('/music_mixer', function(req, res, next) {
 	res.render('music_mixer', { title: 'Music Mixer' });
 });
 
+router.get('/composer', function(req, res, next) {
+	res.render('composer', { title: 'Music Mixer' });
+});
+
 
 router.get('/playSongTest', function(req, res, next) {
 	res.render('playSongTest', { title: 'Play Song Test' });
