@@ -5,15 +5,18 @@ var osc;
 var source;
 var gain;
 
+var tune;
+
 app.controller('padsCtrl', ['$scope', function($scope) {
 
     console.log("Pads");
 
     $scope.playKick = function()
     {
+        tune = "kick.wav";
         if (!context)
         {
-            playSound();
+            playSound(tune);
         }
         else
         {
@@ -26,13 +29,13 @@ app.controller('padsCtrl', ['$scope', function($scope) {
 }]);
 
 
-function playSound()
+function playSound(tune)
 {
     context = new AudioContext();
     bufferLoader = new BufferLoader(
         context,
         [
-          '../music/feeling_good.mp3'
+          '../music/' + tune
         ],
         finishedLoading	// this is the callback function - it's called after the file is loaded
                         // and is given an array of loaded buffer arrays as an argument
