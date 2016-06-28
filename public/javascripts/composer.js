@@ -21,6 +21,22 @@ app.controller('padsCtrl', ['$scope', function($scope) {
         else
         {
             source.stop();
+            context.close();
+            context = null;
+        }
+    }
+
+    $scope.playSnare = function()
+    {
+        tune = "snare.wav";
+        if (!context)
+        {
+            playSound(tune);
+        }
+        else
+        {
+            source.stop();
+            context.close();
             context = null;
         }
     }

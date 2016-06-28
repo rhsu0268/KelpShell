@@ -82,7 +82,7 @@ app.controller('musicMixer', ['$scope', function($scope) {
 
 	$scope.stopSong = function()
 	{
-		source.stop()
+		source.stop();
 	};
 }]);
 
