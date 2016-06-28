@@ -11,7 +11,15 @@ app.controller('padsCtrl', ['$scope', function($scope) {
 
     $scope.playKick = function()
     {
-        playSound();
+        if (!context)
+        {
+            playSound();
+        }
+        else
+        {
+            source.stop();
+            context = null;
+        }
     }
 
 
