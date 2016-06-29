@@ -41,6 +41,36 @@ app.controller('padsCtrl', ['$scope', function($scope) {
         }
     }
 
+    $scope.playTin = function()
+    {
+        tune = "tin.wav";
+        if (!context)
+        {
+            playSound(tune);
+        }
+        else
+        {
+            source.stop();
+            context.close();
+            context = null;
+        }
+    }
+
+    $scope.playHat = function()
+    {
+        tune = "hat.wav";
+        if (!context)
+        {
+            playSound(tune);
+        }
+        else
+        {
+            source.stop();
+            context.close();
+            context = null;
+        }
+    }
+
 
 }]);
 
