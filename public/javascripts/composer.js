@@ -1,4 +1,4 @@
-var app = angular.module('composer', []);
+var app = angular.module('composer', ['rzModule']);
 
 var context;
 var osc;
@@ -121,6 +121,37 @@ app.controller('padsCtrl', ['$scope', function($scope) {
         }
     }
 
+    $scope.playLoop4 = function()
+    {
+        if (!contextLoop4)
+        {
+            console.log("Play loop4");
+            playSoundLoop4("hat.wav");
+        }
+        else
+        {
+            source.stop();
+            contextLoop4.close();
+            contextLoop4 = null;
+        }
+    }
+
+    $scope.sliderSnareVolume = {
+        value: 150,
+        options: {
+            step: 20,
+            floor: 300,
+            ceil: 700,
+            onChange: function(sliderId, modelValue, highValue, pointerType)
+            {
+                console.log(modelValue);
+
+                //generatePitch(modelValue);
+                //osc.start(0);
+            }
+        }
+    };
+
 
 }]);
 
@@ -199,6 +230,22 @@ function playSoundLoop3(tune)
 
 }
 
+function playSoundLoop4(tune)
+{
+    contextLoop4 = new AudioContext();
+
+    bufferLoader = new BufferLoader(
+        contextLoop4,
+        [
+          '../music/' + tune
+        ],
+        finishedLoadingAndPlay4	// this is the callback function - it's called after the file is loaded
+                        // and is given an array of loaded buffer arrays as an argument
+    );
+    bufferLoader.load();
+
+}
+
 
 function finishedLoadingAndPlay1(bufferList) {
     // If you had more loops, you could
@@ -243,6 +290,22 @@ function finishedLoadingAndPlay3(bufferList) {
     source.connect(gain);
     gain.gain.value = 0.4;
     gain.connect(contextLoop3.destination);
+
+    source.start(0);
+    source.loop = true;
+
+}
+
+function finishedLoadingAndPlay4(bufferList) {
+    // If you had more loops, you could
+    //console.log(bufferList);
+
+    source = contextLoop4.createBufferSource();
+    source.buffer = bufferList[0];
+    gain = contextLoop4.createGain();
+    source.connect(gain);
+    gain.gain.value = 0.4;
+    gain.connect(contextLoop4.destination);
 
     source.start(0);
     source.loop = true;
