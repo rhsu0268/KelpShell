@@ -136,6 +136,22 @@ app.controller('padsCtrl', ['$scope', function($scope) {
         }
     }
 
+    $scope.sliderKickVolume = {
+        value: 150,
+        options: {
+            step: 20,
+            floor: 300,
+            ceil: 700,
+            onChange: function(sliderId, modelValue, highValue, pointerType)
+            {
+                console.log(modelValue);
+
+                //generatePitch(modelValue);
+                //osc.start(0);
+            }
+        }
+    };
+
     $scope.sliderSnareVolume = {
         value: 150,
         options: {
@@ -151,6 +167,40 @@ app.controller('padsCtrl', ['$scope', function($scope) {
             }
         }
     };
+
+    $scope.sliderTinVolume = {
+        value: 150,
+        options: {
+            step: 20,
+            floor: 300,
+            ceil: 700,
+            onChange: function(sliderId, modelValue, highValue, pointerType)
+            {
+                console.log(modelValue);
+
+                //generatePitch(modelValue);
+                //osc.start(0);
+            }
+        }
+    };
+
+    $scope.sliderHatVolume = {
+        value: 150,
+        options: {
+            step: 20,
+            floor: 300,
+            ceil: 700,
+            onChange: function(sliderId, modelValue, highValue, pointerType)
+            {
+                console.log(modelValue);
+
+                //generatePitch(modelValue);
+                //osc.start(0);
+            }
+        }
+    };
+
+
 
 
 }]);
