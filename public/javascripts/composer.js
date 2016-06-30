@@ -87,7 +87,7 @@ app.controller('padsCtrl', ['$scope', function($scope) {
         {
             source.stop();
             contextLoop1.close();
-            context = null;
+            contextLoop1 = null;
         }
     }
 
@@ -102,7 +102,22 @@ app.controller('padsCtrl', ['$scope', function($scope) {
         {
             source.stop();
             contextLoop2.close();
-            context = null;
+            contextLoop2 = null;
+        }
+    }
+
+    $scope.playLoop3 = function()
+    {
+        if (!contextLoop3)
+        {
+            console.log("Play loop3");
+            playSoundLoop3("tin.wav");
+        }
+        else
+        {
+            source.stop();
+            contextLoop3.close();
+            contextLoop3 = null;
         }
     }
 
@@ -168,6 +183,23 @@ function playSoundLoop2(tune)
 
 }
 
+function playSoundLoop3(tune)
+{
+    contextLoop3 = new AudioContext();
+
+    bufferLoader = new BufferLoader(
+        contextLoop3,
+        [
+          '../music/' + tune
+        ],
+        finishedLoadingAndPlay3	// this is the callback function - it's called after the file is loaded
+                        // and is given an array of loaded buffer arrays as an argument
+    );
+    bufferLoader.load();
+
+}
+
+
 function finishedLoadingAndPlay1(bufferList) {
     // If you had more loops, you could
     //console.log(bufferList);
@@ -198,6 +230,21 @@ function finishedLoadingAndPlay2(bufferList) {
     source.start(0);
     source.loop = true;
 
+}
 
+
+function finishedLoadingAndPlay3(bufferList) {
+    // If you had more loops, you could
+    //console.log(bufferList);
+
+    source = contextLoop3.createBufferSource();
+    source.buffer = bufferList[0];
+    gain = contextLoop3.createGain();
+    source.connect(gain);
+    gain.gain.value = 0.4;
+    gain.connect(contextLoop3.destination);
+
+    source.start(0);
+    source.loop = true;
 
 }
