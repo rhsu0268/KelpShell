@@ -5,6 +5,11 @@ var osc;
 var source;
 var gain;
 
+var contextLoop1;
+var contextLoop2;
+var contextLoop3;
+var contextLoop4;
+
 var tune;
 
 app.controller('padsCtrl', ['$scope', function($scope) {
@@ -73,22 +78,22 @@ app.controller('padsCtrl', ['$scope', function($scope) {
 
     $scope.playLoop1 = function()
     {
-        if (!context)
+        if (!contextLoop1)
         {
             console.log("Play loop1");
-            playSoundLoop("kick.wav");
+            playSoundLoop1("kick.wav");
         }
         else
         {
             source.stop();
-            context.close();
+            contextLoop1.close();
             context = null;
         }
     }
 
     $scope.playLoop2 = function()
     {
-        if (!context)
+        if (!contextLoop2)
         {
             console.log("Play loop2");
             playSoundLoop("snare.wav");
@@ -131,31 +136,40 @@ function finishedLoading(bufferList) {
   	source.start(0);
 }
 
-function playSoundLoop(tune)
+function playSoundLoop1(tune)
 {
-    context = new AudioContext();
+    console.log(tune);
+
+    console.log("Kick");
+    contextLoop1 = new AudioContext();
+    console.log("Kick");
+
     bufferLoader = new BufferLoader(
-        context,
+        contextLoop1,
         [
           '../music/' + tune
         ],
         finishedLoadingAndPlay	// this is the callback function - it's called after the file is loaded
                         // and is given an array of loaded buffer arrays as an argument
     );
-
     bufferLoader.load();
+
 }
 
 function finishedLoadingAndPlay(bufferList) {
     // If you had more loops, you could
-    source = context.createBufferSource();
+    console.log(bufferList);
+
+    source = contextLoop1.createBufferSource();
     source.buffer = bufferList[0];
-    gain = context.createGain();
+    gain = contextLoop1.createGain();
     source.connect(gain);
     gain.gain.value = 0.4;
-    gain.connect(context.destination);
+    gain.connect(contextLoop1.destination);
 
-  	source.start(0);
+    source.start(0);
     source.loop = true;
+
+
 
 }
