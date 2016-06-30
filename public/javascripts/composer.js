@@ -73,9 +73,32 @@ app.controller('padsCtrl', ['$scope', function($scope) {
 
     $scope.playLoop1 = function()
     {
-        console.log("Play loop1");
-        playSoundLoop("kick.wav");
+        if (!context)
+        {
+            console.log("Play loop1");
+            playSoundLoop("kick.wav");
+        }
+        else
+        {
+            source.stop();
+            context.close();
+            context = null;
+        }
+    }
 
+    $scope.playLoop2 = function()
+    {
+        if (!context)
+        {
+            console.log("Play loop2");
+            playSoundLoop("snare.wav");
+        }
+        else
+        {
+            source.stop();
+            context.close();
+            context = null;
+        }
     }
 
 
