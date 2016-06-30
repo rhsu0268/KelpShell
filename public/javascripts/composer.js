@@ -96,12 +96,12 @@ app.controller('padsCtrl', ['$scope', function($scope) {
         if (!contextLoop2)
         {
             console.log("Play loop2");
-            playSoundLoop("snare.wav");
+            playSoundLoop2("snare.wav");
         }
         else
         {
             source.stop();
-            context.close();
+            contextLoop2.close();
             context = null;
         }
     }
@@ -138,27 +138,39 @@ function finishedLoading(bufferList) {
 
 function playSoundLoop1(tune)
 {
-    console.log(tune);
-
-    console.log("Kick");
     contextLoop1 = new AudioContext();
-    console.log("Kick");
 
     bufferLoader = new BufferLoader(
         contextLoop1,
         [
           '../music/' + tune
         ],
-        finishedLoadingAndPlay	// this is the callback function - it's called after the file is loaded
+        finishedLoadingAndPlay1	// this is the callback function - it's called after the file is loaded
                         // and is given an array of loaded buffer arrays as an argument
     );
     bufferLoader.load();
 
 }
 
-function finishedLoadingAndPlay(bufferList) {
+function playSoundLoop2(tune)
+{
+    contextLoop2 = new AudioContext();
+
+    bufferLoader = new BufferLoader(
+        contextLoop2,
+        [
+          '../music/' + tune
+        ],
+        finishedLoadingAndPlay2	// this is the callback function - it's called after the file is loaded
+                        // and is given an array of loaded buffer arrays as an argument
+    );
+    bufferLoader.load();
+
+}
+
+function finishedLoadingAndPlay1(bufferList) {
     // If you had more loops, you could
-    console.log(bufferList);
+    //console.log(bufferList);
 
     source = contextLoop1.createBufferSource();
     source.buffer = bufferList[0];
@@ -166,6 +178,22 @@ function finishedLoadingAndPlay(bufferList) {
     source.connect(gain);
     gain.gain.value = 0.4;
     gain.connect(contextLoop1.destination);
+
+    source.start(0);
+    source.loop = true;
+}
+
+
+function finishedLoadingAndPlay2(bufferList) {
+    // If you had more loops, you could
+    //console.log(bufferList);
+
+    source = contextLoop2.createBufferSource();
+    source.buffer = bufferList[0];
+    gain = contextLoop2.createGain();
+    source.connect(gain);
+    gain.gain.value = 0.4;
+    gain.connect(contextLoop2.destination);
 
     source.start(0);
     source.loop = true;
