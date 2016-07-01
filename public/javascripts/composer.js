@@ -136,6 +136,70 @@ app.controller('padsCtrl', ['$scope', function($scope) {
         }
     }
 
+    $scope.sliderKickFrequency = {
+        value: 150,
+        options: {
+            step: 20,
+            floor: 300,
+            ceil: 700,
+            onChange: function(sliderId, modelValue, highValue, pointerType)
+            {
+                console.log(modelValue);
+
+                //generatePitch(modelValue);
+                //osc.start(0);
+            }
+        }
+    };
+
+    $scope.sliderSnareFrequency = {
+        value: 150,
+        options: {
+            step: 20,
+            floor: 300,
+            ceil: 700,
+            onChange: function(sliderId, modelValue, highValue, pointerType)
+            {
+                console.log(modelValue);
+
+                //generatePitch(modelValue);
+                //osc.start(0);
+            }
+        }
+    };
+
+    $scope.sliderTinFrequency = {
+        value: 150,
+        options: {
+            step: 20,
+            floor: 300,
+            ceil: 700,
+            onChange: function(sliderId, modelValue, highValue, pointerType)
+            {
+                console.log(modelValue);
+
+                //generatePitch(modelValue);
+                //osc.start(0);
+            }
+        }
+    };
+
+    $scope.sliderHatFrequency = {
+        value: 150,
+        options: {
+            step: 20,
+            floor: 300,
+            ceil: 700,
+            onChange: function(sliderId, modelValue, highValue, pointerType)
+            {
+                console.log(modelValue);
+
+                //generatePitch(modelValue);
+                //osc.start(0);
+            }
+        }
+    };
+
     $scope.sliderKickVolume = {
         value: 150,
         options: {
@@ -302,6 +366,7 @@ function finishedLoadingAndPlay1(bufferList) {
     //console.log(bufferList);
 
     source = contextLoop1.createBufferSource();
+    //source.playbackRate.value = 2;
     source.buffer = bufferList[0];
     gain = contextLoop1.createGain();
     source.connect(gain);
