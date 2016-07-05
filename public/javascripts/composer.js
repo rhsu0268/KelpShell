@@ -11,11 +11,15 @@ var contextLoop3;
 var contextLoop4;
 
 var sourceLoop1;
+var sourceLoop2;
 
 var gainLoop1;
+var gainLoop2;
 
 var playbackRate1 = 1;
+var playbackRate2 = 1;
 var volume1 = 1;
+var volume2 = 1;
 
 var tune;
 
@@ -107,7 +111,7 @@ app.controller('padsCtrl', ['$scope', function($scope) {
         }
         else
         {
-            source.stop();
+            sourceLoop2.stop();
             contextLoop2.close();
             contextLoop2 = null;
         }
@@ -164,17 +168,22 @@ app.controller('padsCtrl', ['$scope', function($scope) {
     };
 
     $scope.sliderSnareFrequency = {
-        value: 150,
+        value: 1,
         options: {
-            step: 20,
-            floor: 300,
-            ceil: 700,
+            step: .1,
+            floor: 1,
+            ceil: 2,
+            precision: 1,
+            showTicks: true,
             onChange: function(sliderId, modelValue, highValue, pointerType)
             {
                 console.log(modelValue);
 
-                //generatePitch(modelValue);
-                //osc.start(0);
+                if (sourceLoop2)
+                {
+                    sourceLoop2.playbackRate.value = modelValue;
+                }
+                playbackRate2 = modelValue;
             }
         }
     };
@@ -233,17 +242,22 @@ app.controller('padsCtrl', ['$scope', function($scope) {
     };
 
     $scope.sliderSnareVolume = {
-        value: 150,
+        value: 1,
         options: {
-            step: 20,
-            floor: 300,
-            ceil: 700,
+            step: 1,
+            floor: 1,
+            ceil: 10,
+            showTicks: true,
             onChange: function(sliderId, modelValue, highValue, pointerType)
             {
                 console.log(modelValue);
+                if (gainLoop2)
+                {
+                    gainLoop2.gain.value = modelValue;
 
-                //generatePitch(modelValue);
-                //osc.start(0);
+                }
+
+                volume2 = modelValue;
             }
         }
     };
@@ -398,15 +412,15 @@ function finishedLoadingAndPlay2(bufferList) {
     // If you had more loops, you could
     //console.log(bufferList);
 
-    source = contextLoop2.createBufferSource();
-    source.buffer = bufferList[0];
-    gain = contextLoop2.createGain();
-    source.connect(gain);
-    gain.gain.value = 0.4;
-    gain.connect(contextLoop2.destination);
+    sourceLoop2 = contextLoop2.createBufferSource();
+    sourceLoop2.buffer = bufferList[0];
+    gainLoop2 = contextLoop2.createGain();
+    sourceLoop2.connect(gainLoop2);
+    gainLoop2.gain.value = 0.4;
+    gainLoop2.connect(contextLoop2.destination);
 
-    source.start(0);
-    source.loop = true;
+    sourceLoop2.start(0);
+    sourceLoop2.loop = true;
 
 }
 
