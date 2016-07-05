@@ -12,6 +12,8 @@ var contextLoop4;
 
 var sourceLoop1;
 
+var gainLoop1;
+
 var tune;
 
 app.controller('padsCtrl', ['$scope', function($scope) {
@@ -214,6 +216,8 @@ app.controller('padsCtrl', ['$scope', function($scope) {
             {
                 console.log(modelValue);
 
+                gainLoop1.gain.value = modelValue;
+
                 //generatePitch(modelValue);
                 //osc.start(0);
             }
@@ -372,10 +376,10 @@ function finishedLoadingAndPlay1(bufferList) {
     sourceLoop1 = contextLoop1.createBufferSource();
     //source.playbackRate.value = 2;
     sourceLoop1.buffer = bufferList[0];
-    gain = contextLoop1.createGain();
-    sourceLoop1.connect(gain);
-    gain.gain.value = 0.4;
-    gain.connect(contextLoop1.destination);
+    gainLoop1 = contextLoop1.createGain();
+    sourceLoop1.connect(gainLoop1);
+    gainLoop1.gain.value = 0.4;
+    gainLoop1.connect(contextLoop1.destination);
 
     sourceLoop1.start(0);
     sourceLoop1.loop = true;
