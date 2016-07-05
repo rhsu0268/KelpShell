@@ -148,8 +148,7 @@ app.controller('padsCtrl', ['$scope', function($scope) {
             {
                 console.log(modelValue);
 
-                //generatePitch(modelValue);
-                //osc.start(0);
+                source.playbackRate.value = modelValue;
             }
         }
     };
