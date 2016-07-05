@@ -14,6 +14,9 @@ var sourceLoop1;
 
 var gainLoop1;
 
+var playbackRate1 = 1;
+var volume1 = 1;
+
 var tune;
 
 app.controller('padsCtrl', ['$scope', function($scope) {
@@ -153,6 +156,7 @@ app.controller('padsCtrl', ['$scope', function($scope) {
                 console.log(modelValue);
 
                 sourceLoop1.playbackRate.value = modelValue;
+                playbackRate1 = modelValue;
             }
         }
     };
@@ -217,6 +221,7 @@ app.controller('padsCtrl', ['$scope', function($scope) {
                 console.log(modelValue);
 
                 gainLoop1.gain.value = modelValue;
+                volume1 = modelValue;
 
                 //generatePitch(modelValue);
                 //osc.start(0);
@@ -374,11 +379,11 @@ function finishedLoadingAndPlay1(bufferList) {
     //console.log(bufferList);
 
     sourceLoop1 = contextLoop1.createBufferSource();
-    //source.playbackRate.value = 2;
+    sourceLoop1.playbackRate.value = playbackRate1;
     sourceLoop1.buffer = bufferList[0];
     gainLoop1 = contextLoop1.createGain();
     sourceLoop1.connect(gainLoop1);
-    gainLoop1.gain.value = 0.4;
+    gainLoop1.gain.value = volume1;
     gainLoop1.connect(contextLoop1.destination);
 
     sourceLoop1.start(0);
