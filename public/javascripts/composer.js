@@ -154,8 +154,10 @@ app.controller('padsCtrl', ['$scope', function($scope) {
             onChange: function(sliderId, modelValue, highValue, pointerType)
             {
                 console.log(modelValue);
-
-                sourceLoop1.playbackRate.value = modelValue;
+                if (sourceLoop1)
+                {
+                    sourceLoop1.playbackRate.value = modelValue;
+                }
                 playbackRate1 = modelValue;
             }
         }
@@ -219,12 +221,13 @@ app.controller('padsCtrl', ['$scope', function($scope) {
             onChange: function(sliderId, modelValue, highValue, pointerType)
             {
                 console.log(modelValue);
+                if (gainLoop1)
+                {
+                    gainLoop1.gain.value = modelValue;
 
-                gainLoop1.gain.value = modelValue;
+                }
+
                 volume1 = modelValue;
-
-                //generatePitch(modelValue);
-                //osc.start(0);
             }
         }
     };
