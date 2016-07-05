@@ -10,6 +10,8 @@ var contextLoop2;
 var contextLoop3;
 var contextLoop4;
 
+var sourceLoop1;
+
 var tune;
 
 app.controller('padsCtrl', ['$scope', function($scope) {
@@ -85,7 +87,7 @@ app.controller('padsCtrl', ['$scope', function($scope) {
         }
         else
         {
-            source.stop();
+            sourceLoop1.stop();
             contextLoop1.close();
             contextLoop1 = null;
         }
@@ -148,7 +150,7 @@ app.controller('padsCtrl', ['$scope', function($scope) {
             {
                 console.log(modelValue);
 
-                source.playbackRate.value = modelValue;
+                sourceLoop1.playbackRate.value = modelValue;
             }
         }
     };
@@ -202,11 +204,12 @@ app.controller('padsCtrl', ['$scope', function($scope) {
     };
 
     $scope.sliderKickVolume = {
-        value: 150,
+        value: 1,
         options: {
-            step: 20,
-            floor: 300,
-            ceil: 700,
+            step: 1,
+            floor: 1,
+            ceil: 10,
+            showTicks: true,
             onChange: function(sliderId, modelValue, highValue, pointerType)
             {
                 console.log(modelValue);
@@ -366,16 +369,16 @@ function finishedLoadingAndPlay1(bufferList) {
     // If you had more loops, you could
     //console.log(bufferList);
 
-    source = contextLoop1.createBufferSource();
+    sourceLoop1 = contextLoop1.createBufferSource();
     //source.playbackRate.value = 2;
-    source.buffer = bufferList[0];
+    sourceLoop1.buffer = bufferList[0];
     gain = contextLoop1.createGain();
-    source.connect(gain);
+    sourceLoop1.connect(gain);
     gain.gain.value = 0.4;
     gain.connect(contextLoop1.destination);
 
-    source.start(0);
-    source.loop = true;
+    sourceLoop1.start(0);
+    sourceLoop1.loop = true;
 }
 
 
