@@ -137,11 +137,12 @@ app.controller('padsCtrl', ['$scope', function($scope) {
     }
 
     $scope.sliderKickFrequency = {
-        value: 150,
+        value: 1,
         options: {
-            step: 20,
-            floor: 300,
-            ceil: 700,
+            step: .1,
+            floor: 1,
+            ceil: 2,
+            precision: 1,
             onChange: function(sliderId, modelValue, highValue, pointerType)
             {
                 console.log(modelValue);
