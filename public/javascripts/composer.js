@@ -143,6 +143,7 @@ app.controller('padsCtrl', ['$scope', function($scope) {
             floor: 1,
             ceil: 2,
             precision: 1,
+            showTicks: true,
             onChange: function(sliderId, modelValue, highValue, pointerType)
             {
                 console.log(modelValue);
