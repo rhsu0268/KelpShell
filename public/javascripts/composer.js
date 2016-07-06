@@ -194,17 +194,22 @@ app.controller('padsCtrl', ['$scope', function($scope) {
     };
 
     $scope.sliderTinFrequency = {
-        value: 150,
+        value: 1,
         options: {
-            step: 20,
-            floor: 300,
-            ceil: 700,
+            step: .1,
+            floor: 1,
+            ceil: 2,
+            precision: 1,
+            showTicks: true,
             onChange: function(sliderId, modelValue, highValue, pointerType)
             {
                 console.log(modelValue);
 
-                //generatePitch(modelValue);
-                //osc.start(0);
+                if (sourceLoop3)
+                {
+                    sourceLoop3.playbackRate.value = modelValue;
+                }
+                playbackRate3 = modelValue;
             }
         }
     };
@@ -268,17 +273,22 @@ app.controller('padsCtrl', ['$scope', function($scope) {
     };
 
     $scope.sliderTinVolume = {
-        value: 150,
+        value: 1,
         options: {
-            step: 20,
-            floor: 300,
-            ceil: 700,
+            step: 1,
+            floor: 1,
+            ceil: 10,
+            showTicks: true,
             onChange: function(sliderId, modelValue, highValue, pointerType)
             {
                 console.log(modelValue);
+                if (gainLoop3)
+                {
+                    gainLoop3.gain.value = modelValue;
 
-                //generatePitch(modelValue);
-                //osc.start(0);
+                }
+
+                volume3 = modelValue;
             }
         }
     };
