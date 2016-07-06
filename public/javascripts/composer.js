@@ -12,14 +12,19 @@ var contextLoop4;
 
 var sourceLoop1;
 var sourceLoop2;
+var sourceLoop3;
 
 var gainLoop1;
 var gainLoop2;
+var gainLoop3;
 
 var playbackRate1 = 1;
 var playbackRate2 = 1;
+var playbackRate3 = 1;
+
 var volume1 = 1;
 var volume2 = 1;
+var volume3 = 1;
 
 var tune;
 
@@ -126,7 +131,7 @@ app.controller('padsCtrl', ['$scope', function($scope) {
         }
         else
         {
-            source.stop();
+            sourceLoop3.stop();
             contextLoop3.close();
             contextLoop3 = null;
         }
@@ -429,15 +434,15 @@ function finishedLoadingAndPlay3(bufferList) {
     // If you had more loops, you could
     //console.log(bufferList);
 
-    source = contextLoop3.createBufferSource();
-    source.buffer = bufferList[0];
-    gain = contextLoop3.createGain();
-    source.connect(gain);
-    gain.gain.value = 0.4;
-    gain.connect(contextLoop3.destination);
+    sourceLoop3 = contextLoop3.createBufferSource();
+    sourceLoop3.buffer = bufferList[0];
+    gainLoop3 = contextLoop3.createGain();
+    sourceLoop3.connect(gainLoop3);
+    gainLoop3.gain.value = 0.4;
+    gainLoop3.connect(contextLoop3.destination);
 
-    source.start(0);
-    source.loop = true;
+    sourceLoop3.start(0);
+    sourceLoop3.loop = true;
 
 }
 
