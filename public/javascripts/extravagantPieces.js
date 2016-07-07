@@ -29,6 +29,11 @@ app.controller('sharePiecesCtrl', ['$scope', function($scope) {
 		//pieces.submitPiece();
 		console.log($scope.title);
 		console.log($scope.composer);
+
+		pieces.submitPiece($scope.composer, $scope.title);
+
+		$scope.title = "";
+		$scope.composer = "";
 	}
 
 }]);
