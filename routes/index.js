@@ -6,8 +6,8 @@ router.get('/', function(req, res, next) {
 	res.render('index', { title: 'KelpShell' });
 });
 
-router.get('/connect_to_firebase', function(req, res, next) {
-	res.render('music_list', { title: 'Express' });
+router.get('/extravagantPieces', function(req, res, next) {
+	res.render('extravagantPieces', { title: 'Express' });
 });
 
 router.get('/music_mixer', function(req, res, next) {
