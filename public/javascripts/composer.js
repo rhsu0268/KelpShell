@@ -499,4 +499,15 @@ app.controller('visualizationCtrl', ['$scope', function($scope) {
     });
 
     wavesurfer.load('../music/feeling_good.mp3');
+
+    $scope.playPause = function()
+    {
+        /*
+        if wavesurfer.isPlaying()
+        {
+            wavesurfer.pause();
+        }
+        */
+        wavesurfer.play();
+    }
 }]);
