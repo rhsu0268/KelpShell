@@ -27,6 +27,8 @@ app.controller('sharePiecesCtrl', ['$scope', function($scope) {
 	$scope.sharePiece = function()
 	{
 		//pieces.submitPiece();
+		console.log($scope.title);
+		console.log($scope.composer);
 	}
 
 }]);
