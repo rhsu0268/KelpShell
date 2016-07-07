@@ -113,9 +113,14 @@
                     </div>
                 </div>
                 <br>
-                <div class="row">
+                <div class="row" ng-controller="visualizationCtrl">
                     <div class="col-lg-8">
                         <h1>Visualization</h1>
+                        <div id="waveform"></div>
+                        <button class="btn btn-primary" onclick="wavesurfer.playPause()">
+                           <i class="glyphicon glyphicon-play"></i>
+                           Play
+                        </button>
                     </div>
                     <div class="col-lg-4">
                         <h1>Controls</h1>
@@ -138,6 +143,7 @@
     <script src="http://www.html5rocks.com/en/tutorials/webaudio/intro/js/buffer-loader.js"></script>
     <!-- Band.JS Files -->
     <script src="//cdn.rawgit.com/meenie/band.js/1.1.2/dist/band.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js"></script>
 
     <script src="/javascripts/composer.js"></script>
 

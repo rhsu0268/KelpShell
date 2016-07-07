@@ -489,3 +489,14 @@ function finishedLoadingAndPlay4(bufferList) {
     sourceLoop4.loop = true;
 
 }
+
+app.controller('visualizationCtrl', ['$scope', function($scope) {
+
+    var wavesurfer = WaveSurfer.create({
+        container: '#waveform',
+        waveColor: 'violet',
+        progressColor: 'purple'
+    });
+
+    wavesurfer.load('../music/feeling_good.mp3');
+}]);
