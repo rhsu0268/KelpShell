@@ -18,6 +18,9 @@ router.get('/composer', function(req, res, next) {
 	res.render('composer', { title: 'Composer' });
 });
 
+router.get('/popularMusic', function(req, res, next) {
+	res.render('popularMusic', { title: 'Composer' });
+});
 
 router.get('/playSongTest', function(req, res, next) {
 	res.render('playSongTest', { title: 'Play Song Test' });
