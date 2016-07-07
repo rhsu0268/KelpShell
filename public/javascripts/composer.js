@@ -219,17 +219,22 @@ app.controller('padsCtrl', ['$scope', function($scope) {
     };
 
     $scope.sliderHatFrequency = {
-        value: 150,
+        value: 1,
         options: {
-            step: 20,
-            floor: 300,
-            ceil: 700,
+            step: .1,
+            floor: 1,
+            ceil: 2,
+            precision: 1,
+            showTicks: true,
             onChange: function(sliderId, modelValue, highValue, pointerType)
             {
                 console.log(modelValue);
 
-                //generatePitch(modelValue);
-                //osc.start(0);
+                if (sourceLoop4)
+                {
+                    sourceLoop4.playbackRate.value = modelValue;
+                }
+                playbackRate4 = modelValue;
             }
         }
     };
@@ -298,17 +303,23 @@ app.controller('padsCtrl', ['$scope', function($scope) {
     };
 
     $scope.sliderHatVolume = {
-        value: 150,
+        value: 1,
         options: {
-            step: 20,
-            floor: 300,
-            ceil: 700,
+            step: 1,
+            floor: 1,
+            ceil: 10,
+            showTicks: true,
             onChange: function(sliderId, modelValue, highValue, pointerType)
             {
                 console.log(modelValue);
 
-                //generatePitch(modelValue);
-                //osc.start(0);
+                if (gainLoop4)
+                {
+                    gainLoop4.gain.value = modelValue;
+
+                }
+
+                volume4 = modelValue;
             }
         }
     };
@@ -432,10 +443,11 @@ function finishedLoadingAndPlay2(bufferList) {
     //console.log(bufferList);
 
     sourceLoop2 = contextLoop2.createBufferSource();
+    sourceLoop2.playbackRate.value = playbackRate2;
     sourceLoop2.buffer = bufferList[0];
     gainLoop2 = contextLoop2.createGain();
     sourceLoop2.connect(gainLoop2);
-    gainLoop2.gain.value = 0.4;
+    gainLoop2.gain.value = volume2;
     gainLoop2.connect(contextLoop2.destination);
 
     sourceLoop2.start(0);
@@ -449,10 +461,11 @@ function finishedLoadingAndPlay3(bufferList) {
     //console.log(bufferList);
 
     sourceLoop3 = contextLoop3.createBufferSource();
+    sourceLoop3.playbackRate.value = playbackRate3;
     sourceLoop3.buffer = bufferList[0];
     gainLoop3 = contextLoop3.createGain();
     sourceLoop3.connect(gainLoop3);
-    gainLoop3.gain.value = 0.4;
+    gainLoop3.gain.value = volume3;
     gainLoop3.connect(contextLoop3.destination);
 
     sourceLoop3.start(0);
@@ -465,10 +478,11 @@ function finishedLoadingAndPlay4(bufferList) {
     //console.log(bufferList);
 
     sourceLoop4 = contextLoop4.createBufferSource();
+    sourceLoop4.playbackRate.value = playbackRate4;
     sourceLoop4.buffer = bufferList[0];
     gainLoop4 = contextLoop4.createGain();
     sourceLoop4.connect(gainLoop4);
-    gainLoop4.gain.value = 0.4;
+    gainLoop4.gain.value = volume4;
     gainLoop4.connect(contextLoop4.destination);
 
     sourceLoop4.start(0);
