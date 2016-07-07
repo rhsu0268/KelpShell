@@ -17,6 +17,16 @@ function KelpShell(fbname)
 
 		});
 	}
+};
 
 
-}
+app.controller('sharePiecesCtrl', ['$scope', function($scope) {
+
+	var pieces = new KelpShell('kelpshell');
+
+	$scope.sharePiece = function()
+	{
+		//pieces.submitPiece();
+	}
+
+}]);

@@ -21,19 +21,25 @@
         <div class="container">
             <h1>My Extravagant Pieces</h1>
 
-			<h3>Share Masterpieces</h3>
+			<div ng-controller="sharePiecesCtrl">
+				<h3>Share Masterpieces</h3>
 
+				<div class="piece-form">
 
-			<form>
-				<input type="text" class="piece-title" placeholder="Piece title..."/>
-				<input type="text" class="piece-composer" placeholer="Piece composer..."/>
-				<input type="submit" value="submit"/>
-			</form>
+					<form>
+						<input type="text" class="piece-title" placeholder="Piece title..."/>
+						<input type="text" class="piece-composer" placeholder="Piece composer..."/>
+						<input type="submit" value="submit"/ ng-click="sharePiece()">
+					</form>
 
-			<div class="piece-form">
+				</div>
 
-        </div>
+                <div class="pieces">
 
+                </div>
+
+        	</div>
+		</div>
   </body>
     <!-- Bootstrap core JavaScript
     ================================================== -->
