@@ -13,18 +13,22 @@ var contextLoop4;
 var sourceLoop1;
 var sourceLoop2;
 var sourceLoop3;
+var sourceLoop4;
 
 var gainLoop1;
 var gainLoop2;
 var gainLoop3;
+var gainLoop4;
 
 var playbackRate1 = 1;
 var playbackRate2 = 1;
 var playbackRate3 = 1;
+var playbackRate4 = 1;
 
 var volume1 = 1;
 var volume2 = 1;
 var volume3 = 1;
+var volume4 = 1;
 
 var tune;
 
@@ -146,7 +150,7 @@ app.controller('padsCtrl', ['$scope', function($scope) {
         }
         else
         {
-            source.stop();
+            sourceLoop4.stop();
             contextLoop4.close();
             contextLoop4 = null;
         }
@@ -460,14 +464,14 @@ function finishedLoadingAndPlay4(bufferList) {
     // If you had more loops, you could
     //console.log(bufferList);
 
-    source = contextLoop4.createBufferSource();
-    source.buffer = bufferList[0];
-    gain = contextLoop4.createGain();
-    source.connect(gain);
-    gain.gain.value = 0.4;
-    gain.connect(contextLoop4.destination);
+    sourceLoop4 = contextLoop4.createBufferSource();
+    sourceLoop4.buffer = bufferList[0];
+    gainLoop4 = contextLoop4.createGain();
+    sourceLoop4.connect(gainLoop4);
+    gainLoop4.gain.value = 0.4;
+    gainLoop4.connect(contextLoop4.destination);
 
-    source.start(0);
-    source.loop = true;
+    sourceLoop4.start(0);
+    sourceLoop4.loop = true;
 
 }
