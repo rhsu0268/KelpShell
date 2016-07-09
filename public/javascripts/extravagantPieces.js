@@ -55,24 +55,24 @@ app.controller('sharePiecesCtrl', ['$scope', '$compile', '$firebaseArray', funct
 
 	$scope.masterpieces = $firebaseArray(pieces)
 
-	/*
+
 	$scope.sharePiece = function()
 	{
 		//pieces.submitPiece();
 		console.log($scope.title);
 		console.log($scope.composer);
 
-		pieces.submitPiece($scope.composer, $scope.title);
+		$scope.masterpieces.$add({
+			title: $scope.title,
+			composer: $scope.composer
+		});
 
 		$scope.title = "";
 		$scope.composer = "";
-	}
+	};
 
-	pieces.onPiecesChanged = function(titles)
-	{
-		console.log(titles);
-		$scope.masterpieces = titles;
-		console.log($scope.masterPieces);
-	}
-	*/
+
+
+
+
 }]);
