@@ -546,7 +546,30 @@ app.controller('visualizationAndRecordCtrl', ['$scope', function($scope) {
             console.log("Stopping recording!");
             console.log(blob);
 
-        })
+
+
+
+
+
+        });
+
+        rec.getBuffer(getBufferCallback);
+
+        function getBufferCallback(buffers)
+        {
+            context = new AudioContext();
+            newSource = context.createBufferSource();
+            var playbackSource = context.createBufferSource();
+            var newBuffer = context.createBuffer(2, buffers[0].length, context.sampleRate);
+
+            newBuffer.getChannelData(0).set(buffers[0]);
+            newBuffer.getChannelData(1).set(buffers[1]);
+            newSource.buffer = newBuffer;
+
+
+            newSource.connect(context.destination);
+            newSource.start(0);
+        }
 
     }
 }]);
