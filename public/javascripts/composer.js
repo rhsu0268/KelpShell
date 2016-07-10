@@ -1,3 +1,5 @@
+//var Recorder = npm.require('recorderjs');
+
 var app = angular.module('composer', ['rzModule']);
 
 var context;
@@ -490,7 +492,7 @@ function finishedLoadingAndPlay4(bufferList) {
 
 }
 
-app.controller('visualizationAndControlCtrl', ['$scope', function($scope) {
+app.controller('visualizationAndRecordCtrl', ['$scope', function($scope) {
 
     var wavesurfer = WaveSurfer.create({
         container: '#waveform',
@@ -509,5 +511,21 @@ app.controller('visualizationAndControlCtrl', ['$scope', function($scope) {
         }
         */
         wavesurfer.play();
+    }
+
+    $scope.record = function()
+    {
+
+        /*
+        var config =
+        {
+            workerPath: '../../node_modules/recorderjs/recorderWorker.js'
+        }
+        */
+        var rec = new Recorder(sourceLoop1);
+        rec.record();
+
+
+
     }
 }]);
