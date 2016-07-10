@@ -490,7 +490,7 @@ function finishedLoadingAndPlay4(bufferList) {
 
 }
 
-app.controller('visualizationCtrl', ['$scope', function($scope) {
+app.controller('visualizationAndControlCtrl', ['$scope', function($scope) {
 
     var wavesurfer = WaveSurfer.create({
         container: '#waveform',
