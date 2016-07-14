@@ -1,4 +1,4 @@
-var app = angular.module('extravagantPieces', ['firebase']);
+var app = angular.module('extravagantPieces', []);
 
 /*
 function KelpShell(fbname)
@@ -47,8 +47,9 @@ function KelpShell(fbname)
 
 
 
-
+/*
 app.controller('sharePiecesCtrl', ['$scope', '$compile', '$firebaseArray', function($scope, $compile, $firebaseArray) {
+
 
 	var pieces = new Firebase('https://kelpshell.firebaseio.com/');
 	//$scope.masterpieces = pieces.onPiecesChanged;
@@ -74,5 +75,20 @@ app.controller('sharePiecesCtrl', ['$scope', '$compile', '$firebaseArray', funct
 
 
 
+
+
+}]);
+*/
+
+app.controller('sharePiecesCtrl', ['$scope', function($scope) {
+
+	// Initialize Firebase
+	var config = {
+		apiKey: "AIzaSyBwdXnYKXK3Tk9O1T3Pt3i40Jnem4HYgzk",
+		authDomain: "kelpa-61adc.firebaseapp.com",
+		databaseURL: "https://kelpa-61adc.firebaseio.com",
+		storageBucket: "",
+	};
+	firebase.initializeApp(config);
 
 }]);
