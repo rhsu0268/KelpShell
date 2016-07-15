@@ -21,30 +21,38 @@
         <div class="container">
             <h1>My Extravagant Pieces</h1>
 
-			<div ng-controller="sharePiecesCtrl">
-				<h3>Share Masterpieces</h3>
 
-				<div class="piece-form">
+            <div class="row">
+                <div class="col-lg-6">
+    			    <div ng-controller="sharePiecesCtrl">
 
-					<form>
-						<input type="text" class="piece-title" placeholder="Piece title..." ng-model="title"/>
-						<input type="text" class="piece-composer" placeholder="Piece composer..." ng-model="composer"/>
-						<input type="submit" value="submit"/ ng-click="sharePiece()">
-					</form>
+    				    <h3>Share Masterpieces</h3>
 
-				</div>
+    				    <div class="piece-form">
+    					    <form>
+    						    <input type="text" class="piece-title" placeholder="Piece title..." ng-model="title"/>
+    						    <input type="text" class="piece-composer" placeholder="Piece composer..." ng-model="composer"/>
+    						    <input type="submit" value="submit"/ ng-click="sharePiece()">
+    					    </form>
+                        </div>
 
-                <h2>Shared Pieces</h2>
-                <div class="piecesList">
 
-                    <div ng-repeat="masterpiece in masterpieces">
-                        <li>{{masterpiece.title}}</li>
+                        <h2>Shared Pieces</h2>
+                        <div class="piecesList">
+
+                            <div ng-repeat="masterpiece in masterpieces">
+                                <li>{{masterpiece.title}}</li>
+                            </div>
+
+                        </div>
                     </div>
-
+            	</div>
+                <div class="col-lg-6">
+                    <h3>Forum</h3>
                 </div>
-
-        	</div>
+            </div>
 		</div>
+    </div>
   </body>
     <!-- Bootstrap core JavaScript
     ================================================== -->
