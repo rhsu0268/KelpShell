@@ -1,4 +1,4 @@
-var app = angular.module('extravagantPieces', []);
+var app = angular.module('extravagantPieces', ['firebase']);
 
 /*
 function KelpShell(fbname)
@@ -80,15 +80,27 @@ app.controller('sharePiecesCtrl', ['$scope', '$compile', '$firebaseArray', funct
 }]);
 */
 
-app.controller('sharePiecesCtrl', ['$scope', function($scope) {
+app.controller('sharePiecesCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
 
-	// Initialize Firebase
-	var config = {
-		apiKey: "AIzaSyBwdXnYKXK3Tk9O1T3Pt3i40Jnem4HYgzk",
-		authDomain: "kelpa-61adc.firebaseapp.com",
-		databaseURL: "https://kelpa-61adc.firebaseio.com",
-		storageBucket: "",
+	var pieces = firebase.database().ref().child("pieces");
+	$scope.masterpieces = $firebaseArray(pieces)
+
+
+
+	$scope.sharePiece = function()
+	{
+		//pieces.submitPiece();
+		console.log($scope.title);
+		console.log($scope.composer);
+
+		$scope.masterpieces.$add({
+			title: $scope.title,
+			composer: $scope.composer
+		});
+
+		$scope.title = "";
+		$scope.composer = "";
 	};
-	firebase.initializeApp(config);
+	
 
 }]);
