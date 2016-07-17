@@ -109,7 +109,7 @@ app.controller('sharePiecesCtrl', ['$scope', '$firebaseArray', function($scope, 
 app.factory("chatMessages", ["$firebaseArray", function($firebaseArray) {
 
 	// create a reference to the database location where we will store our data
-    var ref = firebase.database().ref();
+    var ref = firebase.database().ref().child("messages");
 
     // this uses AngularFire to create the synchronized array
     return $firebaseArray(ref);
@@ -121,7 +121,6 @@ app.controller("ChatCtrl", ["$scope", "chatMessages", function($scope, chatMessa
 {
 
 	// we pass our new chatMessages factory into controller
-	/*
 	$scope.user = "Guest " + Math.round(Math.random() * 100);
 
 	// we add chatMessages array to the scope to be used in our ng-repeat
@@ -151,7 +150,7 @@ app.controller("ChatCtrl", ["$scope", "chatMessages", function($scope, chatMessa
 		}
 
 	});
-	*/
+
 
 
 }]);
