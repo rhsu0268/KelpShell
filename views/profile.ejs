@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="extravagantPieces">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Profile</title>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>-->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>-->
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/rzslider.css"/>
+    <link rel='stylesheet' href='/stylesheets/composer.css'/>
+  </head>
+
+  <body>
+    <!-- header -->
+    <div ng-include src="'/header/header.ejs'"></div>
+
+
+    <div>
+        <div class="container">
+            <h1>Profile</h1>
+
+
+            <div class="row">
+                <div class="col-lg-6">
+    			    <div ng-controller="sharePiecesCtrl">
+
+
+                    </div>
+            	</div>
+
+            </div>
+		</div>
+    </div>
+  </body>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/4.0.2/rzslider.min.js"></script>-->
+    <!-- Load the (very useful script) that helps you load audio files. -->
+    <script src="http://www.html5rocks.com/en/tutorials/webaudio/intro/js/buffer-loader.js"></script>
+
+
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <!-- Firebase -->
+    <!--<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>-->
+
+    <!-- AngularFire -->
+    <!--<script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>-->
+
+    <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/2.0.0/angularfire.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBwdXnYKXK3Tk9O1T3Pt3i40Jnem4HYgzk",
+            authDomain: "kelpa-61adc.firebaseapp.com",
+            databaseURL: "https://kelpa-61adc.firebaseio.com",
+            storageBucket: "",
+        };
+        firebase.initializeApp(config);
+    </script>
+
+
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <!-- Band.JS Files -->
+    <script src="/javascripts/extravagantPieces.js"></script>
+
+
+</html>
