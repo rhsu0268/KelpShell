@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="extravagantPieces">
+<html lang="en" ng-app="profile">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Extravagant Pieces</title>
+    <title>Profile</title>
     <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>-->
     <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>-->
 
@@ -19,63 +19,10 @@
 
     <div>
         <div class="container">
-            <h1>My Extravagant Pieces</h1>
+            <h1>Login</h1>
 
 
-            <div class="row">
-                <div class="col-lg-6">
-    			    <div ng-controller="sharePiecesCtrl">
 
-    				    <h3>Share Masterpieces</h3>
-
-    				    <div class="piece-form">
-    					    <form>
-    						    <input type="text" class="piece-title" placeholder="Piece title..." ng-model="title"/>
-    						    <input type="text" class="piece-composer" placeholder="Piece composer..." ng-model="composer"/>
-    						    <input type="submit" value="submit"/ ng-click="sharePiece()">
-    					    </form>
-                        </div>
-
-
-                        <h2>Shared Pieces</h2>
-                        <div class="piecesList">
-
-                            <div ng-repeat="masterpiece in masterpieces">
-                                <li>{{masterpiece.title}}</li>
-                            </div>
-
-                        </div>
-                    </div>
-            	</div>
-                <div class="col-lg-6">
-                    <div ng-controller="ChatCtrl">
-                        <h3>Forum</h3>
-                        <p>
-                            Sort by:
-                            <select ng-model="orderBy">
-                                <option>from</option>
-                                <option>content</option>
-                                <option>timestamp</option>
-                            </select>
-                        </p>
-
-                        <p>Search: <input ng-model="searchText"></p>
-
-                        <ul class="chatbox">
-                            <li ng-repeat="message in messages | orderBy:orderBy | filter:searchText">
-                                {{ message.from }}: {{ message.content }}
-
-                                <!-- delete a message using $remove -->
-                                <a href="" ng-click="messages.$remove(message)">X</a>
-                            </li>
-                        </ul>
-                        <form ng-submit="addMessage()">
-                            <input type="text" ng-model="message">
-                            <input type="submit" value="Add Message">
-                        </form>
-                    </div>
-                </div>
-            </div>
 		</div>
     </div>
   </body>
@@ -113,7 +60,7 @@
 
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <!-- Band.JS Files -->
-    <script src="/javascripts/extravagantPieces.js"></script>
+    <script src="/javascripts/profile.js"></script>
 
 
 </html>

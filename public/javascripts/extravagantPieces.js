@@ -131,7 +131,8 @@ app.controller("ChatCtrl", ["$scope", "chatMessages", function($scope, chatMessa
 	{
 		$scope.messages.$add({
 			from: $scope.user,
-			content: $scope.message
+			content: $scope.message,
+			timestamp: firebase.database.ServerValue.TIMESTAMP
 		});
 
 		// rest the message input
@@ -144,7 +145,8 @@ app.controller("ChatCtrl", ["$scope", "chatMessages", function($scope, chatMessa
 		{
 			$scope.messages.$add({
 				from: "Kelp Bot",
-				content: "Welcome to Kelpshell!"
+				content: "Welcome to Kelpshell!",
+				timestamp: firebase.database.ServerValue.TIMESTAMP
 
 			});
 		}
