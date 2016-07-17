@@ -106,11 +106,52 @@ app.controller('sharePiecesCtrl', ['$scope', '$firebaseArray', function($scope, 
 }]);
 
 // create a factory to return a synchronized array of chat messages
-app.factory("chatMessages", ["firebaseArray", function($firebaseArray) {
+app.factory("chatMessages", ["$firebaseArray", function($firebaseArray) {
 
-	// create a reference to the database locations where we willl store our database
-	var ref = firebase.database().ref();
+	// create a reference to the database location where we will store our data
+    var ref = firebase.database().ref();
 
-	return $firebaseArray(ref);
+    // this uses AngularFire to create the synchronized array
+    return $firebaseArray(ref);
+	}
+]);
+
+
+app.controller("ChatCtrl", ["$scope", "chatMessages", function($scope, chatMessages)
+{
+
+	// we pass our new chatMessages factory into controller
+	/*
+	$scope.user = "Guest " + Math.round(Math.random() * 100);
+
+	// we add chatMessages array to the scope to be used in our ng-repeat
+	$scope.messages = chatMessages;
+
+	// a method to create new messages; called by ng-submit
+	$scope.addMessage = function()
+	{
+		$scope.messages.$add({
+			from: $scope.user,
+			content: $scope.message
+		});
+
+		// rest the message input
+		$scope.message = "";
+	};
+
+	// if the messages are empty, add something for fun!
+	$scope.messages.$loaded(function() {
+		if ($scope.messages.length === 0)
+		{
+			$scope.messages.$add({
+				from: "Kelp Bot",
+				content: "Welcome to Kelpshell!"
+
+			});
+		}
+
+	});
+	*/
+
 
 }]);
