@@ -18,4 +18,6 @@ app.controller("ProfileCtrl", ["$scope", "Profile", function($scope, Profile) {
 
     Profile("richardhsu").$bindTo($scope, "profile");
 
+    
+
 }]);
