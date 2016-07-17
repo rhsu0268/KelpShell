@@ -101,6 +101,16 @@ app.controller('sharePiecesCtrl', ['$scope', '$firebaseArray', function($scope, 
 		$scope.title = "";
 		$scope.composer = "";
 	};
-	
+
+
+}]);
+
+// create a factory to return a synchronized array of chat messages
+app.factory("chatMessages", ["firebaseArray", function($firebaseArray) {
+
+	// create a reference to the database locations where we willl store our database
+	var ref = firebase.database().ref();
+
+	return $firebaseArray(ref);
 
 }]);
