@@ -24,6 +24,21 @@
 
             <div class="row">
                 <div class="col-lg-6">
+                    <div ng-controller="ProfileCtrl">
+                        <!-- $id is a special meta variable containing the object's key in our Firebase database.
+                        In this case, it would be "physicsmarie" -->
+                        <h3>Edit {{ profile.$id }}</h3>
+                        <h5>Name: {{profile.name}}</h5>
+                        <h5>Email: {{profile.email}}</h5>
+
+                        <label>Name:</label>
+                        <!-- this input field synchronizes directly to the name attribute in our Firebase database! -->
+                        <input type="text" ng-model="profile.name">
+
+                        <label>Email:</label>
+                        <!-- and this input field synchronizes directly to the email attribute in our Firebase database! -->
+                        <input type="text" ng-model="profile.email">
+                    </div>
 
             	</div>
 
