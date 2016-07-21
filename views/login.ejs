@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="profile">
+<html lang="en" ng-app="login">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Profile</title>
+    <title>Login</title>
     <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>-->
     <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>-->
 
@@ -20,8 +20,21 @@
     <div>
         <div class="container">
             <h1>Login</h1>
+            <div ng-controller="LoginCtrl">
+                Email: <input type="text" ng-model="email">
+                Password: <input type="text" ng-model="password">
 
+                <br><br>
 
+                <button ng-click="createUser()">Create User</button>
+
+                <br><br>
+
+                <button ng-click="deleteUser()">Delete User</button>
+                <br>
+                <p ng-show="messagePresent">Message: <strong>{{ message }}</strong></p>
+                <p ng-show="errorPresent">Error: <strong>{{ error }}</strong></p>
+            </div>
 
 		</div>
     </div>
@@ -40,10 +53,7 @@
     <!--<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>-->
 
     <!-- AngularFire -->
-    <!--<script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>-->
 
-    <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
-    <!-- AngularFire -->
     <script src="https://cdn.firebase.com/libs/angularfire/2.0.0/angularfire.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
     <script>
@@ -60,7 +70,7 @@
 
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <!-- Band.JS Files -->
-    <script src="/javascripts/profile.js"></script>
+    <script src="/javascripts/login.js"></script>
 
 
 </html>
