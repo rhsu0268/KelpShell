@@ -20,6 +20,24 @@
     <div>
         <div class="container">
             <h1>Login</h1>
+
+            <div ng-controller="LoginCtrl">
+                <form>
+                    <div class="form-group">
+                        <label for="email">Email: </label>
+                        <input type="email" class="form-control" id="email" placeholder="Email" ng-model="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Password" ng-model="password">
+                    </div>
+                    <button type="submit" class="btn btn-default" ng-click="createUser()">Submit</button>
+                    <p ng-show="messagePresent">Message: <strong>{{ message }}</strong></p>
+                    <p ng-show="errorPresent">Error: <strong>{{ error }}</strong></p>
+                </form>
+            </div>
+            <br>
+            <!--
             <div ng-controller="LoginCtrl">
                 Email: <input type="text" ng-model="email">
                 Password: <input type="text" ng-model="password">
@@ -32,10 +50,9 @@
 
                 <button ng-click="deleteUser()">Delete User</button>
                 <br>
-                <p ng-show="messagePresent">Message: <strong>{{ message }}</strong></p>
-                <p ng-show="errorPresent">Error: <strong>{{ error }}</strong></p>
-            </div>
 
+            </div>
+            -->
 		</div>
     </div>
   </body>
