@@ -31,7 +31,7 @@
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" placeholder="Password" ng-model="password">
                     </div>
-                    <button type="submit" class="btn btn-default" ng-click="login()">Submit</button>
+                    <button type="submit" class="btn btn-default" ng-click="createUser()">Submit</button>
                     <p ng-show="messagePresent">Message: <strong>{{ message }}</strong></p>
                     <p ng-show="errorPresent">Error: <strong>{{ error }}</strong></p>
                 </form>
@@ -83,6 +83,7 @@
         };
         firebase.initializeApp(config);
     </script>
+    <script src="/javascripts/angular-route.js"></script>
 
 
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
