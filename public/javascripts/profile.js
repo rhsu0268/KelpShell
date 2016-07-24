@@ -1,4 +1,4 @@
-var app = angular.module('profile', ["firebase"]);
+var app = angular.module('KelpShell', ["firebase"]);
 
 app.factory("Profile", ["$firebaseObject", function($firebaseObject) {
 
@@ -18,6 +18,6 @@ app.controller("ProfileCtrl", ["$scope", "Profile", function($scope, Profile) {
 
     Profile("richardhsu").$bindTo($scope, "profile");
 
-    
+
 
 }]);
