@@ -40,3 +40,85 @@ app.controller("LoginCtrl", ["$scope", "Auth", function($scope, Auth) {
     };
 
 }]);
+
+
+/*
+app.run(["$rootScope", "$location", function($rootScope, $location) {
+
+    $rootScope.$on("$routeChangeError", function(event, next, previous, error) {
+
+        if (error === "AUTH_REQUIRED")
+        {
+            $location.path("/");
+        }
+
+    });
+}]);
+
+*/
+
+app.factory("Auth", ["$firebaseAuth", function($firebaseAuth) {
+    return $firebaseAuth();
+}]);
+
+
+
+app.controller("AuthCtrl", ['$scope', '$http', 'Auth', function($scope, $http, Auth) {
+
+    // lisens for changes in authentication state
+    $scope.auth = Auth;
+
+
+    // any time the state changes, add the user data to scope
+    $scope.auth.$onAuthStateChanged(function(firebaseUser) {
+        $scope.firebaseUser = firebaseUser;
+
+    });
+
+
+    $scope.login = function()
+    {
+        Auth.$signInWithPopup("github").catch(function(error) {
+            console.error("Error authenticating with GitHub:", error);
+        });
+    }
+
+    $scope.logout = function()
+    {
+        Auth.$signOut();
+    }
+
+
+}]);
+
+/*
+app.config(["$routeProvider", function($routeProvider) {
+
+    $routeProvider.when("/home", {
+
+        controller: "HomeCtrl",
+        templateUrl: "views/home.html",
+        resolve: {
+            "currentAuth": ["Auth", function(Auth) {
+                return Auth.$waitForSignIn();
+            }]
+        }
+
+    }).when("/account", {
+
+        controller: "AccountCtrl",
+        templateUrl: "views/account.html",
+        resolve: {
+
+            "currentAuth": ["Auth", function(Auth) {
+                // $requireSignIn returns a promise so the resolve waits for it to complete
+                // If the promise is rejected, it will throw a $stateChangeError (see above)
+                return Auth.$requireSignIn();
+            }]
+        }
+
+
+    });
+
+}]);
+*/
