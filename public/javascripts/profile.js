@@ -14,10 +14,20 @@ app.factory("Profile", ["$firebaseObject", function($firebaseObject) {
 
 }]);
 
-app.controller("ProfileCtrl", ["$scope", "Profile", function($scope, Profile) {
+app.factory("Auth", ["$firebaseAuth", function($firebaseAuth) {
+    return $firebaseAuth();
+}]);
+
+app.controller("ProfileCtrl", ["$scope", "Profile", "Auth", function($scope, Profile, Auth) {
 
     Profile("richardhsu").$bindTo($scope, "profile");
 
-
+    if (Auth.currentUser)
+    {
+        console.log(Auth.currentUser);
+    }
+    else {
+        console.log("null");
+    }
 
 }]);
