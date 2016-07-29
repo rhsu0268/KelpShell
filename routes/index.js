@@ -1,6 +1,12 @@
 var express = require('express');
+var jwt = require('express-jwt');
 
 var router = express.Router();
+var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
+
+var mongoose = require('mongoose');
+var passport = require('passport');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -28,7 +34,7 @@ router.get('/playSongTest', function(req, res, next) {
 
 });
 
-router.get('/profile', function(req, res, next) {
+router.get('/profile', auth, function(req, res, next) {
 	res.render('profile', { title: 'Profile' });
 
 });
