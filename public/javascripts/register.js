@@ -1,6 +1,10 @@
 var app = angular.module("KelpShell", ["firebase", "ngRoute"]);
 
 
+
+
+
+
 app.factory('auth', ['$http', '$window', function($http, $window) {
 
     var auth = {};
@@ -116,6 +120,14 @@ app.controller("RegisterCtrl", ["$scope", "Auth", "$location", "$window", functi
             $scope.error = error;
         });
     };
+
+}]);
+
+app.controller('RegisterUserCtrl', ['$scope', 'auth', function($scope, auth) {
+
+    $scope.user = {};
+
+
 
 }]);
 

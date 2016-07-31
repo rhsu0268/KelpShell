@@ -49,6 +49,12 @@ router.get('/register', function(req, res, next) {
 
 });
 
+
+router.get('/test', function(req, res, next) {
+	res.render('pages/index', { title: 'Index' });
+
+});
+
 router.post('/register', function(req, res, next) {
 
 	if (!req.body.username || !req.body.password)
