@@ -6,6 +6,7 @@ var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
 var mongoose = require('mongoose');
 var passport = require('passport');
+var User = mongoose.model('User');
 
 
 /* GET home page. */
@@ -34,7 +35,7 @@ router.get('/playSongTest', function(req, res, next) {
 
 });
 
-router.get('/profile', auth, function(req, res, next) {
+router.get('/profile', function(req, res, next) {
 	res.render('profile', { title: 'Profile' });
 
 });
@@ -46,6 +47,11 @@ router.get('/login', function(req, res, next) {
 
 router.get('/register', function(req, res, next) {
 	res.render('register', { title: 'Register' });
+
+});
+
+router.get('/auth', function(req, res, next) {
+	res.render('auth', { title: 'Auth' });
 
 });
 
@@ -100,5 +106,21 @@ router.post('/login', function(req, res, next) {
 	})(req, res, next);
 
 });
+
+
+router.get('/users', function(req, res, next) {
+
+	User.find(function(err, users) {
+           if (err)
+           {
+               return next(err);
+           }
+
+           res.json(users);
+
+    });
+
+});
+
 
 module.exports = router;

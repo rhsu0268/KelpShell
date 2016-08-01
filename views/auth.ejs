@@ -19,8 +19,24 @@
 
     <div>
         <div class="container">
-            <h1>You are logged in!</h1>
+            <h1>Authentication</h1>
 
+            <div ng-controller="AuthCtrl">
+                <form ng-submit="register()" style="margin-top:30px;">
+                    <div class="form-group">
+                        <label for="username">Username: </label>
+                        <input type="text" class="form-control" id="email" placeholder="Username" ng-model="user.username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Password" ng-model="user.password">
+                    </div>
+                    <button type="submit" class="btn btn-default">Register</button>
+                    <!--<p ng-show="messagePresent">Message: <strong>{{ message }}</strong></p>-->
+                    <!--<p ng-show="errorPresent">Error: <strong>{{ error }}</strong></p>-->
+                </form>
+            </div>
+            <br>
             <!--
             <div ng-controller="LoginCtrl">
                 Email: <input type="text" ng-model="email">
