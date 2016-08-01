@@ -1,5 +1,4 @@
-var app = angular.module('Auth', ["ngRoute"]);
-
+var app = angular.module("index", []);
 
 app.factory('auth', ['$http', '$window', function($http, $window) {
 
@@ -71,63 +70,10 @@ app.factory('auth', ['$http', '$window', function($http, $window) {
 
 }]);
 
-/*
-app.config(function($routeProvider, $locationProvider, $windowProvider) {
-    $routeProvider
-
-
-        .when('/auth', {
-            templateUrl: '../../views/auth.ejs',
-            controller: 'AuthCtrl',
-
-            onEnter: ['auth', function(auth) {
-                if (auth.isLoggedIn()) {
-                    console.log("Logged in");
-                    //$location.path("/profile");
-                    var $window = $windowProvider.$get();
-                    //console.log($window);
-                    $window.location.href = '/profile';
-                }
-
-
-            }]
-
-        });
-
-        // use the HTML5 History API
-       //$locationProvider.html5Mode(true);
-
-
-
-
-});
-
-*/
-
 app.controller("NavCtrl", ['$scope', 'auth', function($scope, auth) {
 
     $scope.isLoggedIn = auth.isLoggedIn;
     $scope.currentUser = auth.currentUser;
     $scope.logout = auth.logOut;
-
-}]);
-
-app.controller("AuthCtrl", ["$scope", 'auth', '$location', '$window', function($scope, auth, $location, $window) {
-
-    console.log("Auth");
-
-    $scope.user = {};
-
-    $scope.register = function()
-    {
-        auth.register($scope.user).error(function(error) {
-            console.log("Error");
-            $scope.error = error;
-        }).then(function() {
-
-            //$location.path( "/profile" );
-            $window.location.href = '/profile';
-        });
-    }
 
 }]);
