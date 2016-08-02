@@ -1,5 +1,76 @@
-var app = angular.module("login", ["firebase"]);
+var app = angular.module("login", []);
 
+app.factory('auth', ['$http', '$window', function($http, $window) {
+
+    var auth = {};
+
+    auth.saveToken = function(token)
+    {
+        $window.localStorage['kelpshell-token'] = token;
+    }
+
+    auth.getToken = function()
+    {
+        return $window.localStorage['kelpshell-token'];
+    }
+
+    auth.isLoggedIn = function()
+    {
+        var token = auth.getToken();
+
+        if (token)
+        {
+            var payload = JSON.parse($window.atob(token.split('.')[1]));
+            return payload.exp = Date.now() / 1000;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+    auth.currentUser = function()
+    {
+        if (auth.isLoggedIn())
+        {
+            var token = auth.getToken();
+            var payload = JSON.parse($window.atob(token.split('.')[1]));
+
+            return payload.username;
+        }
+    }
+
+    auth.register = function(user)
+    {
+        return $http.post('/register', user).success(function(data) {
+
+            auth.saveToken(data.token);
+
+        })
+    }
+
+
+    auth.logIn = function(user)
+    {
+        return $http.post('/login', user).success(function(data) {
+
+            auth.saveToken(data.token);
+
+        })
+    }
+
+    auth.logOut = function()
+    {
+        $window.localStorage.removeItem('kelpshell-token');
+        $window.location.href = '/';
+    }
+
+    return auth;
+
+}]);
+
+/*
 app.factory("Auth", ["$firebaseAuth", function($firebaseAuth) {
     return $firebaseAuth();
     }
@@ -40,6 +111,7 @@ app.controller("LoginCtrl", ["$scope", "Auth", function($scope, Auth) {
     };
 
 }]);
+*/
 
 
 /*
@@ -57,12 +129,9 @@ app.run(["$rootScope", "$location", function($rootScope, $location) {
 
 */
 
-app.factory("Auth", ["$firebaseAuth", function($firebaseAuth) {
-    return $firebaseAuth();
-}]);
 
 
-
+/*
 app.controller("AuthCtrl", ['$scope', '$http', 'Auth', function($scope, $http, Auth) {
 
     // lisens for changes in authentication state
@@ -90,35 +159,28 @@ app.controller("AuthCtrl", ['$scope', '$http', 'Auth', function($scope, $http, A
 
 
 }]);
-
-/*
-app.config(["$routeProvider", function($routeProvider) {
-
-    $routeProvider.when("/home", {
-
-        controller: "HomeCtrl",
-        templateUrl: "views/home.html",
-        resolve: {
-            "currentAuth": ["Auth", function(Auth) {
-                return Auth.$waitForSignIn();
-            }]
-        }
-
-    }).when("/account", {
-
-        controller: "AccountCtrl",
-        templateUrl: "views/account.html",
-        resolve: {
-
-            "currentAuth": ["Auth", function(Auth) {
-                // $requireSignIn returns a promise so the resolve waits for it to complete
-                // If the promise is rejected, it will throw a $stateChangeError (see above)
-                return Auth.$requireSignIn();
-            }]
-        }
+*/
 
 
-    });
+app.controller("LoginCtrl", ["$scope", "auth", "$window", function($scope, auth, $window) {
+
+    $scope.logIn = function()
+    {
+        auth.logIn($scope.user).error(function(error) {
+            $scope.error = error;
+        }).then(function() {
+            $window.location.href = '/profile';
+        });
+    }
+
+
 
 }]);
-*/
+
+app.controller("NavCtrl", ['$scope', 'auth', function($scope, auth) {
+
+    $scope.isLoggedIn = auth.isLoggedIn;
+    $scope.currentUser = auth.currentUser;
+    $scope.logout = auth.logOut;
+
+}]);
