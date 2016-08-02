@@ -71,38 +71,7 @@ app.factory('auth', ['$http', '$window', function($http, $window) {
 
 }]);
 
-/*
-app.config(function($routeProvider, $locationProvider, $windowProvider) {
-    $routeProvider
 
-
-        .when('/auth', {
-            templateUrl: '../../views/auth.ejs',
-            controller: 'AuthCtrl',
-
-            onEnter: ['auth', function(auth) {
-                if (auth.isLoggedIn()) {
-                    console.log("Logged in");
-                    //$location.path("/profile");
-                    var $window = $windowProvider.$get();
-                    //console.log($window);
-                    $window.location.href = '/profile';
-                }
-
-
-            }]
-
-        });
-
-        // use the HTML5 History API
-       //$locationProvider.html5Mode(true);
-
-
-
-
-});
-
-*/
 
 app.controller("NavCtrl", ['$scope', 'auth', function($scope, auth) {
 
