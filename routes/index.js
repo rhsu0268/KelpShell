@@ -18,8 +18,8 @@ router.get('/extravagantPieces', function(req, res, next) {
 	res.render('extravagantPieces', { title: 'Express' });
 });
 
-router.get('/music_mixer', function(req, res, next) {
-	res.render('music_mixer', { title: 'Music Mixer' });
+router.get('/musicMixer', function(req, res, next) {
+	res.render('musicMixer', { title: 'Music Mixer' });
 });
 
 router.get('/composer', function(req, res, next) {
