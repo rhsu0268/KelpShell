@@ -1,4 +1,4 @@
-var app = angular.module('musicMixer', ['rzModule']);
+var app = angular.module('musicMixer', ['rzModule', 'ngSelectable']);
 
 
 app.factory('auth', ['$http', '$window', function($http, $window) {

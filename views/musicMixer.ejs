@@ -3,12 +3,15 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Music Mixer</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
     <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/stylesheets/rzslider.css"/>
     <link rel='stylesheet' href='/stylesheets/composer.css'/>
+    <link rel='stylesheet' href='/stylesheets/musicMixer.css'/>
   </head>
 
   <body>
@@ -20,19 +23,41 @@
     <div>
       <h1>Music Mixer</h1>
     </div>
-    <div class="row" ng-controller="padsCtrl">
+    <div class="row">
         <div class="col-lg-6">
             <h2>Tunes List</h2>
 
             <div class="panel panel-default">
               <div class="panel-body">
                 <h3>My Lovely Tunes</h3>
+
                     <ul>
                         <li><i>Feeling Good</i> Michael Buble</li>
                         <li><i>Uptown Funk</i> Mark Ronson</li>
                         <li><i>In the Summer</i> Calvin Harris</li>
                         <li><i>All of Me</i> John Legend</li>
                     </ul>
+                    <section ng-init="tunes = [
+                      {title: 'Feeling Good', artist: 'Michael Buble'},
+                      {title: 'Uptown Funk', artist: 'Mark Ronson'},
+                      {title: 'In the Summer', artist: 'Calvin Harris'},
+                      {title: 'All of me', artist: 'John Legend'}
+
+                    ]">
+
+                    <p id="feedback">
+                        You've selected:
+                            <span ng-hide="selected">none</span>
+                            <span class="selected-tunes" ng-repeat="tune in selected"> {{tune.title}}</span>
+                    </p>
+
+                    <ul id="selectable" selectable selectable-list="tunes" selectable-out="selected">
+                    <li class="ui-widget-content" ng-repeat="tune in tunes"><i>{{tune.title}}</i> {{tune.artist}}</li>
+                </ul>
+
+
+
+            </section>
               </div>
             </div>
 
@@ -56,6 +81,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/4.0.2/rzslider.min.js"></script>
     <!-- Load the (very useful script) that helps you load audio files. -->
     <script src="http://www.html5rocks.com/en/tutorials/webaudio/intro/js/buffer-loader.js"></script>
@@ -63,6 +89,7 @@
     <script src="//cdn.rawgit.com/meenie/band.js/1.1.2/dist/band.min.js"></script>
 
     <script src="/javascripts/musicMixer.js"></script>
+    <script src="/javascripts/ngSelectable.js"></script>
 
 
 </html>

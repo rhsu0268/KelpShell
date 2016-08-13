@@ -1,0 +1,37 @@
+section {
+  width: 400px;
+  margin: auto;
+}
+.selected-tunes {
+  border: 1px solid #444;
+  border-radius: 5px;
+  padding: 2px;
+  margin: 2px;
+}
+#feedback {
+  font-size: 1.4em;
+  list-style: none outside none;
+  display: inline-block;
+}
+#selectable .ui-selecting {
+  background: #FECA40;
+}
+#selectable .ui-selected {
+  background: #F39814;
+  color: white;
+}
+#selectable {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#selectable li {
+  width: auto;
+  padding: 5px 10px;
+  margin: 5px 0;
+  border: 2px solid #444;
+  border-radius: 5px;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: center;
+}
