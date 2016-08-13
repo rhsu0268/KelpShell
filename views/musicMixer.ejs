@@ -21,51 +21,12 @@
       <h1>Music Mixer</h1>
     </div>
     <div ng-controller="musicMixer">
-      <h2>Pitch Detector</h2>
 
-      <button type="button" class="btn btn-primary" ng-click="generatePitch300()">300 Hz</button>
-      <button type="button" class="btn btn-primary" ng-click="generatePitch350()">350 Hz</button>
-      <button type="button" class="btn btn-primary" ng-click="generatePitch400()">400 Hz</button>
-      <button type="button" class="btn btn-primary" ng-click="generatePitch450()">450 Hz</button>
-      <button type="button" class="btn btn-primary" ng-click="generatePitch500()">500 Hz</button>
-      <button type="button" class="btn btn-primary" ng-click="generatePitch550()">550 Hz</button>
-      <button type="button" class="btn btn-primary" ng-click="generatePitch600()">600 Hz</button>
-      <button type="button" class="btn btn-primary" ng-click="generatePitch650()">650 Hz</button>
-      <button type="button" class="btn btn-primary" ng-click="generatePitch700()">700 Hz</button>
-      <br>
-      <br>
-      <button type="button" class="btn btn-primary" ng-click="startPitch()">START</button>
-      <button type="button" class="btn btn-danger" ng-click="stopPitch()">STOP</button>
-      <div>
-        <rzslider
-         rz-slider-model="sliderSnareVolume"
-         rz-slider-options="slider.options"></rzslider>
-      </div>
-      <br><br>
+
       <button type="button" class="btn btn-primary" ng-click="playSong()">Play Song</button>
       <button type="button" class="btn btn-danger" ng-click="stopSong()">Stop Song</button>
     </div>
-    <div ng-controller="bandJS">
-      <h3>Music Mixer</h3>
 
-        <button type="button" class="btn btn-primary" ng-click="playMixedSong()">Play Mixed Song</button>
-        <button type="button" class="btn btn-primary" ng-click="stopMixedSong()">Stop Mixed Song</button>
-    </div>
-    <div ng-controller="mixer">
-      <h3>Composer</h3>
-
-        <button type="button" class="btn btn-primary" ng-click="playE()">E</button>
-        <button type="button" class="btn btn-primary" ng-click="playF()">F</button>
-        <button type="button" class="btn btn-primary" ng-click="playG()">G</button>
-        <button type="button" class="btn btn-primary" ng-click="playA()">A</button>
-        <button type="button" class="btn btn-primary" ng-click="playB()">B</button>
-        <button type="button" class="btn btn-primary" ng-click="playC()">C</button>
-        <button type="button" class="btn btn-primary" ng-click="playD()">D</button>
-        <button type="button" class="btn btn-primary" ng-click="playE()">E</button>
-
-
-
-    </div>
     <br><br>
     </div>
   </body>
