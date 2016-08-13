@@ -20,12 +20,34 @@
     <div>
       <h1>Music Mixer</h1>
     </div>
-    <div ng-controller="musicMixer">
+    <div class="row" ng-controller="padsCtrl">
+        <div class="col-lg-6">
+            <h2>Tunes List</h2>
 
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3>My Lovely Tunes</h3>
+                    <ul>
+                        <li><i>Feeling Good</i> Michael Buble</li>
+                        <li><i>Uptown Funk</i> Mark Ronson</li>
+                        <li><i>In the Summer</i> Calvin Harris</li>
+                        <li><i>All of Me</i> John Legend</li>
+                    </ul>
+              </div>
+            </div>
 
-      <button type="button" class="btn btn-primary" ng-click="playSong()">Play Song</button>
-      <button type="button" class="btn btn-danger" ng-click="stopSong()">Stop Song</button>
+        </div>
+        <div class="col-lg-6">
+            <div ng-controller="musicMixer">
+                <h2>Controls</h2>
+                    <button type="button" class="btn btn-primary" ng-click="playSong()">Play Song</button>
+                    <button type="button" class="btn btn-danger" ng-click="stopSong()">Stop Song</button>
+            </div>
+        </div>
     </div>
+
+
+
 
     <br><br>
     </div>
