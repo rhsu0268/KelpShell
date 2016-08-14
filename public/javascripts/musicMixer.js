@@ -1,6 +1,22 @@
 var app = angular.module('musicMixer', ['rzModule', 'ngSelectable']);
 
 
+
+app.service('song', function() {
+
+	var selectedSong;
+
+        return {
+            getSelectedSong: function () {
+                return selectedSong;
+            },
+            setSelectedSong: function(value) {
+                selectedSong = value;
+            }
+        };
+
+});
+
 app.factory('auth', ['$http', '$window', function($http, $window) {
 
     var auth = {};
@@ -84,7 +100,7 @@ var osc;
 var source;
 var gain;
 
-app.controller('musicMixer', ['$scope', function($scope) {
+app.controller('musicMixer', ['$scope', 'song', function($scope, song) {
 
 	console.log("music mixer");
 
@@ -94,24 +110,12 @@ app.controller('musicMixer', ['$scope', function($scope) {
 
 
 
-	$scope.slider = {
-  		value: 150,
-  		options: {
-	  		step: 20,
-	    	floor: 300,
-	    	ceil: 700,
-	    	onChange: function(sliderId, modelValue, highValue, pointerType)
-	    	{
-	    		console.log(modelValue);
 
-	    		generatePitch(modelValue);
-				//osc.start(0);
-	    	}
-  		}
-	};
 
 	$scope.playSong = function()
 	{
+		console.log(song.getSelectedSong());
+
 		context = new AudioContext();
 		bufferLoader = new BufferLoader(
 	    	context,
@@ -219,7 +223,7 @@ function addAudioProperties(object)
 }
 
 
-app.controller('tuneSelectCtrl', function ($scope) {
+app.controller('tuneSelectCtrl', ['$scope', 'song', function ($scope, song) {
 	$scope.selection = true;
 	$scope.selected = [];
 	$scope.log = [];
@@ -239,5 +243,6 @@ app.controller('tuneSelectCtrl', function ($scope) {
 	$scope.selectionStop = function(selected){
 	  $scope.log.push(($scope.log.length+1)+': items selected: '+selected.length);
 	  console.log(selected);
+	  song.setSelectedSong(selected);
 	};
-});
+}]);
