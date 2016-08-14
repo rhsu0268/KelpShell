@@ -123,6 +123,18 @@ app.controller('musicMixer', ['$scope', 'song', function($scope, song) {
 		{
 			songTitle = "feeling_good";
 		}
+		else if (song.getSelectedSong()[0].title == "Uptown Funk")
+		{
+			songTitle = "uptown_funk";
+		}
+		else if (song.getSelectedSong()[0].title == "In the Summer")
+		{
+			songTitle = "in_the_summer";
+		}
+		else
+		{
+			songTitle = "all_of_me";
+		}
 
 		console.log(songTitle);
 
