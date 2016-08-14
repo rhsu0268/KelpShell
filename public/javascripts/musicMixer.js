@@ -115,12 +115,22 @@ app.controller('musicMixer', ['$scope', 'song', function($scope, song) {
 	$scope.playSong = function()
 	{
 		console.log(song.getSelectedSong());
+		//var song = song.getSelectedSong();
+		//console.log(song);
+		console.log(song.getSelectedSong()[0]);
+		var songTitle;
+		if (song.getSelectedSong()[0].title == "Feeling Good")
+		{
+			songTitle = "feeling_good";
+		}
+
+		console.log(songTitle);
 
 		context = new AudioContext();
 		bufferLoader = new BufferLoader(
 	    	context,
 	    	[
-		      '../music/feeling_good.mp3'
+		      '../music/' + songTitle + '.mp3'
 		    ],
 		    finishedLoading	// this is the callback function - it's called after the file is loaded
 		    				// and is given an array of loaded buffer arrays as an argument
@@ -244,5 +254,6 @@ app.controller('tuneSelectCtrl', ['$scope', 'song', function ($scope, song) {
 	  $scope.log.push(($scope.log.length+1)+': items selected: '+selected.length);
 	  console.log(selected);
 	  song.setSelectedSong(selected);
+	  console.log(song.getSelectedSong());
 	};
 }]);
