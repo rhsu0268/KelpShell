@@ -37,27 +37,24 @@
                         <li><i>In the Summer</i> Calvin Harris</li>
                         <li><i>All of Me</i> John Legend</li>
                     </ul>
-                    <section ng-init="tunes = [
-                      {title: 'Feeling Good', artist: 'Michael Buble'},
-                      {title: 'Uptown Funk', artist: 'Mark Ronson'},
-                      {title: 'In the Summer', artist: 'Calvin Harris'},
-                      {title: 'All of me', artist: 'John Legend'}
+                    <section ng-controller="tuneSelectCtrl">
 
-                    ]">
 
-                    <p id="feedback">
-                        You've selected:
+                        <p>
+                            You've selected:
                             <span ng-hide="selected">none</span>
                             <span class="selected-tunes" ng-repeat="tune in selected"> {{tune.title}}</span>
-                    </p>
+                        </p>
 
-                    <ul id="selectable" selectable selectable-list="tunes" selectable-out="selected">
-                    <li class="ui-widget-content" ng-repeat="tune in tunes"><i>{{tune.title}}</i> {{tune.artist}}</li>
-                </ul>
+                        <ul id="selectable"
+                            selectable="selection"
+                            selectable-list="tunes"
+                            selectable-out="selected"
+                            selectable-events="{start:'selectionStart($selected)', stop:'selectionStop($selected)'}">
+                            <li class="ui-widget-content" ng-repeat="tune in tunes"><i>{{tune.title}}</i> {{tune.artist}}</li>
+                        </ul>
 
-
-
-            </section>
+                    </section>
               </div>
             </div>
 

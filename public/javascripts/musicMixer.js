@@ -92,6 +92,8 @@ app.controller('musicMixer', ['$scope', function($scope) {
 	//var osc = context.createOscillator();
 
 
+
+
 	$scope.slider = {
   		value: 150,
   		options: {
@@ -215,3 +217,27 @@ function addAudioProperties(object)
 		object.s = s;
 	}
 }
+
+
+app.controller('tuneSelectCtrl', function ($scope) {
+	$scope.selection = true;
+	$scope.selected = [];
+	$scope.log = [];
+	$scope.tunes = [
+	  {title: 'Feeling Good', artist: 'Michael Buble'},
+	  {title: 'Uptown Funk', artist: 'Mark Ronson'},
+	  {title: 'In the Summer', artist: 'Calvin Harris'},
+	  {title: 'All of Me', artist: 'John Legend'}
+	];
+
+	$scope.selectionStart = function(selected){
+
+	  $scope.log.push(($scope.log.length+1)+': selection start!');
+	  console.log(selected);
+	};
+
+	$scope.selectionStop = function(selected){
+	  $scope.log.push(($scope.log.length+1)+': items selected: '+selected.length);
+	  console.log(selected);
+	};
+});
