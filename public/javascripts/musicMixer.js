@@ -100,7 +100,7 @@ var osc;
 var source;
 var gain;
 
-app.controller('musicMixer', ['$scope', 'song', function($scope, song) {
+app.controller('musicMixerCtrl', ['$scope', 'song', function($scope, song) {
 
 	console.log("music mixer");
 
@@ -155,6 +155,24 @@ app.controller('musicMixer', ['$scope', 'song', function($scope, song) {
 	{
 		source.stop();
 	};
+
+	$scope.playEffect = function()
+	{
+
+
+		var sawtoothWave = new Pizzicato.Sound({
+    		source: 'wave',
+    		options: {
+        	type: 'sawtooth'
+    		}
+		});
+
+		var delay = new Pizzicato.Effects.Delay();
+		sawtoothWave.addEffect(delay);
+
+		sawtoothWave.play();
+	};
+
 }]);
 
 
