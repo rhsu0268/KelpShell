@@ -160,17 +160,16 @@ app.controller('musicMixerCtrl', ['$scope', 'song', function($scope, song) {
 	{
 
 
-		var sawtoothWave = new Pizzicato.Sound({
-    		source: 'wave',
-    		options: {
-        	type: 'sawtooth'
-    		}
+		var sound = new Pizzicato.Sound({
+		    source: 'file',
+		    options: { path: '../music/feeling_good.mp3' }
+		}, function() {
+		    console.log('sound file loaded!');
+			sound.play();
 		});
+		//sawtoothWave.addEffect(delay);
 
-		var delay = new Pizzicato.Effects.Delay();
-		sawtoothWave.addEffect(delay);
-
-		sawtoothWave.play();
+		//
 	};
 
 }]);
