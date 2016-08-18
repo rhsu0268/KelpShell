@@ -163,23 +163,28 @@ app.controller('musicMixerCtrl', ['$scope', 'song', function($scope, song) {
 
 
 
+		if (sound != null)
+		{
+			sound.play()
+		}
+		else {
+			sound = new Pizzicato.Sound({
+				source: 'file',
+				options: { path: '../music/feeling_good.mp3' }
+			}, function() {
+				console.log('sound file loaded!');
+
+				//sound.attack = 0.9;
+
+				sound.play();
+			});
 
 
-		sound = new Pizzicato.Sound({
-		    source: 'file',
-		    options: { path: '../music/feeling_good.mp3' }
-		}, function() {
-		    console.log('sound file loaded!');
+			//sawtoothWave.addEffect(delay);
 
-			//sound.attack = 0.9;
+			//
+		}
 
-			sound.play();
-		});
-
-
-		//sawtoothWave.addEffect(delay);
-
-		//
 	};
 
 	$scope.addEffect = function()
@@ -190,6 +195,17 @@ app.controller('musicMixerCtrl', ['$scope', 'song', function($scope, song) {
 		});
 
 		sound.addEffect(lowPassFilter);
+	}
+
+	$scope.stopEffect = function()
+	{
+		sound.stop();
+		sound = null;
+	}
+
+	$scope.pauseEffect = function()
+	{
+		sound.pause();
 	}
 
 }]);
