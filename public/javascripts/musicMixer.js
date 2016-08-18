@@ -187,7 +187,7 @@ app.controller('musicMixerCtrl', ['$scope', 'song', function($scope, song) {
 
 	};
 
-	$scope.addEffect = function()
+	$scope.addLowPassEffect = function()
 	{
 		var lowPassFilter = new Pizzicato.Effects.LowPassFilter({
 			frequency: 400,
@@ -195,6 +195,17 @@ app.controller('musicMixerCtrl', ['$scope', 'song', function($scope, song) {
 		});
 
 		sound.addEffect(lowPassFilter);
+	}
+
+	$scope.addHighPassEffect = function()
+	{
+		var highPassFilter = new Pizzicato.Effects.HighPassFilter({
+		    frequency: 10,
+		    peak: 10
+		});
+
+		sound.addEffect(highPassFilter);
+
 	}
 
 	$scope.stopEffect = function()
