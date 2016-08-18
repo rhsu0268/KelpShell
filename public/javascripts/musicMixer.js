@@ -156,21 +156,41 @@ app.controller('musicMixerCtrl', ['$scope', 'song', function($scope, song) {
 		source.stop();
 	};
 
+	var sound;
+
 	$scope.playEffect = function()
 	{
 
 
-		var sound = new Pizzicato.Sound({
+
+
+
+		sound = new Pizzicato.Sound({
 		    source: 'file',
 		    options: { path: '../music/feeling_good.mp3' }
 		}, function() {
 		    console.log('sound file loaded!');
+
+			//sound.attack = 0.9;
+
 			sound.play();
 		});
+
+
 		//sawtoothWave.addEffect(delay);
 
 		//
 	};
+
+	$scope.addEffect = function()
+	{
+		var lowPassFilter = new Pizzicato.Effects.LowPassFilter({
+			frequency: 400,
+			peak: 10
+		});
+
+		sound.addEffect(lowPassFilter);
+	}
 
 }]);
 
