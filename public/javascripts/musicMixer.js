@@ -219,6 +219,19 @@ app.controller('musicMixerCtrl', ['$scope', 'song', function($scope, song) {
 		sound.pause();
 	}
 
+
+	$scope.addStereoPanner = function()
+	{
+		var stereoPanner = new Pizzicato.Effects.StereoPanner({
+		    pan: -1
+		});
+
+		sound.addEffect(stereoPanner);
+
+		//sound.addEffect(highPassFilter);
+
+	}
+
 }]);
 
 
