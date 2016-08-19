@@ -232,6 +232,17 @@ app.controller('musicMixerCtrl', ['$scope', 'song', function($scope, song) {
 
 	}
 
+	$scope.addRingModulatorEffect = function()
+	{
+		var ringModulator = new Pizzicato.Effects.RingModulator({
+    		speed: 500,
+    		distortion: 10,
+    		mix: 0.5
+		});
+
+		sound.addEffect(ringModulator);
+	}
+
 }]);
 
 
