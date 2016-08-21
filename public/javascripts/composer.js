@@ -624,7 +624,7 @@ app.controller('visualizationAndRecordCtrl', ['$scope', function($scope) {
             console.log("Stopping recording!");
             console.log(blob);
 
-            Recorder.forceDownload(blob, 'output.wav');
+            Recorder.forceDownload(blob, 'output.mp3');
 
 
 
