@@ -12,6 +12,7 @@
     "ejs": "~2.3.3",
     "express": "~4.13.1",
     "express-jwt": "^3.4.0",
+    "gridfs-stream": "^1.1.1",
     "jsonwebtoken": "^7.1.6",
     "mongoose": "^4.5.6",
     "morgan": "~1.6.1",

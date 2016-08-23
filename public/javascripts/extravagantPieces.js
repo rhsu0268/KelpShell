@@ -1,49 +1,85 @@
 var app = angular.module('extravagantPieces', ['firebase']);
 
-/*
-function KelpShell(fbname)
-{
-	// create firebase reference
-	var firebase = new Firebase("https://" + fbname + ".firebaseio.com/");
 
-	this.firebase = firebase;
+app.factory('auth', ['$http', '$window', function($http, $window) {
 
-	var piecesRef = firebase.child('pieces');
+    var auth = {};
 
-	this.submitPiece = function(composer, title)
-	{
-		console.log("composer" + composer);
-		console.log("title" + title);
+    auth.saveToken = function(token)
+    {
+        $window.localStorage['kelpshell-token'] = token;
+    }
 
-		piecesRef.child().set({
-			title: title,
-			composer: composer
+    auth.getToken = function()
+    {
+        return $window.localStorage['kelpshell-token'];
+    }
 
-		});
-	};
+    auth.isLoggedIn = function()
+    {
+        var token = auth.getToken();
 
-	this.onPiecesChanged = function() {};
+        if (token)
+        {
+            var payload = JSON.parse($window.atob(token.split('.')[1]));
+            return payload.exp = Date.now() / 1000;
+        }
+        else
+        {
+            return false;
+        }
 
-	piecesRef.on('value', function(snapshot) {
-		var pieces = snapshot.val();
-		console.log(pieces);
-		var preparedPieces = [];
+    }
 
-		for (var title in pieces)
-		{
-			if (pieces.hasOwnProperty(title))
-			{
-				preparedPieces.push({
-					title: pieces[title].title
-				})
-			}
-		}
-		console.log(preparedPieces);
-		this.onPiecesChanged(preparedPieces);
-	}.bind(this));
+    auth.currentUser = function()
+    {
+        if (auth.isLoggedIn())
+        {
+            var token = auth.getToken();
+            var payload = JSON.parse($window.atob(token.split('.')[1]));
 
-};
-*/
+            return payload.username;
+        }
+    }
+
+    auth.register = function(user)
+    {
+        return $http.post('/register', user).success(function(data) {
+
+            auth.saveToken(data.token);
+
+        })
+    }
+
+
+    auth.login = function(user)
+    {
+        return $http.post('/login', user).success(function(data) {
+
+            auth.saveToken(data.token);
+
+        })
+    }
+
+    auth.logOut = function()
+    {
+        $window.localStorage.removeItem('kelpshell-token');
+        $window.location.href = '/';
+    }
+
+    return auth;
+
+}]);
+
+
+app.controller("NavCtrl", ['$scope', 'auth', function($scope, auth) {
+
+    $scope.isLoggedIn = auth.isLoggedIn;
+    $scope.currentUser = auth.currentUser;
+    $scope.logout = auth.logOut;
+
+}]);
+
 
 
 
