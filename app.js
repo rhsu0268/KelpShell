@@ -16,7 +16,7 @@ var passport = require('passport');
 
 //var conn = mongoose.connection;
 
-var Grid = require('gridfs-stream');
+
 
 
 
@@ -71,17 +71,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-module.exports.init = function(app) {
-    var Schema;
-    var conn;
-    Grid.mongo = mongoose.mongo;
-    conn = mongoose.createConnection('mongodb://localhost/kelpshell');
-    conn.once('open', function () {
-        var gfs = Grid(conn.db);
-        app.set('gridfs', gfs);
-        // all set!
-    });
-}
+
 
 
 module.exports = app;
