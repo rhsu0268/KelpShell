@@ -79,3 +79,129 @@ app.controller("NavCtrl", ['$scope', 'auth', function($scope, auth) {
     $scope.logout = auth.logOut;
 
 }]);
+
+app.controller('padsCtrl', ['$scope', function($scope) {
+
+    console.log("Pads");
+
+    $scope.playKick = function()
+    {
+        tune = "kick.wav";
+        if (!context)
+        {
+            playSound(tune);
+        }
+        else
+        {
+            source.stop();
+            context.close();
+            context = null;
+        }
+    }
+
+    $scope.playSnare = function()
+    {
+        tune = "snare.wav";
+        if (!context)
+        {
+            playSound(tune);
+        }
+        else
+        {
+            source.stop();
+            context.close();
+            context = null;
+        }
+    }
+
+    $scope.playTin = function()
+    {
+        tune = "tin.wav";
+        if (!context)
+        {
+            playSound(tune);
+        }
+        else
+        {
+            source.stop();
+            context.close();
+            context = null;
+        }
+    }
+
+    $scope.playHat = function()
+    {
+        tune = "hat.wav";
+        if (!context)
+        {
+            playSound(tune);
+        }
+        else
+        {
+            source.stop();
+            context.close();
+            context = null;
+        }
+    }
+
+    $scope.playLoop1 = function()
+    {
+        if (!contextLoop1)
+        {
+            console.log("Play loop1");
+            playSoundLoop1("kick.wav");
+        }
+        else
+        {
+            sourceLoop1.stop();
+            contextLoop1.close();
+            contextLoop1 = null;
+        }
+    }
+
+    $scope.playLoop2 = function()
+    {
+        if (!contextLoop2)
+        {
+            console.log("Play loop2");
+            playSoundLoop2("snare.wav");
+        }
+        else
+        {
+            sourceLoop2.stop();
+            contextLoop2.close();
+            contextLoop2 = null;
+        }
+    }
+
+    $scope.playLoop3 = function()
+    {
+        if (!contextLoop3)
+        {
+            console.log("Play loop3");
+            playSoundLoop3("tin.wav");
+        }
+        else
+        {
+            sourceLoop3.stop();
+            contextLoop3.close();
+            contextLoop3 = null;
+        }
+    }
+
+    $scope.playLoop4 = function()
+    {
+        if (!contextLoop4)
+        {
+            console.log("Play loop4");
+            playSoundLoop4("hat.wav");
+        }
+        else
+        {
+            sourceLoop4.stop();
+            contextLoop4.close();
+            contextLoop4 = null;
+        }
+    }
+
+}]);
