@@ -72,14 +72,30 @@ app.factory('auth', ['$http', '$window', function($http, $window) {
 
 }]);
 
+
+
 app.controller("NavCtrl", ['$scope', 'auth', function($scope, auth) {
 
-    $scope.isLoggedIn = auth.isLoggedIn;
+    /*
+    $scope.isLoggedIn = function()
+    {
+        auth.isLoggedIn;
+    }
+    */
+
+    /*
     $scope.currentUser = auth.currentUser;
     $scope.logout = auth.logOut;
+    */
 
 }]);
 
+/*
+function isLoggedIn()
+{
+    auth.isLoggedIn;
+}
+*/
 
 var context;
 var osc;
@@ -116,14 +132,20 @@ var tune;
 app.controller("NavCtrl", ['$scope', 'auth', function($scope, auth) {
 
 
-    $scope.isLoggedIn = auth.isLoggedIn;
+    //$scope.isLoggedIn = auth.isLoggedIn;
 
 
     //$scope.isLoggedIn = auth.isLoggedIn;
-    $scope.currentUser = auth.currentUser;
-    $scope.logout = auth.logOut;
+    //$scope.currentUser = auth.currentUser;
+    ///$scope.logout = auth.logOut;
+    isLoggedIn(auth);
 
 }]);
+
+function isLoggedIn(auth)
+{
+    auth.isLoggedIn;
+}
 
 app.controller('padsCtrl', ['$scope', function($scope) {
 
@@ -441,6 +463,55 @@ function playSoundLoop1(tune)
 
 }
 
+
+function playSoundLoop2(tune)
+{
+    contextLoop2 = new AudioContext();
+
+    bufferLoader = new BufferLoader(
+        contextLoop2,
+        [
+          '../music/' + tune
+        ],
+        finishedLoadingAndPlay2	// this is the callback function - it's called after the file is loaded
+                        // and is given an array of loaded buffer arrays as an argument
+    );
+    bufferLoader.load();
+
+}
+
+function playSoundLoop3(tune)
+{
+    contextLoop3 = new AudioContext();
+
+    bufferLoader = new BufferLoader(
+        contextLoop3,
+        [
+          '../music/' + tune
+        ],
+        finishedLoadingAndPlay3	// this is the callback function - it's called after the file is loaded
+                        // and is given an array of loaded buffer arrays as an argument
+    );
+    bufferLoader.load();
+
+}
+
+function playSoundLoop4(tune)
+{
+    contextLoop4 = new AudioContext();
+
+    bufferLoader = new BufferLoader(
+        contextLoop4,
+        [
+          '../music/' + tune
+        ],
+        finishedLoadingAndPlay4	// this is the callback function - it's called after the file is loaded
+                        // and is given an array of loaded buffer arrays as an argument
+    );
+    bufferLoader.load();
+
+}
+
 function finishedLoadingAndPlay1(bufferList) {
     // If you had more loops, you could
     //console.log(bufferList);
@@ -455,6 +526,59 @@ function finishedLoadingAndPlay1(bufferList) {
 
     sourceLoop1.start(0);
     sourceLoop1.loop = true;
+}
+
+
+function finishedLoadingAndPlay2(bufferList) {
+    // If you had more loops, you could
+    //console.log(bufferList);
+
+    sourceLoop2 = contextLoop2.createBufferSource();
+    sourceLoop2.playbackRate.value = playbackRate2;
+    sourceLoop2.buffer = bufferList[0];
+    gainLoop2 = contextLoop2.createGain();
+    sourceLoop2.connect(gainLoop2);
+    gainLoop2.gain.value = volume2;
+    gainLoop2.connect(contextLoop2.destination);
+
+    sourceLoop2.start(0);
+    sourceLoop2.loop = true;
+
+}
+
+
+function finishedLoadingAndPlay3(bufferList) {
+    // If you had more loops, you could
+    //console.log(bufferList);
+
+    sourceLoop3 = contextLoop3.createBufferSource();
+    sourceLoop3.playbackRate.value = playbackRate3;
+    sourceLoop3.buffer = bufferList[0];
+    gainLoop3 = contextLoop3.createGain();
+    sourceLoop3.connect(gainLoop3);
+    gainLoop3.gain.value = volume3;
+    gainLoop3.connect(contextLoop3.destination);
+
+    sourceLoop3.start(0);
+    sourceLoop3.loop = true;
+
+}
+
+function finishedLoadingAndPlay4(bufferList) {
+    // If you had more loops, you could
+    //console.log(bufferList);
+
+    sourceLoop4 = contextLoop4.createBufferSource();
+    sourceLoop4.playbackRate.value = playbackRate4;
+    sourceLoop4.buffer = bufferList[0];
+    gainLoop4 = contextLoop4.createGain();
+    sourceLoop4.connect(gainLoop4);
+    gainLoop4.gain.value = volume4;
+    gainLoop4.connect(contextLoop4.destination);
+
+    sourceLoop4.start(0);
+    sourceLoop4.loop = true;
+
 }
 
 function playSound(tune)
