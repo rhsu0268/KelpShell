@@ -19,15 +19,17 @@
       <li ng-show="isLoggedIn()"><a href="/extravagantPieces">Extravagant Pieces</a></li>
       <li ng-show="isLoggedIn()"><a href="/musicMixer">Mixer</a></li>
       <li ng-show="isLoggedIn()"><a href="/composer">Composer</a></li>
-      <li ng-show="isLoggedIn()"><a href="/popularMusic">PopuLar</a></li>
+      <!--<li ng-show="isLoggedIn()"><a href="/popularMusic">PopuLar</a></li>-->
 
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
+
       <li ng-hide="isLoggedIn()"><a href="/register">Register</a></li>
       <li ng-hide="isLoggedIn()"><a href="/login">Login</a></li>
       <li ng-hide="isLoggedIn()"><a href="/auth">Auth</a></li>
       <li ng-show="isLoggedIn()"><a href="/" ng-click="logout()">Logout</a></li>
+
     </ul>
   </div><!-- /.navbar-collapse -->
 </div><!-- /.container-fluid -->
