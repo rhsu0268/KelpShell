@@ -92,6 +92,15 @@ app.controller("NavCtrl", ['$scope', 'auth', function($scope, auth) {
 
 app.controller('uploadCtrl', ['Upload', '$window', function(Upload, $window) {
 
+    var fileUpload = this;
+
+    // function to call on form submit
+    /*
+    fileUpload.submit = function()
+    {
+        if (fileUpload.)
+    }
+    */
 
 
 }]);
