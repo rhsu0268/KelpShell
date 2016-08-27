@@ -1,6 +1,6 @@
 //var Recorder = npm.require('recorderjs');
 
-var app = angular.module('composer', ['rzModule']);
+var app = angular.module('composer', ['rzModule', 'ngFileUpload']);
 
 app.factory('auth', ['$http', '$window', function($http, $window) {
 
@@ -90,12 +90,11 @@ app.controller("NavCtrl", ['$scope', 'auth', function($scope, auth) {
 
 }]);
 
-/*
-function isLoggedIn()
-{
-    auth.isLoggedIn;
-}
-*/
+app.controller('uploadCtrl', ['Upload', '$window', function(Upload, $window) {
+
+
+
+}]);
 
 var context;
 var osc;

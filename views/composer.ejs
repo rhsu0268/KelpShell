@@ -116,11 +116,12 @@
                         <h2>Masterpieces</h2>
                         <div class="panel-body">
 
-                            <!--
-                            <form ng-controller="uploadCtrl as uploadMusicFiles" name="uploadMusicFiles.upload_form">
 
+                            <form ng-controller="uploadCtrl as uploadMusicFiles" name="uploadMusicFiles.upload_form">
+                                <input type="file" ngf-select ng-model="uploadMusicFiles.file" name="file"
+                                ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB"/>
                             </form>
-                            -->
+
                         </div>
                     </div>
                     <div class="col-lg-6" ng-controller="recordCtrl">
