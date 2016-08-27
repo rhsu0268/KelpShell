@@ -498,6 +498,21 @@ app.controller('recordCtrl', ['$scope', function($scope) {
 
 
         });
+
+
+
+        $scope.playAudio = function()
+        {
+            function getBufferCallback( buffers )
+            {
+                audioContext = new AudioContext();
+                var newSource = audioContext.createBufferSource();
+                var newBuffer = audioContext.createBuffer( 2, buffers[0].length, audioContext.sampleRate );
+                newBuffer.getChannelData(0).set(buffers[0]);
+                newBuffer.getChannelData(1).set(buffers[1]);
+                newSource.buffer = newBuffer;
+            }
+        }
     }
 }]);
 
