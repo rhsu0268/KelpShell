@@ -452,6 +452,55 @@ app.controller('padsCtrl', ['$scope', function($scope) {
 
 }]);
 
+
+app.controller('recordCtrl', ['$scope', function($scope) {
+
+
+
+    var rec;
+    $scope.startRecordAudio = function()
+    {
+
+        /*
+        var config =
+        {
+            workerPath: '../../node_modules/recorderjs/recorderWorker.js'
+        }
+        */
+        rec = new Recorder(sourceLoop1);
+
+        rec.record();
+
+    }
+
+    $scope.stopRecordAudio = function()
+    {
+
+        /*
+        var config =
+        {
+            workerPath: '../../node_modules/recorderjs/recorderWorker.js'
+        }
+        */
+        //var rec = new Recorder(sourceLoop1);
+        rec.stop();
+
+        rec.exportWAV(function(blob) {
+
+            console.log("Stopping recording!");
+            console.log(blob);
+
+            Recorder.forceDownload(blob, 'output.mp3');
+
+
+
+
+
+
+        });
+    }
+}]);
+
 function playSoundLoop1(tune)
 {
     contextLoop1 = new AudioContext();
