@@ -115,6 +115,12 @@
                     <div class="col-lg-6">
                         <h2>Masterpieces</h2>
                         <div class="panel-body">
+
+                            <!--
+                            <form ng-controller="uploadCtrl as uploadMusicFiles" name="uploadMusicFiles.upload_form">
+
+                            </form>
+                            -->
                         </div>
                     </div>
                     <div class="col-lg-6" ng-controller="recordCtrl">
@@ -133,6 +139,8 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" src="node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
+<script type="text/javascript" src="node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
 <script src="/javascripts/composer.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/4.0.2/rzslider.min.js"></script>
 <!-- Load the (very useful script) that helps you load audio files. -->
