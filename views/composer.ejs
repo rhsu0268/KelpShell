@@ -118,8 +118,12 @@
 
 
                             <form ng-controller="uploadCtrl as uploadMusicFile" name="uploadMusicFile.upload_form">
-                                <input type="file" ngf-select ng-model="uploadMusicFile.file" name="file"
-                                ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB"/>
+                                <input type="file" class="btn btn-primary"
+                                ngf-select
+                                ng-model="uploadMusicFile.file"
+                                name="file"
+                                ngf-pattern="'image/*'" accept="image/*"
+                                ngf-max-size="20MB"/>
                             <br>
 
                             Image thumbnail: <img style="width:100px;" ngf-thumbnail="uploadMusicFile.file"/>
@@ -127,8 +131,8 @@
                             <i ng-show="uploadMusicFile.upload_form.file.$error.required">*required</i><br>
                             <i ng-show="uploadMusicFile.upload_form.file.$error.maxSize">File too large
                                 {{upload_form.file.size / 1000000|number:1}}MB: max 20M</i>
-                            <button type="submit" ng-click="upload_form.submit()">Submit</button>
-                            <p>{{upload_form.progress}}</p>
+                            <button type="submit" class="btn btn-primary" ng-click="uploadMusicFile.submit()">Submit</button>
+                            <p>{{uploadMusicFile.progress}}</p>
                             </form>
 
                         </div>
