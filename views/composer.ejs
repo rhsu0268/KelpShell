@@ -126,7 +126,7 @@
                                 ngf-max-size="20MB"/>
                             <br>
 
-                            Image thumbnail: <img style="width:100px;" ngf-thumbnail="uploadMusicFile.file"/>
+                            Audio preview: <audio controls ngf-src="uploadMusicFile.file"/></audio>
                             <br>
                             <i ng-show="uploadMusicFile.upload_form.file.$error.required">*required</i><br>
                             <i ng-show="uploadMusicFile.upload_form.file.$error.maxSize">File too large
