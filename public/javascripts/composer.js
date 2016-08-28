@@ -98,6 +98,7 @@ app.controller('uploadCtrl', ['Upload', '$window', function(Upload, $window) {
 
     fileUpload.submit = function()
     {
+        console.log("Submitted!");
         // check if form is valid
         if (fileUpload.upload_form.file.$valid && fileUpload.file)
         {
