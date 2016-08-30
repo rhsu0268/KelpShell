@@ -9,28 +9,9 @@ function playSoundLoop1(tune)
         if (contextLoop2)
         {
 
-            bufferLoader = new BufferLoader(
-                contextLoop2,
-                [
-                  '../music/kick.wav'
-                ],
-                function(bufferList)
-                {
-                    sourceLoop1 = contextLoop2.createBufferSource();
-                    sourceLoop1.playbackRate.value = playbackRate1;
-                    sourceLoop1.buffer = bufferList[0];
-                    gainLoop1 = contextLoop2.createGain();
-                    sourceLoop1.connect(gainLoop1);
-                    gainLoop1.gain.value = volume1;
-                    gainLoop1.connect(contextLoop2.destination);
-
-                    sourceLoop1.start(0);
-                    sourceLoop1.loop = true;
-                }
-            );
-            bufferLoader.load();
 
 
+            loadSource1IntoContext();
 
         }
     }
@@ -62,6 +43,63 @@ function finishedLoadingAndPlay1(bufferList) {
     sourceLoop1.connect(gainLoop1);
     gainLoop1.gain.value = volume1;
     gainLoop1.connect(contextLoop1.destination);
+
+    sourceLoop1.start(0);
+    sourceLoop1.loop = true;
+}
+
+var generalSourceLoop;
+var generalContextLoop;
+var generalGainLoop;
+
+function loadSourceIntoContext(generalSourceLoop, generalContextLoop, generalGainLoop)
+{
+    bufferLoader = new BufferLoader(
+        generalContextLoop,
+        [
+          '../music/kick.wav'
+        ],
+        function(bufferList)
+        {
+            generalSourceLoop = generalContextLoop.createBufferSource();
+            generalSourceLoop.playbackRate.value = playbackRate1;
+            generalSourceLoop.buffer = bufferList[0];
+            generalGainLoop = generalContextLoop.createGain();
+            console.log(generalGainLoop);
+            generalSourceLoop.connect(generalGainLoop);
+            generalGainLoop.gain.value = volume1;
+            generalGainLoop.connect(generalContextLoop.destination);
+
+            generalSourceLoop.start(0);
+            console.log(generalSourceLoop);
+            generalSourceLoop.loop = true;
+        }
+    );
+    bufferLoader.load();
+    //return generalSourceLoop;
+}
+
+function loadSource1IntoContext()
+{
+    bufferLoader = new BufferLoader(
+        contextLoop2,
+        [
+          '../music/kick.wav'
+        ],
+        connectSource1IntoContext
+    );
+    bufferLoader.load();
+}
+
+function connectSource1IntoContext(bufferList)
+{
+    sourceLoop1 = contextLoop2.createBufferSource();
+    sourceLoop1.playbackRate.value = playbackRate1;
+    sourceLoop1.buffer = bufferList[0];
+    gainLoop1 = contextLoop2.createGain();
+    sourceLoop1.connect(gainLoop1);
+    gainLoop1.gain.value = volume1;
+    gainLoop1.connect(contextLoop2.destination);
 
     sourceLoop1.start(0);
     sourceLoop1.loop = true;
