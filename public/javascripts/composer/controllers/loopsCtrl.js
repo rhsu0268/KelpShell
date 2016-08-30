@@ -1,17 +1,24 @@
+var loop1Playing = false;
+
 app.controller('loopsCtrl', ['$scope', function($scope) {
 
     $scope.playLoop1 = function()
     {
-        if (!contextLoop1)
+
+        if (!contextLoop1 && !loop1Playing)
         {
             console.log("Play loop1");
             playSoundLoop1("kick.wav");
+            loop1Playing = true;
         }
         else
         {
             sourceLoop1.stop();
-            contextLoop1.close();
-            contextLoop1 = null;
+            if (contextLoop1)
+            {
+                contextLoop1.close();
+                contextLoop1 = null;
+            }
         }
     }
 
