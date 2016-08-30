@@ -13,7 +13,9 @@ app.controller('loopsCtrl', ['$scope', function($scope) {
         }
         else
         {
+
             sourceLoop1.stop();
+            loop1Playing = false;
             if (contextLoop1)
             {
                 contextLoop1.close();
