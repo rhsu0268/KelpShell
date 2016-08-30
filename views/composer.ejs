@@ -20,8 +20,8 @@
             <h1>Composer</h1>
 
             <div class="container">
-                <div class="row" ng-controller="padsCtrl">
-                    <div class="col-lg-4">
+                <div class="row">
+                    <div class="col-lg-4" ng-controller="padsCtrl">
                         <button type="button" class="btn btn-primary" id="pad1" ng-click="playKick()">Kick</button>
                         <button type="button" class="btn btn-primary" id="pad2" ng-click="playSnare()">Snare</button>
                         <br><br>
@@ -29,82 +29,84 @@
                         <button type="button" class="btn btn-primary" id="pad4" ng-click="playHat()">Hat</button>
 
                     </div>
-                    <div class="col-lg-2">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <h1>Kick</h1>
-                                <button type="button" class="btn btn-primary" id="loopButton1" ng-click="playLoop1()">Loop</button>
-                                <h3>Frequency</h3>
-                                <div>
-                                    <rzslider
-                                    rz-slider-model="sliderKickFrequency.value"
-                                    rz-slider-options="sliderKickFrequency.options"></rzslider>
-                                </div>
-                                <h3>Volume</h3>
-                                <div>
-                                    <rzslider
-                                    rz-slider-model="sliderKickVolume.value"
-                                    rz-slider-options="sliderKickVolume.options"></rzslider>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <h1>Snare</h1>
-                                <button type="button" class="btn btn-primary" id="loopButton1" ng-click="playLoop2()">Loop</button>
-                                <h3>Frequency</h3>
-                                <div>
-                                    <rzslider
-                                    rz-slider-model="sliderSnareFrequency.value"
-                                    rz-slider-options="sliderSnareFrequency.options"></rzslider>
-                                </div>
-                                <h3>Volume</h3>
-                                <div>
-                                    <rzslider
-                                    rz-slider-model="sliderSnareVolume.value"
-                                    rz-slider-options="sliderSnareVolume.options"></rzslider>
+                    <div ng-controller="loopsCtrl">
+                        <div class="col-lg-2">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <h1>Kick</h1>
+                                    <button type="button" class="btn btn-primary" id="loopButton1" ng-click="playLoop1()">Loop</button>
+                                    <h3>Frequency</h3>
+                                    <div>
+                                        <rzslider
+                                        rz-slider-model="sliderKickFrequency.value"
+                                        rz-slider-options="sliderKickFrequency.options"></rzslider>
+                                    </div>
+                                    <h3>Volume</h3>
+                                    <div>
+                                        <rzslider
+                                        rz-slider-model="sliderKickVolume.value"
+                                        rz-slider-options="sliderKickVolume.options"></rzslider>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <h1>Tin</h1>
-                                <button type="button" class="btn btn-primary" id="loopButton1" ng-click="playLoop3()">Loop</button>
-                                <h3>Frequency</h3>
-                                <div>
-                                    <rzslider
-                                    rz-slider-model="sliderTinFrequency.value"
-                                    rz-slider-options="sliderTinFrequency.options"></rzslider>
-                                </div>
-                                <h3>Volume</h3>
-                                <div>
-                                    <rzslider
-                                    rz-slider-model="sliderTinVolume.value"
-                                    rz-slider-options="sliderTinVolume.options"></rzslider>
+                        <div class="col-lg-2">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <h1>Snare</h1>
+                                    <button type="button" class="btn btn-primary" id="loopButton1" ng-click="playLoop2()">Loop</button>
+                                    <h3>Frequency</h3>
+                                    <div>
+                                        <rzslider
+                                        rz-slider-model="sliderSnareFrequency.value"
+                                        rz-slider-options="sliderSnareFrequency.options"></rzslider>
+                                    </div>
+                                    <h3>Volume</h3>
+                                    <div>
+                                        <rzslider
+                                        rz-slider-model="sliderSnareVolume.value"
+                                        rz-slider-options="sliderSnareVolume.options"></rzslider>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <h1>Hat</h1>
-                                <button type="button" class="btn btn-primary" id="loopButton1" ng-click="playLoop4()">Loop</button>
-                                <h3>Frequency</h3>
-                                <div>
-                                    <rzslider
-                                    rz-slider-model="sliderHatFrequency.value"
-                                    rz-slider-options="sliderHatFrequency.options"></rzslider>
+                        <div class="col-lg-2">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <h1>Tin</h1>
+                                    <button type="button" class="btn btn-primary" id="loopButton1" ng-click="playLoop3()">Loop</button>
+                                    <h3>Frequency</h3>
+                                    <div>
+                                        <rzslider
+                                        rz-slider-model="sliderTinFrequency.value"
+                                        rz-slider-options="sliderTinFrequency.options"></rzslider>
+                                    </div>
+                                    <h3>Volume</h3>
+                                    <div>
+                                        <rzslider
+                                        rz-slider-model="sliderTinVolume.value"
+                                        rz-slider-options="sliderTinVolume.options"></rzslider>
+                                    </div>
                                 </div>
-                                <h3>Volume</h3>
-                                <div>
-                                    <rzslider
-                                    rz-slider-model="sliderHatVolume.value"
-                                    rz-slider-options="sliderHatVolume.options"></rzslider>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <h1>Hat</h1>
+                                    <button type="button" class="btn btn-primary" id="loopButton1" ng-click="playLoop4()">Loop</button>
+                                    <h3>Frequency</h3>
+                                    <div>
+                                        <rzslider
+                                        rz-slider-model="sliderHatFrequency.value"
+                                        rz-slider-options="sliderHatFrequency.options"></rzslider>
+                                    </div>
+                                    <h3>Volume</h3>
+                                    <div>
+                                        <rzslider
+                                        rz-slider-model="sliderHatVolume.value"
+                                        rz-slider-options="sliderHatVolume.options"></rzslider>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -160,6 +162,7 @@
 <script src="/header/controllers/navCtrl.js"></script>
 <script src="/javascripts/composer/controllers/uploadCtrl.js"></script>
 <script src="/javascripts/composer/controllers/padsCtrl.js"></script>
+<script src="/javascripts/composer/controllers/loopsCtrl.js"></script>
 <script src="/javascripts/composer/controllers/recordCtrl.js"></script>
 <script src="/javascripts/composer/helpers/kickHelpers.js"></script>
 <script src="/javascripts/composer/helpers/snareHelpers.js"></script>
