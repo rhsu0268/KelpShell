@@ -12,16 +12,16 @@ app.controller('loopsCtrl', ['$scope', function($scope) {
             playSoundLoop1("kick.wav");
             loop1Playing = true;
         }
+
         else
         {
 
             sourceLoop1.stop();
+            sourceLoop1 = null;
             loop1Playing = false;
-            if (contextLoop1)
-            {
-                contextLoop1.close();
-                contextLoop1 = null;
-            }
+            closeContextLoop();
+
+
         }
     }
 
@@ -32,19 +32,16 @@ app.controller('loopsCtrl', ['$scope', function($scope) {
             console.log("Play loop2");
             playSoundLoop2("snare.wav");
             loop2Playing = true;
+            // sourceLoop1 is still not defined if you click this first
         }
         else
         {
             sourceLoop2.stop();
+            sourceLoop2 = null;
             loop2Playing = false;
 
             // make sure that there are no other sources on that context before closing
-            if (!sourceLoop1 || !sourceLoop3 || !sourceLoop4)
-            {
-                console.log("Terminating contextLoop2!");
-                contextLoop2.close();
-                contextLoop2 = null;
-            }
+            closeContextLoop();
         }
     }
 
@@ -247,3 +244,17 @@ app.controller('loopsCtrl', ['$scope', function($scope) {
     };
 
 }]);
+
+
+function closeContextLoop()
+{
+    if ((!sourceLoop1 && !sourceLoop2) && (!sourceLoop3 && !sourceLoop4))
+    {
+        // close the closeContextLoops
+        if (contextLoop2)
+        {
+            contextLoop2.close();
+            contextLoop2 = null;
+        }
+    }
+}
