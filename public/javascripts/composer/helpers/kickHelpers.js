@@ -11,12 +11,12 @@ function playSoundLoop1(tune)
             loadSource1IntoContext2();
         }
         else if (contextLoop3) {
-            console.log("calling loadSourceIntoContext3");
+            //console.log("calling loadSourceIntoContext3");
             loadSource1IntoContext3();
         }
         else
         {
-            console.log("calling loadSourceIntoContext4");
+            //console.log("calling loadSourceIntoContext4");
             loadSource1IntoContext4();
         }
     }

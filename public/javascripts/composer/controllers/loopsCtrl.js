@@ -250,11 +250,26 @@ function closeContextLoop()
 {
     if ((!sourceLoop1 && !sourceLoop2) && (!sourceLoop3 && !sourceLoop4))
     {
+        if (contextLoop1)
+        {
+            contextLoop1.close();
+            contextLoop1 = null;
+        }
         // close the closeContextLoops
-        if (contextLoop2)
+        else if (contextLoop2)
         {
             contextLoop2.close();
             contextLoop2 = null;
+        }
+        else if (contextLoop3)
+        {
+            contextLoop3.close();
+            contextLoop3 = null;
+        }
+        else
+        {
+            contextLoop4.close();
+            contextLoop4 = null;
         }
     }
 }
