@@ -1,4 +1,5 @@
 var loop1Playing = false;
+var loop2Playing = false;
 
 app.controller('loopsCtrl', ['$scope', function($scope) {
 
@@ -26,16 +27,24 @@ app.controller('loopsCtrl', ['$scope', function($scope) {
 
     $scope.playLoop2 = function()
     {
-        if (!contextLoop2)
+        if (!contextLoop2 && !loop2Playing)
         {
             console.log("Play loop2");
             playSoundLoop2("snare.wav");
+            loop2Playing = true;
         }
         else
         {
             sourceLoop2.stop();
-            contextLoop2.close();
-            contextLoop2 = null;
+            loop2Playing = false;
+
+            // make sure that there are no other sources on that context before closing
+            if (!sourceLoop1 || !sourceLoop3 || !sourceLoop4)
+            {
+                console.log("Terminating contextLoop2!");
+                contextLoop2.close();
+                contextLoop2 = null;
+            }
         }
     }
 
