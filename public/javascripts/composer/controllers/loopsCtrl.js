@@ -5,6 +5,8 @@ var loop4Playing = false;
 
 app.controller('loopsCtrl', ['$scope', function($scope) {
 
+    $scope.notRecording = true;
+    
     $scope.playLoop1 = function()
     {
 
