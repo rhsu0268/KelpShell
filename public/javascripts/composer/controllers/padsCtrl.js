@@ -1,5 +1,8 @@
 app.controller('padsCtrl', ['$scope', function($scope) {
 
+    // disable the button
+    $scope.notRecording = true;
+
     console.log("Pads");
 
     $scope.playKick = function()

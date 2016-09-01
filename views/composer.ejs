@@ -22,7 +22,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4" ng-controller="padsCtrl">
-                        <button type="button" class="btn btn-primary" id="pad1" ng-click="playKick()">Kick</button>
+                        <!--<label>Click me to toggle: <input type="checkbox" ng-model="checked"></label><br/>
+                        <button ng-model="button" ng-disabled="checked">Button</button>-->
+                        <button type="button" class="btn btn-primary" id="pad1" ng-click="playKick()" ng-disabled="notRecording">Kick</button>
                         <button type="button" class="btn btn-primary" id="pad2" ng-click="playSnare()">Snare</button>
                         <br><br>
                         <button type="button" class="btn btn-primary" id="pad3" ng-click="playTin()">Tin</button>
