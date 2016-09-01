@@ -15,7 +15,7 @@ function playSoundLoop2(tune)
             console.log("calling loadSource2IntoContext3");
             loadSource2IntoContext3();
         }
-        else
+        else if (contextLoop4)
         {
             console.log("calling loadSource2IntoContext4");
             loadSource2IntoContext4();

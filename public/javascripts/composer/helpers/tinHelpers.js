@@ -11,17 +11,17 @@ function playSoundLoop3(tune)
             loadSource3IntoContext1();
         }
 
-        /*
+
         else if (contextLoop2) {
             console.log("calling loadSource3IntoContext2");
-            loadSource3IntoContext3();
+            loadSource3IntoContext2();
         }
-        else
+        else if (contextLoop4)
         {
             console.log("calling loadSource3IntoContext4");
             loadSource3IntoContext4();
         }
-        */
+
 
     }
     else
@@ -66,7 +66,7 @@ function loadSource3IntoContext1()
     bufferLoader = new BufferLoader(
         contextLoop1,
         [
-          '../music/snare.wav'
+          '../music/tin.wav'
         ],
         connectSource3IntoContext1
     );
@@ -82,6 +82,58 @@ function connectSource3IntoContext1(bufferList)
     sourceLoop3.connect(gainLoop3);
     gainLoop3.gain.value = volume1;
     gainLoop3.connect(contextLoop1.destination);
+
+    sourceLoop3.start(0);
+    sourceLoop3.loop = true;
+}
+
+function loadSource3IntoContext2()
+{
+    bufferLoader = new BufferLoader(
+        contextLoop2,
+        [
+          '../music/tin.wav'
+        ],
+        connectSource3IntoContext2
+    );
+    bufferLoader.load();
+}
+
+function connectSource3IntoContext2(bufferList)
+{
+    sourceLoop3 = contextLoop2.createBufferSource();
+    sourceLoop3.playbackRate.value = playbackRate1;
+    sourceLoop3.buffer = bufferList[0];
+    gainLoop3 = contextLoop2.createGain();
+    sourceLoop3.connect(gainLoop3);
+    gainLoop3.gain.value = volume1;
+    gainLoop3.connect(contextLoop2.destination);
+
+    sourceLoop3.start(0);
+    sourceLoop3.loop = true;
+}
+
+function loadSource3IntoContext4()
+{
+    bufferLoader = new BufferLoader(
+        contextLoop4,
+        [
+          '../music/tin.wav'
+        ],
+        connectSource3IntoContext4
+    );
+    bufferLoader.load();
+}
+
+function connectSource3IntoContext4(bufferList)
+{
+    sourceLoop3 = contextLoop4.createBufferSource();
+    sourceLoop3.playbackRate.value = playbackRate1;
+    sourceLoop3.buffer = bufferList[0];
+    gainLoop3 = contextLoop4.createGain();
+    sourceLoop3.connect(gainLoop3);
+    gainLoop3.gain.value = volume1;
+    gainLoop3.connect(contextLoop4.destination);
 
     sourceLoop3.start(0);
     sourceLoop3.loop = true;
