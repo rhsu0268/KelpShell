@@ -1,5 +1,6 @@
 var loop1Playing = false;
 var loop2Playing = false;
+var loop3Playing = false;
 
 app.controller('loopsCtrl', ['$scope', function($scope) {
 
@@ -47,16 +48,22 @@ app.controller('loopsCtrl', ['$scope', function($scope) {
 
     $scope.playLoop3 = function()
     {
-        if (!contextLoop3)
+        if (!contextLoop3 && !loop3Playing)
         {
             console.log("Play loop3");
             playSoundLoop3("tin.wav");
+            loop3Playing = true;
         }
         else
         {
+            //console.log("SourceLoop3");
+
             sourceLoop3.stop();
-            contextLoop3.close();
-            contextLoop3 = null;
+            sourceLoop3 = null;
+            loop3Playing = false;
+
+
+            closeContextLoop();
         }
     }
 
