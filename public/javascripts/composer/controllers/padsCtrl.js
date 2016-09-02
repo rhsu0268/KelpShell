@@ -1,7 +1,28 @@
-app.controller('padsCtrl', ['$scope', function($scope) {
+app.service('recording', function() {
+
+	var notRecording;
+
+        return {
+            getNotRecordingStatus: function () {
+                return notRecording;
+            },
+            setNotRecordingStatus: function(value) {
+                notRecording = value;
+            }
+        };
+
+});
+
+app.controller('padsCtrl', ['$scope', 'recording', '$rootScope', function($scope, recording, $rootScope) {
 
     // disable the button
-    $scope.notRecording = true;
+    //recording.setNotRecordingStatus(true);
+    //$scope.notRecording = recording.getNotRecordingStatus();
+
+	//$scope.notRecording = recording.getNotRecordingStatus();
+
+	$rootScope.notRecording = true;
+	console.log($scope.notRecording);
 
     console.log("Pads");
 

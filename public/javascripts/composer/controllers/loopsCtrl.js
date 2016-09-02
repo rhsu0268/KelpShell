@@ -3,10 +3,10 @@ var loop2Playing = false;
 var loop3Playing = false;
 var loop4Playing = false;
 
-app.controller('loopsCtrl', ['$scope', function($scope) {
+app.controller('loopsCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
 
-    $scope.notRecording = true;
-    
+    $rootScope.notRecording = true;
+
     $scope.playLoop1 = function()
     {
 

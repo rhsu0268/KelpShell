@@ -1,4 +1,4 @@
-app.controller('recordCtrl', ['$scope', function($scope) {
+app.controller('recordCtrl', ['$scope', 'recording', '$rootScope', function($scope, recording, $rootScope) {
 
 
 
@@ -25,5 +25,14 @@ app.controller('recordCtrl', ['$scope', function($scope) {
 
 
         });
+    }
+
+    $scope.startComposing = function()
+    {
+        //console.log("Start composing");
+        //recording.setNotRecordingStatus(false);
+        //onsole.log(recording.getNotRecordingStatus());
+
+        $rootScope.notRecording = false;
     }
 }]);
