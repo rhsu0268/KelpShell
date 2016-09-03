@@ -6,19 +6,56 @@ app.controller('recordCtrl', ['$scope', 'recording', '$rootScope', function($sco
     $scope.stopCompose = true;
 
     var rec;
+    var recorder;
+
+
     $scope.startRecordAudio = function()
     {
-        rec = new Recorder(sourceLoop1);
 
-        rec.record();
+
+        // create a new audio context
+        //var recordingContext = new AudioContext();
+        //var source = recordingContext.createBufferSource();
+        var context;
+
+
+        //rec = new Recorder(sourceLoop1);
+
+        var onFail = function(e) {
+            console.log('Rejected!', e);
+        };
+
+        var onSuccess = function(s) {
+            //var context = new webkitAudioContext();
+            context = new AudioContext();
+            var mediaStreamSource = context.createMediaStreamSource(s);
+            recorder = new Recorder(mediaStreamSource);
+            recorder.record();
+        };
+
+        //rec.record();
+        window.URL = window.URL || window.webkitURL;
+        navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+        if (navigator.getUserMedia) {
+            navigator.getUserMedia({audio: true}, onSuccess, onFail);
+        }
+        else
+        {
+            console.log('navigator.getUserMedia not present');
+        }
+
+
+
 
     }
 
     $scope.stopRecordAudio = function()
     {
-        rec.stop();
+        recorder.stop();
 
-        rec.exportWAV(function(blob) {
+        //rec2.stop();
+
+        recorder.exportWAV(function(blob) {
 
             console.log("Stopping recording!");
             console.log(blob);

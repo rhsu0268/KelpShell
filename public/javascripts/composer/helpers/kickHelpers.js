@@ -1,5 +1,7 @@
 function playSoundLoop1(tune)
 {
+
+
     if (contextLoop2 || contextLoop3 || contextLoop4)
     {
         console.log("Another contextLoop is defined");
@@ -34,6 +36,7 @@ function playSoundLoop1(tune)
         );
         bufferLoader.load();
     }
+
 }
 
 
