@@ -143,7 +143,9 @@
                     </div>
                     <div class="col-lg-6" ng-controller="recordCtrl">
                         <h2>Controls</h2>
-                        <button type="button" class="btn btn-primary" id="record" ng-click="startComposing()">Start Composing</button>
+                        <button type="button" class="btn btn-primary" id="startComposing" ng-disabled="startCompose" ng-click="startComposing()">Start Composing</button>
+                        <button type="button" class="btn btn-primary" id="stopComposing" ng-disabled="stopCompose" ng-click="stopComposing()">Stop Composing</button>
+                        <br><br>
                         <button type="button" class="btn btn-primary" id="record" ng-click="startRecordAudio()">Record</button>
                         <button type="button" class="btn btn-primary" id="stop" ng-click="stopRecordAudio()">Stop</button>
                     </div>

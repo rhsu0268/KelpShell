@@ -1,6 +1,9 @@
 app.controller('recordCtrl', ['$scope', 'recording', '$rootScope', function($scope, recording, $rootScope) {
 
-
+    //$scope.startComposing = true;
+    //$scope.stopComposing = false;
+    $scope.startCompose = false;
+    $scope.stopCompose = true;
 
     var rec;
     $scope.startRecordAudio = function()
@@ -34,5 +37,22 @@ app.controller('recordCtrl', ['$scope', 'recording', '$rootScope', function($sco
         //onsole.log(recording.getNotRecordingStatus());
 
         $rootScope.notRecording = false;
+
+        $scope.startCompose = true;
+        $scope.stopCompose = false;
+
+    }
+
+    $scope.stopComposing = function()
+    {
+        //console.log("Start composing");
+        //recording.setNotRecordingStatus(false);
+        //onsole.log(recording.getNotRecordingStatus());
+
+        //$rootScope.notRecording = true;
+        $rootScope.notRecording = true;
+
+        $scope.startCompose = false;
+        $scope.stopCompose = true;
     }
 }]);
