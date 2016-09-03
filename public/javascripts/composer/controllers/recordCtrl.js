@@ -5,6 +5,9 @@ app.controller('recordCtrl', ['$scope', 'recording', '$rootScope', function($sco
     $scope.startCompose = false;
     $scope.stopCompose = true;
 
+    $scope.stopRecordDisabled = true;
+    $scope.startRecordDisabled = true;
+
     var rec;
     var recorder;
 
@@ -12,7 +15,8 @@ app.controller('recordCtrl', ['$scope', 'recording', '$rootScope', function($sco
     $scope.startRecordAudio = function()
     {
 
-
+        $scope.startRecordDisabled = true;
+        $scope.stopRecordDisabled = false;
         // create a new audio context
         //var recordingContext = new AudioContext();
         //var source = recordingContext.createBufferSource();
@@ -27,10 +31,18 @@ app.controller('recordCtrl', ['$scope', 'recording', '$rootScope', function($sco
 
         var onSuccess = function(s) {
             //var context = new webkitAudioContext();
+
+            $scope.startRecordDisabled = true;
+            $scope.stopRecordDisabled = false;
+
+
+
             context = new AudioContext();
             var mediaStreamSource = context.createMediaStreamSource(s);
             recorder = new Recorder(mediaStreamSource);
             recorder.record();
+
+
         };
 
         //rec.record();
@@ -78,6 +90,10 @@ app.controller('recordCtrl', ['$scope', 'recording', '$rootScope', function($sco
         $scope.startCompose = true;
         $scope.stopCompose = false;
 
+        $scope.startRecordDisabled = false;
+
+        $scope.stopRecordDisabled = true;
+
     }
 
     $scope.stopComposing = function()
@@ -91,5 +107,9 @@ app.controller('recordCtrl', ['$scope', 'recording', '$rootScope', function($sco
 
         $scope.startCompose = false;
         $scope.stopCompose = true;
+
+        $scope.startRecordDisabled = true;
+
+        $scope.stopRecordDisabled = true;
     }
 }]);
