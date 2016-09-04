@@ -79,23 +79,3 @@ app.controller("NavCtrl", ['$scope', 'auth', function($scope, auth) {
     $scope.logout = auth.logOut;
 
 }]);
-
-app.controller("AuthCtrl", ["$scope", 'auth', '$location', '$window', function($scope, auth, $location, $window) {
-
-    console.log("Auth");
-
-    $scope.user = {};
-
-    $scope.register = function()
-    {
-        auth.register($scope.user).error(function(error) {
-            console.log("Error");
-            $scope.error = error;
-        }).then(function() {
-
-            //$location.path( "/profile" );
-            $window.location.href = '/profile';
-        });
-    }
-
-}]);
