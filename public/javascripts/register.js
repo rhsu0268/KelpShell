@@ -1,8 +1,4 @@
-var app = angular.module("KelpShell", ["firebase", "ngRoute"]);
-
-
-
-
+var app = angular.module('register', ["ngRoute"]);
 
 
 app.factory('auth', ['$http', '$window', function($http, $window) {
@@ -16,7 +12,7 @@ app.factory('auth', ['$http', '$window', function($http, $window) {
 
     auth.getToken = function()
     {
-        return $window.localStorage['kepshell-token'];
+        return $window.localStorage['kelpshell-token'];
     }
 
     auth.isLoggedIn = function()
@@ -68,6 +64,7 @@ app.factory('auth', ['$http', '$window', function($http, $window) {
     auth.logOut = function()
     {
         $window.localStorage.removeItem('kelpshell-token');
+        $window.location.href = '/';
     }
 
     return auth;
@@ -76,114 +73,30 @@ app.factory('auth', ['$http', '$window', function($http, $window) {
 
 
 
-app.controller("RegisterCtrl", ["$scope", "Auth", "$location", "$window", function($scope, Auth, $location, $window) {
+app.controller("NavCtrl", ['$scope', 'auth', function($scope, auth) {
 
-    $scope.createUser = function()
-    {
-        console.log("Creating user");
-        $scope.message = null;
-        $scope.error = null;
-        $scope.messagePresent = true;
-
-        // create a new user
-        Auth.$createUserWithEmailAndPassword($scope.email, $scope.password)
-            .then(function(firebaseUser) {
-                console.log("created User!");
-                $scope.message = "User created with uid: " + firebaseUser.uid;
-                $window.location.href = '/profile';
-                console.log("Moving");
-                //$scope.$apply();
-
-                $scope.auth = Auth;
-
-                // any time auth state changes, add the user data to scope
-                $scope.auth.$onAuthStateChanged(function(firebaseUser) {
-                    $scope.firebaseUser = firebaseUser;
-                    console.log(firebaseUser);
-                });
-            }).catch(function(error) {
-                console.log("An error occured");
-                $scope.error = error;
-        });
-
-    };
-
-    $scope.deleteUser = function()
-    {
-        $scope.message = null;
-        $scope.error = null;
-
-        // delete the currently signed in user
-        Auth.$deleteUser().then(function() {
-            $scope.message = "User deleted";
-        }).catch(function(error) {
-            $scope.error = error;
-        });
-    };
+    $scope.isLoggedIn = auth.isLoggedIn;
+    $scope.currentUser = auth.currentUser;
+    $scope.logout = auth.logOut;
 
 }]);
 
-app.controller('RegisterUserCtrl', ['$scope', 'auth', function($scope, auth) {
+app.controller("RegisterCtrl", ["$scope", 'auth', '$location', '$window', function($scope, auth, $location, $window) {
+
+    console.log("Auth");
 
     $scope.user = {};
 
+    $scope.register = function()
+    {
+        auth.register($scope.user).error(function(error) {
+            console.log("Error");
+            $scope.error = error;
+        }).then(function() {
 
+            //$location.path( "/profile" );
+            $window.location.href = '/profile';
+        });
+    }
 
-}]);
-
-
-
-app.run(["$rootScope", "$location", function($rootScope, $location) {
-
-    $rootScope.$on("$routeChangeError", function(event, next, previous, error) {
-
-        if (error === "AUTH_REQUIRED")
-        {
-            $location.path("/");
-        }
-
-    });
-
-    $rootScope.$on('$routeChangeStart', function () {
-        if (!Auth.isLoggedIn()) {
-            $location.path('/login');
-        } else {
-            $location.path('/profile');
-        }
-    });
-}]);
-
-
-app.factory("Auth", ["$firebaseAuth", function($firebaseAuth) {
-    return $firebaseAuth();
-}]);
-
-
-app.config(["$routeProvider", function($routeProvider) {
-    $routeProvider.when("/profile", {
-       // the rest is the same for ui-router and ngRoute...
-       controller: "ProfileCtrl",
-       templateUrl: "views/profile.ejs",
-       resolve: {
-         // controller will not be loaded until $waitForSignIn resolves
-         // Auth refers to our $firebaseAuth wrapper in the factory below
-         "currentAuth": ["Auth", function(Auth) {
-           // $waitForSignIn returns a promise so the resolve waits for it to complete
-           return Auth.$waitForSignIn();
-         }]
-       }
-   }).when("/register", {
-       // the rest is the same for ui-router and ngRoute...
-       controller: "RegisterCtrl",
-       templateUrl: "views/register.ejs",
-       resolve: {
-         // controller will not be loaded until $requireSignIn resolves
-         // Auth refers to our $firebaseAuth wrapper in the factory below
-         "currentAuth": ["Auth", function(Auth) {
-           // $requireSignIn returns a promise so the resolve waits for it to complete
-           // If the promise is rejected, it will throw a $stateChangeError (see above)
-           return Auth.$requireSignIn();
-         }]
-       }
-    });
 }]);

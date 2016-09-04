@@ -52,8 +52,8 @@ router.get('/register', function(req, res, next) {
 });
 */
 
-router.get('/auth', function(req, res, next) {
-	res.render('auth', { title: 'Auth' });
+router.get('/registerAuth', function(req, res, next) {
+	res.render('registerAuth', { title: 'Register' });
 
 });
 
