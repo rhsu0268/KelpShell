@@ -28,24 +28,37 @@
                 <h3>Favorite Piece: Feeling Good</h3>
             </div>
             <div class="row">
-                <form>
-                  <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="">
-                  </div>
-                  <div class="form-group">
-                    <label for="musicBackground">Music Background</label>
-                    <input type="text" class="form-control" id="musicBackground" placeholder="">
-                  </div>
-                  <div class="form-group">
-                    <label for="favoriteGenre">Favorite Genre</label>
-                    <input type="text" class="form-control" id="favoriteGenre" placeholder="">
-                  </div>
-                  <div class="form-group">
-                    <label for="favoriteGenre">Favorite Piece</label>
-                    <input type="text" class="form-control" id="favoritePiece" placeholder="">
-                  </div>
-                  <button type="submit" class="btn btn-default">Submit</button>
+                <form ng-submit="updateProfile(user)">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Name" ng-model="user.name">
+                    </div>
+                    <div class="form-group">
+                        <label for="musicBackground">Music Background</label>
+                        <!--<input type="text" class="form-control" id="musicBackground" placeholder="">-->
+                        <select class="form-control" ng-model="user.musicBackground">
+                            <option value="Ameteur">Ameteur</option>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Expert">Expert</option>
+                            <option value="Beethoven">Beethoven</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="favoriteGenre">Favorite Genre</label>
+                        <select class="form-control" ng-model="user.favoriteGenre">
+                            <option value="Pop">Pop</option>
+                            <option value="Rock">Rock</option>
+                            <option value="Country">Country</option>
+                            <option value="Religion">Religion</option>
+                            <option value="Jazz">Jazz</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="favoriteGenre">Favorite Piece</label>
+                        <input type="text" class="form-control" id="favoritePiece" placeholder="Favorite Piece" ng-model="user.favoritePiece">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
                 </form>
             </div>
 		</div>
@@ -75,6 +88,6 @@
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <!-- Band.JS Files -->
     <script src="/javascripts/auth.js"></script>
-
+    <script src="/javascripts/profile.js"></script>
 
 </html>

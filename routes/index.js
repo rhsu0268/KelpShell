@@ -45,10 +45,12 @@ router.get('/login', function(req, res, next) {
 
 });
 
+/*
 router.get('/register', function(req, res, next) {
 	res.render('register', { title: 'Register' });
 
 });
+*/
 
 router.get('/auth', function(req, res, next) {
 	res.render('auth', { title: 'Auth' });
