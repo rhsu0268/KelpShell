@@ -192,6 +192,48 @@ router.get('/userInfo/:userId', function(req, res, next) {
 
 });
 
+router.post('/updateUserInfo', function(req, res, next) {
+
+    console.log(req.body.user);
+    console.log(req.body);
+
+    UserInfo.update({ user: req.body.user},
+        {$set: {name: req.body.name,
+                musicBackground: req.body.musicBackground,
+                favoriteGenre: req.body.favoriteGenre,
+                favoritePiece: req.body.favoritePiece}}
+        , function(err, data) {
+        if (err)
+        {
+            return next(err);
+        }
+
+        console.log(data);
+        res.json(data)
+
+    });
+
+    /*
+    var newGoal = req.body;
+    req.goal.name = newGoal.name;
+    req.goal.age = newGoal.age;
+    req.goal.heightFt = newGoal.heightFt;
+    req.goal.heightIn = newGoal.heightIn;
+    req.goal.weight = newGoal.weight;
+    req.goal.user = newGoal.user;
+    req.goal.bmi = newGoal.bmi;
+    req.goal.fitnessGoal = newGoal.fitnessGoal;
+    req.goal.save(function(err, newGoal) {
+        if (err)
+        {
+            return next(err);
+        }
+        res.json(newGoal);
+    });
+    */
+
+});
+
 router.get('/userInfoList', function(req, res, next) {
 
 	UserInfo.find(function(err, userInfo) {

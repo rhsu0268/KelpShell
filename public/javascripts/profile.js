@@ -177,6 +177,8 @@ app.controller("ProfileCtrl", ['$scope', 'auth', 'userInfo', '$http', function($
 
     });
 
+    console.log($scope.userInformation);
+
     //console.log(userInfo.userInfo);
 
     //console.log($scope.userInformation);
@@ -186,18 +188,32 @@ app.controller("ProfileCtrl", ['$scope', 'auth', 'userInfo', '$http', function($
     {
         $scope.userInfo = {};
         $scope.userInfo.name = $scope.user.name;
-        console.log($scope.userInfo.name);
+        //console.log($scope.userInfo.name);
 
 
         $scope.userInfo.musicBackground = $scope.user.musicBackground;
-        console.log($scope.userInfo.musicBackground);
+        //console.log($scope.userInfo.musicBackground);
         $scope.userInfo.favoriteGenre = $scope.user.favoriteGenre;
-        console.log($scope.userInfo.favoriteGenre);
+        //console.log($scope.userInfo.favoriteGenre);
         $scope.userInfo.favoritePiece = $scope.user.favoritePiece;
-        console.log($scope.userInfo.favoritePiece);
+        //console.log($scope.userInfo.favoritePiece);
         $scope.userInfo.user = auth.getUserId();
-        console.log($scope.userInfo);
+        //console.log($scope.userInfo);
         userInfo.create($scope.userInfo);
+
+        if ($scope.userInformation)
+        {
+            // update
+            console.log("Call update");
+            userInfo.update($scope.userInfo);
+            $scope.userInformation = $scope.userInfo;
+        }
+        else
+        {
+            userInfo.create($scope.userInfo);
+        }
+
+        $scope.userInfo = "";
 
     }
 
