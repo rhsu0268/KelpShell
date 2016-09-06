@@ -7,6 +7,7 @@ var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 var mongoose = require('mongoose');
 var passport = require('passport');
 var User = mongoose.model('User');
+var UserInfo = mongoose.model('UserInfo');
 
 
 /* GET home page. */
@@ -150,6 +151,72 @@ router.post('/upload', function(req, res) {
         }
          res.json({error_code:0,err_desc:null});
     });
+});
+
+
+
+router.post('/userInfo', function(req, res, next) {
+
+    var userInfo = new UserInfo(req.body);
+
+    userInfo.save(function(err, userInfo) {
+        if (err)
+        {
+            return next(err);
+        }
+
+        res.json(userInfo);
+
+    });
+
+});
+
+
+
+router.get('/userInfo/:userId', function(req, res, next) {
+
+    console.log(req.params.userId);
+
+
+    UserInfo.find({user: req.params.userId}, function(err, userInfo) {
+        if (err)
+        {
+            return next(err);
+        }
+
+		console.log(userInfo);
+        res.json(userInfo);
+
+    });
+
+
+});
+
+router.get('/userInfoList', function(req, res, next) {
+
+	UserInfo.find(function(err, userInfo) {
+           if (err)
+           {
+               return next(err);
+           }
+
+           res.json(userInfo);
+
+    });
+
+});
+
+router.get('/deleteUserInfo', function(req, res, next) {
+
+    UserInfo.remove({}, function(err) {
+        if (err)
+        {
+            return next(err);
+        }
+    });
+        res.send("You have successfully removed all userInfo");
+
+
 });
 
 

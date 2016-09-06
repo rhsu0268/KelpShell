@@ -1,19 +1,28 @@
 var app = angular.module('profile', ["ngRoute"]);
 
 
+
 app.factory('userInfo', ['$http', function($http) {
 
+
+    var fetchedUserInfo;
     var userInfoService = {
         userInfo: []
-
     };
+
+    var self = this;
 
     userInfoService.get = function(userId)
     {
-        return $http.get('/userInfo' + userId).then(function(res) {
+        return $http.get('/userInfo/' + userId).then(function(res) {
 
+            //fetchedUserInfo = res.data;
+            //console.log(fetchedUserInfo);
+            //console.log(res.data);
+            //return res.data;
             angular.copy(res.data, userInfoService.userInfo);
-            console.log(res.data);
+            console.log(userInfoService.userInfo);
+            //self.setUserInfo(res.data);
 
         });
     };
@@ -21,8 +30,9 @@ app.factory('userInfo', ['$http', function($http) {
     userInfoService.create = function(userInfo)
     {
         return $http.post('/userInfo', userInfo).success(function (data) {
-            
-            userInfoService.userInfo.push(data);
+
+            //userInfoService.userInfo.push(data);
+            console.log(data);
 
         });
     };
@@ -37,9 +47,15 @@ app.factory('userInfo', ['$http', function($http) {
 
         });
     };
+
+
     return userInfoService;
 
+
+
 }]);
+
+
 
 app.factory('auth', ['$http', '$window', function($http, $window) {
 
@@ -82,6 +98,18 @@ app.factory('auth', ['$http', '$window', function($http, $window) {
         }
     }
 
+
+    auth.getUserId = function()
+    {
+        if (auth.isLoggedIn())
+        {
+            var token = auth.getToken();
+            var payload = JSON.parse($window.atob(token.split('.')[1]));
+
+            return payload._id;
+        }
+    }
+
     auth.register = function(user)
     {
         return $http.post('/register', user).success(function(data) {
@@ -113,6 +141,11 @@ app.factory('auth', ['$http', '$window', function($http, $window) {
 
 
 
+
+
+
+
+
 app.controller("NavCtrl", ['$scope', 'auth', function($scope, auth) {
 
     $scope.isLoggedIn = auth.isLoggedIn;
@@ -121,10 +154,16 @@ app.controller("NavCtrl", ['$scope', 'auth', function($scope, auth) {
 
 }]);
 
-app.controller("ProfileCtrl", ['$scope', 'auth', function($scope, auth) {
 
-    $scope.currentUser = auth.currentUser();
-    console.log($scope.currentUser);
+
+app.controller("ProfileCtrl", ['$scope', 'auth', 'userInfo', '$http', function($scope, auth, userInfo, $http) {
+
+
+    var currentUserId = auth.getUserId();
+
+    $http.get('/userInfo/' + currentUserId).then(function(res) {
+        console.log(res.data);
+    });
 
 
     $scope.updateProfile = function()
@@ -140,6 +179,10 @@ app.controller("ProfileCtrl", ['$scope', 'auth', function($scope, auth) {
         console.log($scope.userInfo.favoriteGenre);
         $scope.userInfo.favoritePiece = $scope.user.favoritePiece;
         console.log($scope.userInfo.favoritePiece);
+        $scope.userInfo.user = auth.getUserId();
+        console.log($scope.userInfo);
+        userInfo.create($scope.userInfo);
+
     }
 
 }]);
