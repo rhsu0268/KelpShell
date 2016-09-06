@@ -14,13 +14,10 @@ app.factory('userInfo', ['$http', function($http) {
 
     userInfoService.get = function(userId)
     {
-        return $http.get('/userInfo/' + userId).then(function(res) {
+        return $http.get('/userInfo/' + userId).success(function(res) {
 
-            //fetchedUserInfo = res.data;
-            //console.log(fetchedUserInfo);
-            //console.log(res.data);
-            //return res.data;
-            angular.copy(res.data, userInfoService.userInfo);
+
+            //angular.copy(res.data, userInfoService.userInfo);
             console.log(userInfoService.userInfo);
             //self.setUserInfo(res.data);
 
@@ -47,6 +44,11 @@ app.factory('userInfo', ['$http', function($http) {
 
         });
     };
+
+    userInfoService.setUserData = function(userInfo)
+    {
+        userInfoService.userInfo = userInfo;
+    }
 
 
     return userInfoService;
@@ -161,9 +163,23 @@ app.controller("ProfileCtrl", ['$scope', 'auth', 'userInfo', '$http', function($
 
     var currentUserId = auth.getUserId();
 
-    $http.get('/userInfo/' + currentUserId).then(function(res) {
-        console.log(res.data);
+    $scope.userInformation = {};
+
+
+    userInfo.get(currentUserId).then(function(res) {
+
+        console.log(res.data[0]);
+
+        $scope.userInformation.name = res.data[0].name;
+        $scope.userInformation.musicBackground = res.data[0].musicBackground;
+        $scope.userInformation.favoriteGenre = res.data[0].favoriteGenre;
+        $scope.userInformation.favoritePiece = res.data[0].favoritePiece;
+
     });
+
+    //console.log(userInfo.userInfo);
+
+    //console.log($scope.userInformation);
 
 
     $scope.updateProfile = function()
