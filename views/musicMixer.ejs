@@ -68,8 +68,20 @@
                     <button type="button" class="btn btn-danger" ng-click="pauseEffect()">Pause</button>
                     <button type="button" class="btn btn-warning" ng-click="stopEffect()">Stop</button>
                     <br><br>
+                    <h4>Filters</h4>
+                    <h5>Low Pass<h5>
+                    <div>
+                        <rzslider
+                        rz-slider-model="lowPassFilterFrequency.value"
+                        rz-slider-options="lowPassFilterFrequency.options" ></rzslider>
+                    </div>
                     <button type="button" class="btn btn-danger" ng-click="addLowPassEffect()">Add Low-Pass Filter Effect</button>
-                    <button type="button" class="btn btn-danger" ng-click="addHighPassEffect()">Add High-Pass Filter Effect</button>
+                    <button type="button" class="btn btn-danger" ng-click="removeLowPassEffect()">Remove Low-Pass Filter Effect</button>
+
+                    <h5>High Pass</h5>
+
+                        <button type="button" class="btn btn-danger" ng-click="addHighPassEffect()">Add High-Pass Filter Effect</button>
+                        <button type="button" class="btn btn-danger" ng-click="removeLowPassEffect()">Remove High-Pass Filter Effect</button>
                     <br><br>
                     <button type="button" class="btn btn-danger" ng-click="addStereoPanner()">Add Stereo Panner</button>
                     <button type="button" class="btn btn-danger" ng-click="addRingModulatorEffect()">Add Ring Modulator Effect</button>

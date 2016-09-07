@@ -107,55 +107,6 @@ app.controller('musicMixerCtrl', ['$scope', 'song', function($scope, song) {
 	//var context = new AudioContext();
 	//var osc = context.createOscillator();
 
-
-
-
-
-
-	$scope.playSong = function()
-	{
-		console.log(song.getSelectedSong());
-		//var song = song.getSelectedSong();
-		//console.log(song);
-		console.log(song.getSelectedSong()[0]);
-		var songTitle;
-		if (song.getSelectedSong()[0].title == "Feeling Good")
-		{
-			songTitle = "feeling_good";
-		}
-		else if (song.getSelectedSong()[0].title == "Uptown Funk")
-		{
-			songTitle = "uptown_funk";
-		}
-		else if (song.getSelectedSong()[0].title == "In the Summer")
-		{
-			songTitle = "in_the_summer";
-		}
-		else
-		{
-			songTitle = "all_of_me";
-		}
-
-		console.log(songTitle);
-
-		context = new AudioContext();
-		bufferLoader = new BufferLoader(
-	    	context,
-	    	[
-		      '../music/' + songTitle + '.mp3'
-		    ],
-		    finishedLoading	// this is the callback function - it's called after the file is loaded
-		    				// and is given an array of loaded buffer arrays as an argument
-		);
-
-	  	bufferLoader.load();
-	};
-
-	$scope.stopSong = function()
-	{
-		source.stop();
-	};
-
 	var sound;
 
 	$scope.playEffect = function()
@@ -205,14 +156,41 @@ app.controller('musicMixerCtrl', ['$scope', 'song', function($scope, song) {
 
 	};
 
+	var lowPassFilterFrequency = 350;
+	var lowPassFilter;
+
+	$scope.lowPassFilterFrequency = {
+		value: 1,
+		options: {
+			step: .1,
+			floor: 350,
+			ceil: 2000,
+			precision: 1,
+			showTicks: false,
+			onChange: function(sliderId, modelValue, highValue, pointerType)
+			{
+				console.log(modelValue);
+				lowPassFilterFrequency = modelValue;
+
+			}
+		}
+	};
+
 	$scope.addLowPassEffect = function()
 	{
-		var lowPassFilter = new Pizzicato.Effects.LowPassFilter({
-			frequency: 400,
+		lowPassFilter = new Pizzicato.Effects.LowPassFilter({
+			frequency: lowPassFilterFrequency,
 			peak: 10
 		});
 
 		sound.addEffect(lowPassFilter);
+	}
+
+	$scope.removeLowPassEffect = function()
+	{
+
+
+		sound.removeEffect(lowPassFilter);
 	}
 
 	$scope.addHighPassEffect = function()
