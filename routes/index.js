@@ -213,24 +213,7 @@ router.post('/updateUserInfo', function(req, res, next) {
 
     });
 
-    /*
-    var newGoal = req.body;
-    req.goal.name = newGoal.name;
-    req.goal.age = newGoal.age;
-    req.goal.heightFt = newGoal.heightFt;
-    req.goal.heightIn = newGoal.heightIn;
-    req.goal.weight = newGoal.weight;
-    req.goal.user = newGoal.user;
-    req.goal.bmi = newGoal.bmi;
-    req.goal.fitnessGoal = newGoal.fitnessGoal;
-    req.goal.save(function(err, newGoal) {
-        if (err)
-        {
-            return next(err);
-        }
-        res.json(newGoal);
-    });
-    */
+
 
 });
 

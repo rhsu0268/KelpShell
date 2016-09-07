@@ -160,7 +160,29 @@ app.controller('musicMixerCtrl', ['$scope', 'song', function($scope, song) {
 
 	$scope.playEffect = function()
 	{
+		console.log(song.getSelectedSong());
+		if (!song.getSelectedSong())
+		{
+			console.log("You must select a song!");
+		}
 
+		var songTitle;
+		if (song.getSelectedSong()[0].title == "Feeling Good")
+		{
+			songTitle = "feeling_good";
+		}
+		else if (song.getSelectedSong()[0].title == "Uptown Funk")
+		{
+			songTitle = "uptown_funk";
+		}
+		else if (song.getSelectedSong()[0].title == "In the Summer")
+		{
+			songTitle = "in_the_summer";
+		}
+		else
+		{
+			songTitle = "all_of_me";
+		}
 
 
 		if (sound != null)
@@ -170,19 +192,15 @@ app.controller('musicMixerCtrl', ['$scope', 'song', function($scope, song) {
 		else {
 			sound = new Pizzicato.Sound({
 				source: 'file',
-				options: { path: '../music/feeling_good.mp3' }
+				options: { path: '../music/' + songTitle + '.mp3' }
 			}, function() {
 				console.log('sound file loaded!');
-
-				//sound.attack = 0.9;
 
 				sound.play();
 			});
 
 
-			//sawtoothWave.addEffect(delay);
 
-			//
 		}
 
 	};
