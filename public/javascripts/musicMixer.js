@@ -159,10 +159,13 @@ app.controller('musicMixerCtrl', ['$scope', 'song', function($scope, song) {
 	var lowPassFilterFrequency = 350;
 	var lowPassFilter;
 
+	var highPassFilterFrequency = 350;
+	var highPassFilter;
+
 	$scope.lowPassFilterFrequency = {
-		value: 1,
+		value: 350,
 		options: {
-			step: .1,
+			step: 1,
 			floor: 350,
 			ceil: 2000,
 			precision: 1,
@@ -188,21 +191,42 @@ app.controller('musicMixerCtrl', ['$scope', 'song', function($scope, song) {
 
 	$scope.removeLowPassEffect = function()
 	{
-
-
 		sound.removeEffect(lowPassFilter);
 	}
 
+	$scope.highPassFilterFrequency = {
+		value: 350,
+		options: {
+			step: 1,
+			floor: 350,
+			ceil: 2000,
+			precision: 1,
+			showTicks: false,
+			onChange: function(sliderId, modelValue, highValue, pointerType)
+			{
+				console.log(modelValue);
+				highPassFilterFrequency = modelValue;
+
+			}
+		}
+	};
+
 	$scope.addHighPassEffect = function()
 	{
-		var highPassFilter = new Pizzicato.Effects.HighPassFilter({
-		    frequency: 10,
+		highPassFilter = new Pizzicato.Effects.HighPassFilter({
+		    frequency: highPassFilterFrequency,
 		    peak: 10
 		});
 
 		sound.addEffect(highPassFilter);
 
-	}
+	};
+
+	$scope.removeHighPassEffect = function()
+	{
+		console.log("Remove high pass filter effect");
+		sound.removeEffect(highPassFilter);
+	};
 
 	$scope.stopEffect = function()
 	{
