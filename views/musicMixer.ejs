@@ -59,8 +59,8 @@
             </div>
 
         </div>
-        <div class="col-lg-6">
-            <div ng-controller="musicMixerCtrl">
+        <div class="col-lg-6" ng-controller="musicMixerCtrl">
+            <div>
                 <h2>Controls</h2>
                     <!--<button type="button" class="btn btn-primary" ng-click="playSong()">Play Song</button>
                     <button type="button" class="btn btn-danger" ng-click="stopSong()">Stop Song</button>-->
@@ -83,17 +83,31 @@
                     <div>
                         <rzslider
                         rz-slider-model="highPassFilterFrequency.value"
-                        rz-slider-options="highPassFilterFrequency.options" ></rzslider>
+                        rz-slider-options="highPassFilterFrequency.options"></rzslider>
                     </div>
                     <br><br>
                         <button type="button" class="btn btn-success" ng-click="addHighPassEffect()">Add High-Pass Filter Effect</button>
                         <button type="button" class="btn btn-danger" ng-click="removeHighPassEffect()">Remove High-Pass Filter Effect</button>
-                    <br><br>
-                    <button type="button" class="btn btn-danger" ng-click="addStereoPanner()">Add Stereo Panner</button>
-                    <button type="button" class="btn btn-danger" ng-click="addRingModulatorEffect()">Add Ring Modulator Effect</button>
+
+
             </div>
         </div>
     </div>
+        <div class="row" ng-controller="otherCtrl">
+            <div class="col-lg-6">
+                <h1>Other</h1>
+                <h5>Panner</h5>
+                <div>
+                    <rzslider
+                    rz-slider-model="steroPanner.value"
+                    rz-slider-options="steroPanner.options"></rzslider>
+                </div>
+                <button type="button" class="btn btn-success" ng-click="addStereoPanner()">Add Stereo Panner</button>
+                <button type="button" class="btn btn-danger" ng-click="removeStereoPanner()">Remove Stereo Panner</button>
+                <button type="button" class="btn btn-danger" ng-click="addRingModulatorEffect()">Add Ring Modulator Effect</button>
+            </div>
+        </div>
+
 
 
 

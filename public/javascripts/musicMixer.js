@@ -100,13 +100,14 @@ var osc;
 var source;
 var gain;
 
-app.controller('musicMixerCtrl', ['$scope', 'song', function($scope, song) {
+app.controller('musicMixerCtrl', ['$scope', 'song', '$rootScope', function($scope, song, $rootScope) {
 
 	console.log("music mixer");
 
 	//var context = new AudioContext();
 	//var osc = context.createOscillator();
 
+	$rootScope.sound;
 	var sound;
 
 	$scope.playEffect = function()
@@ -136,18 +137,18 @@ app.controller('musicMixerCtrl', ['$scope', 'song', function($scope, song) {
 		}
 
 
-		if (sound != null)
+		if ($rootScope.sound != null)
 		{
-			sound.play()
+			$rootScope.sound.play()
 		}
 		else {
-			sound = new Pizzicato.Sound({
+			$rootScope.sound = new Pizzicato.Sound({
 				source: 'file',
 				options: { path: '../music/' + songTitle + '.mp3' }
 			}, function() {
 				console.log('sound file loaded!');
 
-				sound.play();
+				$rootScope.sound.play();
 			});
 
 
@@ -161,6 +162,8 @@ app.controller('musicMixerCtrl', ['$scope', 'song', function($scope, song) {
 
 	var highPassFilterFrequency = 350;
 	var highPassFilter;
+
+
 
 	$scope.lowPassFilterFrequency = {
 		value: 350,
@@ -228,29 +231,18 @@ app.controller('musicMixerCtrl', ['$scope', 'song', function($scope, song) {
 		sound.removeEffect(highPassFilter);
 	};
 
+
+
 	$scope.stopEffect = function()
 	{
-		sound.stop();
+		$rootScope.sound.stop();
 		sound = null;
-	}
+	};
 
 	$scope.pauseEffect = function()
 	{
-		sound.pause();
-	}
-
-
-	$scope.addStereoPanner = function()
-	{
-		var stereoPanner = new Pizzicato.Effects.StereoPanner({
-		    pan: -1
-		});
-
-		sound.addEffect(stereoPanner);
-
-		//sound.addEffect(highPassFilter);
-
-	}
+		$rootScope.sound.pause();
+	};
 
 	$scope.addRingModulatorEffect = function()
 	{
@@ -261,7 +253,53 @@ app.controller('musicMixerCtrl', ['$scope', 'song', function($scope, song) {
 		});
 
 		sound.addEffect(ringModulator);
-	}
+	};
+
+}]);
+
+
+app.controller('otherCtrl', ['$scope', 'song', '$rootScope', function($scope, song, $rootScope) {
+
+	console.log("otherCtrl");
+
+	var stereoPannerValue = 0;
+	var stereoPanner;
+
+	$scope.steroPanner = {
+		value: 0,
+		options: {
+			step: .1,
+			floor: -1,
+			ceil: 1,
+			precision: 1,
+			showTicks: false,
+			onChange: function(sliderId, modelValue, highValue, pointerType)
+			{
+				console.log(modelValue);
+				stereoPannerValue = modelValue;
+
+			}
+		}
+	};
+
+	$scope.addStereoPanner = function()
+	{
+		stereoPanner = new Pizzicato.Effects.StereoPanner({
+			pan: stereoPannerValue
+		});
+
+		console.log(stereoPanner);
+		//console.log(sound);
+
+		$rootScope.sound.addEffect(stereoPanner);
+
+	};
+
+	$scope.removeStereoPanner = function()
+	{
+		$rootScope.sound.removeEffect(stereoPanner);
+	};
+
 
 }]);
 
