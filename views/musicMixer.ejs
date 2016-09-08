@@ -104,7 +104,17 @@
                 </div>
                 <button type="button" class="btn btn-success" ng-click="addStereoPanner()">Add Stereo Panner</button>
                 <button type="button" class="btn btn-danger" ng-click="removeStereoPanner()">Remove Stereo Panner</button>
-                <button type="button" class="btn btn-danger" ng-click="addRingModulatorEffect()">Add Ring Modulator Effect</button>
+            </div>
+            <div class="col-lg-6">
+                <br><br><br>
+                <h5>Ring Modulator</h5>
+                <div>
+                    <rzslider
+                    rz-slider-model="ringModulator.value"
+                    rz-slider-options="ringModulator.options"></rzslider>
+                </div>
+                <button type="button" class="btn btn-success" ng-click="addRingModulator()">Add Ring Modulator</button>
+                <button type="button" class="btn btn-danger" ng-click="removeRingModulator()">Remove Ring Modulator</button>
             </div>
         </div>
 

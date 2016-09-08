@@ -189,12 +189,12 @@ app.controller('musicMixerCtrl', ['$scope', 'song', '$rootScope', function($scop
 			peak: 10
 		});
 
-		sound.addEffect(lowPassFilter);
+		$rootScope.sound.addEffect(lowPassFilter);
 	}
 
 	$scope.removeLowPassEffect = function()
 	{
-		sound.removeEffect(lowPassFilter);
+		$rootScope.sound.removeEffect(lowPassFilter);
 	}
 
 	$scope.highPassFilterFrequency = {
@@ -221,14 +221,14 @@ app.controller('musicMixerCtrl', ['$scope', 'song', '$rootScope', function($scop
 		    peak: 10
 		});
 
-		sound.addEffect(highPassFilter);
+		$rootScope.sound.addEffect(highPassFilter);
 
 	};
 
 	$scope.removeHighPassEffect = function()
 	{
 		console.log("Remove high pass filter effect");
-		sound.removeEffect(highPassFilter);
+		$rootScope.sound.removeEffect(highPassFilter);
 	};
 
 
@@ -244,16 +244,6 @@ app.controller('musicMixerCtrl', ['$scope', 'song', '$rootScope', function($scop
 		$rootScope.sound.pause();
 	};
 
-	$scope.addRingModulatorEffect = function()
-	{
-		var ringModulator = new Pizzicato.Effects.RingModulator({
-    		speed: 500,
-    		distortion: 10,
-    		mix: 0.5
-		});
-
-		sound.addEffect(ringModulator);
-	};
 
 }]);
 
@@ -264,6 +254,9 @@ app.controller('otherCtrl', ['$scope', 'song', '$rootScope', function($scope, so
 
 	var stereoPannerValue = 0;
 	var stereoPanner;
+
+	var ringModulatorSpeedValue = 0;
+	var ringModulator;
 
 	$scope.steroPanner = {
 		value: 0,
@@ -300,6 +293,40 @@ app.controller('otherCtrl', ['$scope', 'song', '$rootScope', function($scope, so
 		$rootScope.sound.removeEffect(stereoPanner);
 	};
 
+	$scope.ringModulator = {
+		value: 1,
+		options: {
+			step: 1,
+			floor: 0,
+			ceil: 100,
+			precision: 1,
+			showTicks: false,
+			onChange: function(sliderId, modelValue, highValue, pointerType)
+			{
+				console.log(modelValue);
+				ringModulatorSpeedValue = modelValue;
+
+			}
+		}
+	};
+
+
+	$scope.addRingModulator = function()
+	{
+		ringModulator = new Pizzicato.Effects.RingModulator({
+			speed: ringModulatorSpeedValue,
+			distortion: 10,
+			mix: 0.5
+		});
+
+		$rootScope.sound.addEffect(ringModulator);
+	};
+
+
+	$scope.removeRingModulator = function()
+	{
+		$rootScope.sound.removeEffect(ringModulator);
+	};
 
 }]);
 
