@@ -129,21 +129,35 @@ var multer = require('multer');
 
 // set up multer
 var storage = multer.diskStorage({ //multers disk storage settings
-    destination: function (req, file, cb) {
-        cb(null, './uploads/');
-    },
-    filename: function (req, file, cb) {
-        var datetimestamp = Date.now();
-        cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]);
-    }
+	destination: function (req, file, cb) {
+		cb(null, './uploads/');
+	},
+	filename: function (req, file, cb) {
+		var datetimestamp = Date.now();
+		console.log(req.params.id);
+		//console.log(file);
+		cb(null, req.params.id + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]);
+	}
 });
 
 var upload = multer({ //multer settings
-                storage: storage
-            }).single('file');
+				storage: storage
+			}).single('file');
+
+
+
+//var fields = upload.fields([{userFileId: 'id'}]);
 
 /** API path that will upload the files */
-router.post('/upload', function(req, res) {
+router.post('/upload/:id', function(req, res) {
+	//console.log(upload.fields);
+	console.log("REQ");
+	//console.log(req.params.id);
+	//console.log("END");
+
+
+
+
     upload(req,res,function(err){
         if(err){
              res.json({error_code:1,err_desc:err});
