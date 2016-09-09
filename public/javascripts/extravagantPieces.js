@@ -116,6 +116,7 @@ app.controller('sharePiecesCtrl', ['$scope', '$compile', '$firebaseArray', funct
 }]);
 */
 
+/*
 app.controller('sharePiecesCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
 
 	var pieces = firebase.database().ref().child("pieces");
@@ -140,7 +141,9 @@ app.controller('sharePiecesCtrl', ['$scope', '$firebaseArray', function($scope, 
 
 
 }]);
+*/
 
+/*
 // create a factory to return a synchronized array of chat messages
 app.factory("chatMessages", ["$firebaseArray", function($firebaseArray) {
 
@@ -151,8 +154,9 @@ app.factory("chatMessages", ["$firebaseArray", function($firebaseArray) {
     return $firebaseArray(ref);
 	}
 ]);
+*/
 
-
+/*
 app.controller("ChatCtrl", ["$scope", "chatMessages", function($scope, chatMessages)
 {
 
@@ -192,3 +196,4 @@ app.controller("ChatCtrl", ["$scope", "chatMessages", function($scope, chatMessa
 
 
 }]);
+*/
