@@ -1,3 +1,41 @@
+
+app.factory('userPiece', ['$http', function($http) {
+
+
+    //var fetchedUserInfo;
+    var userPieceService = {
+        userPieces: []
+    };
+
+    //var self = this;
+
+    userPieceService.get = function(userId)
+    {
+        return $http.get('/pieces/' + userId).success(function(res) {
+
+
+            //angular.copy(res.data, userInfoService.userInfo);
+            //console.log(userInfoService.userInfo);
+            //self.setUserInfo(res.data);
+            console.log(res.data);
+
+        });
+    };
+
+    userPieceService.save = function(piece)
+    {
+        return $http.post('/pieces', piece).success(function (data) {
+
+            //userInfoService.userInfo.push(data);
+            console.log(data);
+
+        });
+    };
+    return userPieceService;
+}]);
+
+
+
 app.controller('uploadCtrl', ['Upload', '$window', 'auth', function(Upload, $window, auth) {
 
     var fileUpload = this;
@@ -33,6 +71,7 @@ app.controller('uploadCtrl', ['Upload', '$window', 'auth', function(Upload, $win
 
             if (resp.data.error_code == 0)
             {
+                console.log(resp);
                 $window.alert('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
             }
             else

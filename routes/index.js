@@ -163,7 +163,11 @@ router.post('/upload/:id', function(req, res) {
              res.json({error_code:1,err_desc:err});
              return;
         }
-         res.json({error_code:0,err_desc:null});
+		///console.log(res);
+
+		//console.log(res.req);
+		//console.log(res.req.file);
+         res.json({error_code:0, err_desc:null, fileName: res.req.file.filename});
     });
 });
 
