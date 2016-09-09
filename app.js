@@ -12,10 +12,11 @@ mongoose.connect('mongodb://localhost/kelpshell');
 
 require('./models/Users');
 require('./models/UserInfo');
+require('./models/Pieces');
 require('./config/passport');
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 var passport = require('passport');
 
 

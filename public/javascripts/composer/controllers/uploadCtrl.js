@@ -36,7 +36,7 @@ app.factory('userPiece', ['$http', function($http) {
 
 
 
-app.controller('uploadCtrl', ['Upload', '$window', 'auth', function(Upload, $window, auth) {
+app.controller('uploadCtrl', ['Upload', '$window', 'auth', 'userPiece', function(Upload, $window, auth, userPiece) {
 
     var fileUpload = this;
 
@@ -62,6 +62,9 @@ app.controller('uploadCtrl', ['Upload', '$window', 'auth', function(Upload, $win
 
 
         console.log(file);
+
+        var piece = {};
+
         Upload.upload({
 
             url: 'http://localhost:3000/upload/' + file.userFileId,
@@ -73,6 +76,11 @@ app.controller('uploadCtrl', ['Upload', '$window', 'auth', function(Upload, $win
             {
                 console.log(resp);
                 $window.alert('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
+                piece.user = auth.getUserId();
+                piece.fileName = resp.data.fileName;
+                console.log(piece);
+                userPiece.save(piece);
+
             }
             else
             {

@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var User = mongoose.model('User');
 var UserInfo = mongoose.model('UserInfo');
-
+var Piece = mongoose.model('Piece');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -169,6 +169,38 @@ router.post('/upload/:id', function(req, res) {
 		//console.log(res.req.file);
          res.json({error_code:0, err_desc:null, fileName: res.req.file.filename});
     });
+});
+
+
+router.post('/pieces', function(req, res, next) {
+
+    var userPiece = new Piece(req.body);
+
+    userPiece.save(function(err, userPiece) {
+        if (err)
+        {
+            return next(err);
+        }
+
+        res.json("success");
+
+    });
+
+});
+
+router.get('/piecesList', function(req, res, next) {
+
+
+	Piece.find(function(err, userPieces) {
+		   if (err)
+		   {
+			   return next(err);
+		   }
+
+		   res.json(userPieces);
+
+	});
+
 });
 
 
