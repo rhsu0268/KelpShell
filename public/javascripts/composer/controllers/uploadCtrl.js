@@ -77,6 +77,7 @@ app.controller('uploadCtrl', ['Upload', '$window', 'auth', 'userPiece', function
                 console.log(resp);
                 $window.alert('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
                 piece.user = auth.getUserId();
+                piece.sharing = false;
                 piece.fileName = resp.data.fileName;
                 console.log(piece);
                 userPiece.save(piece);
