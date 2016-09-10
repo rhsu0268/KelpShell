@@ -126,10 +126,9 @@ app.controller("NavCtrl", ['$scope', 'auth', function($scope, auth) {
 
 }]);
 
-app.controller('extravagantPiecesCtrl', ['$scope', 'auth', 'userPiece', function($scope, auth, userPiece) {
+app.controller('extravagantPiecesCtrl', ['$scope', 'auth', 'userPiece', '$firebaseArray',
+    function($scope, auth, userPiece, $firebaseArray) {
 
-    console.log("piecesCtrl");
-    console.log(auth.getUserId());
 
     $scope.pieces = {};
 
@@ -138,23 +137,19 @@ app.controller('extravagantPiecesCtrl', ['$scope', 'auth', 'userPiece', function
 
     userPiece.get(auth.getUserId()).then(function(res) {
 
-        console.log(res.data);
+
         $scope.pieces = res.data;
         //pieces = res.data;
 
-        console.log($scope.pieces);
 
-        //$scope.userInformation.name = res.data[0].name;
-        //$scope.userInformation.musicBackground = res.data[0].musicBackground;
-        //$scope.userInformation.favoriteGenre = res.data[0].favoriteGenre;
-        //$scope.userInformation.favoritePiece = res.data[0].favoritePiece;
+
 
     });
     //console.log($scope.pieces.data);
 
 
 
-
+    var source;
 
 
     $scope.playPiece = function(fileName)
@@ -163,7 +158,7 @@ app.controller('extravagantPiecesCtrl', ['$scope', 'auth', 'userPiece', function
         bufferLoader = new BufferLoader(
             context,
             [
-               '../uploads/' + fileName 
+               '../uploads/' + fileName
             ],
             finishedLoading	// this is the callback function - it's called after the file is loaded
                             // and is given an array of loaded buffer arrays as an argument
@@ -183,50 +178,31 @@ app.controller('extravagantPiecesCtrl', ['$scope', 'auth', 'userPiece', function
       	source.start(0);
     }
 
+    $scope.stopPiece = function()
+    {
+        source.stop();
+    }
 
-}]);
-
-
-
-
-/*
-app.controller('sharePiecesCtrl', ['$scope', '$compile', '$firebaseArray', function($scope, $compile, $firebaseArray) {
-
-
-	var pieces = new Firebase('https://kelpshell.firebaseio.com/');
-	//$scope.masterpieces = pieces.onPiecesChanged;
-
-	$scope.masterpieces = $firebaseArray(pieces)
-
-
-	$scope.sharePiece = function()
-	{
-		//pieces.submitPiece();
-		console.log($scope.title);
-		console.log($scope.composer);
-
-		$scope.masterpieces.$add({
-			title: $scope.title,
-			composer: $scope.composer
-		});
-
-		$scope.title = "";
-		$scope.composer = "";
-	};
-
-
+    $scope.sharePiece = function(fileName)
+    {
+        console.log("sharingPiece");
+        console.log(fileName);
+        console.log(auth.currentUser());
+    }
 
 
 
 
 }]);
-*/
 
-/*
+
 app.controller('sharePiecesCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
 
 	var pieces = firebase.database().ref().child("pieces");
-	$scope.masterpieces = $firebaseArray(pieces)
+	$scope.masterpieces = $firebaseArray(pieces);
+
+    console.log(pieces);
+    console.log($scope.masterpieces);
 
 
 
@@ -247,7 +223,7 @@ app.controller('sharePiecesCtrl', ['$scope', '$firebaseArray', function($scope, 
 
 
 }]);
-*/
+
 
 /*
 // create a factory to return a synchronized array of chat messages

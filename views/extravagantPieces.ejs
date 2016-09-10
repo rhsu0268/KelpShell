@@ -28,15 +28,24 @@
 
                     <div ng-repeat="piece in pieces">
                         <ul>
-                            <li>{{piece.fileName}}</li><button ng-click='playPiece(piece.fileName)'>Play</button>
+                            <li>{{piece.fileName}}</li><button class="btn btn-success" ng-click='playPiece(piece.fileName)'>Play</button>
+                            <button class="btn btn-danger" ng-click='stopPiece()'>Stop</button>
                             <!--<li><audio controls><source src="file-1473360629795.mp3" type="audio/mpeg"></audio>-->
-
+                            <button class="btn btn-warning" ng-click='sharePiece(piece.fileName)'>Share</button>
                         </ul>
                     </div>
 
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6" ng-controller="sharePiecesCtrl">
                     <h1>The Composing World</h1>
+                    <h2>Shared Pieces</h2>
+                       <div class="piecesList">
+
+                           <div ng-repeat="masterpiece in masterpieces">
+                               <li>{{masterpiece.title}} - {{masterpiece.composer}}</li>
+                           </div>
+
+                       </div>
                 </div>
                 <!--
                 <div class="col-lg-6">
@@ -112,17 +121,17 @@
     <!-- AngularFire -->
     <!--<script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>-->
 
-    <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
+
     <!-- AngularFire -->
     <script src="https://cdn.firebase.com/libs/angularfire/2.0.0/angularfire.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
     <script>
         // Initialize Firebase
         var config = {
             apiKey: "AIzaSyBwdXnYKXK3Tk9O1T3Pt3i40Jnem4HYgzk",
             authDomain: "kelpa-61adc.firebaseapp.com",
             databaseURL: "https://kelpa-61adc.firebaseio.com",
-            storageBucket: "",
+            storageBucket: "kelpa-61adc.appspot.com",
         };
         firebase.initializeApp(config);
     </script>
