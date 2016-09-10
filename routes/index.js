@@ -130,7 +130,7 @@ var multer = require('multer');
 // set up multer
 var storage = multer.diskStorage({ //multers disk storage settings
 	destination: function (req, file, cb) {
-		cb(null, './uploads/');
+		cb(null, './public/uploads/');
 	},
 	filename: function (req, file, cb) {
 		var datetimestamp = Date.now();
@@ -188,6 +188,25 @@ router.post('/pieces', function(req, res, next) {
 
 });
 
+router.get('/pieces/:userId', function(req, res, next) {
+
+    console.log(req.params.userId);
+
+
+    Piece.find({user: req.params.userId}, function(err, pieceInfo) {
+        if (err)
+        {
+            return next(err);
+        }
+
+		//console.log(userInfo);
+        res.json(pieceInfo);
+
+    });
+
+
+});
+
 router.get('/piecesList', function(req, res, next) {
 
 
@@ -202,6 +221,8 @@ router.get('/piecesList', function(req, res, next) {
 	});
 
 });
+
+
 
 
 

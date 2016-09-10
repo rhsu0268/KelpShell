@@ -23,6 +23,21 @@
 
 
             <div class="row">
+                <div class="col-md-6" ng-controller="extravagantPiecesCtrl">
+                    <h1>Pieces</h1>
+
+                    <div ng-repeat="piece in pieces">
+                        <ul>
+                            <li>{{piece.fileName}}</li><button ng-click='playPiece(piece.fileName)'>Play</button>
+                            <!--<li><audio controls><source src="file-1473360629795.mp3" type="audio/mpeg"></audio>-->
+
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <h1>The Composing World</h1>
+                </div>
                 <!--
                 <div class="col-lg-6">
     			    <div ng-controller="sharePiecesCtrl">

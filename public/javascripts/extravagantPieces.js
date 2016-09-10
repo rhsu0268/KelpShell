@@ -1,5 +1,40 @@
 var app = angular.module('extravagantPieces', ['firebase']);
 
+app.factory('userPiece', ['$http', function($http) {
+
+
+    //var fetchedUserInfo;
+    var userPieceService = {
+        userPieces: []
+    };
+
+    //var self = this;
+
+    userPieceService.get = function(userId)
+    {
+        return $http.get('/pieces/' + userId).success(function(res) {
+
+
+            //angular.copy(res.data, userInfoService.userInfo);
+            //console.log(userInfoService.userInfo);
+            //self.setUserInfo(res.data);
+            console.log(res);
+
+        });
+    };
+
+    userPieceService.save = function(piece)
+    {
+        return $http.post('/pieces', piece).success(function (data) {
+
+            //userInfoService.userInfo.push(data);
+            console.log(data);
+
+        });
+    };
+    return userPieceService;
+}]);
+
 
 app.factory('auth', ['$http', '$window', function($http, $window) {
 
@@ -42,6 +77,17 @@ app.factory('auth', ['$http', '$window', function($http, $window) {
         }
     }
 
+    auth.getUserId = function()
+    {
+        if (auth.isLoggedIn())
+        {
+            var token = auth.getToken();
+            var payload = JSON.parse($window.atob(token.split('.')[1]));
+
+            return payload._id;
+        }
+    }
+
     auth.register = function(user)
     {
         return $http.post('/register', user).success(function(data) {
@@ -77,6 +123,66 @@ app.controller("NavCtrl", ['$scope', 'auth', function($scope, auth) {
     $scope.isLoggedIn = auth.isLoggedIn;
     $scope.currentUser = auth.currentUser;
     $scope.logout = auth.logOut;
+
+}]);
+
+app.controller('extravagantPiecesCtrl', ['$scope', 'auth', 'userPiece', function($scope, auth, userPiece) {
+
+    console.log("piecesCtrl");
+    console.log(auth.getUserId());
+
+    $scope.pieces = {};
+
+    var pieces;
+
+
+    userPiece.get(auth.getUserId()).then(function(res) {
+
+        console.log(res.data);
+        $scope.pieces = res.data;
+        //pieces = res.data;
+
+        console.log($scope.pieces);
+
+        //$scope.userInformation.name = res.data[0].name;
+        //$scope.userInformation.musicBackground = res.data[0].musicBackground;
+        //$scope.userInformation.favoriteGenre = res.data[0].favoriteGenre;
+        //$scope.userInformation.favoritePiece = res.data[0].favoritePiece;
+
+    });
+    //console.log($scope.pieces.data);
+
+
+
+
+
+
+    $scope.playPiece = function(fileName)
+    {
+        context = new AudioContext();
+        bufferLoader = new BufferLoader(
+            context,
+            [
+               '../uploads/' + fileName 
+            ],
+            finishedLoading	// this is the callback function - it's called after the file is loaded
+                            // and is given an array of loaded buffer arrays as an argument
+        );
+
+        bufferLoader.load();
+    }
+
+    function finishedLoading(bufferList) {
+     	// If you had more loops, you could
+      	source = context.createBufferSource();
+      	source.buffer = bufferList[0];
+      	gain = context.createGain();
+      	source.connect(gain);
+      	gain.gain.value = 0.4;
+      	gain.connect(context.destination);
+      	source.start(0);
+    }
+
 
 }]);
 
