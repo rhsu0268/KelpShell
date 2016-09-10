@@ -42,7 +42,8 @@
                        <div class="piecesList">
 
                            <div ng-repeat="masterpiece in masterpieces">
-                               <li>{{masterpiece.title}} - {{masterpiece.composer}}</li>
+                               <li>{{masterpiece.title}} - {{masterpiece.composer}}</li><button class="btn btn-success" ng-click='playPiece(piece.fileName)'>Play</button>
+                               <button class="btn btn-danger" ng-click='stopPiece()'>Stop</button>
                            </div>
 
                        </div>

@@ -126,8 +126,8 @@ app.controller("NavCtrl", ['$scope', 'auth', function($scope, auth) {
 
 }]);
 
-app.controller('extravagantPiecesCtrl', ['$scope', 'auth', 'userPiece', '$firebaseArray',
-    function($scope, auth, userPiece, $firebaseArray) {
+app.controller('extravagantPiecesCtrl', ['$scope', 'auth', 'userPiece', '$firebaseArray', '$rootScope',
+    function($scope, auth, userPiece, $firebaseArray, $rootScope) {
 
 
     $scope.pieces = {};
@@ -188,6 +188,13 @@ app.controller('extravagantPiecesCtrl', ['$scope', 'auth', 'userPiece', '$fireba
         console.log("sharingPiece");
         console.log(fileName);
         console.log(auth.currentUser());
+
+
+        var pieceInfo = {};
+        pieceInfo.title = fileName;
+        pieceInfo.composer = auth.currentUser();
+
+        $rootScope.$emit('sharePiece', pieceInfo);
     }
 
 
@@ -196,7 +203,7 @@ app.controller('extravagantPiecesCtrl', ['$scope', 'auth', 'userPiece', '$fireba
 }]);
 
 
-app.controller('sharePiecesCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
+app.controller('sharePiecesCtrl', ['$scope', '$firebaseArray', '$rootScope', function($scope, $firebaseArray, $rootScope) {
 
 	var pieces = firebase.database().ref().child("pieces");
 	$scope.masterpieces = $firebaseArray(pieces);
@@ -220,6 +227,15 @@ app.controller('sharePiecesCtrl', ['$scope', '$firebaseArray', function($scope, 
 		$scope.title = "";
 		$scope.composer = "";
 	};
+
+    $rootScope.$on('sharePiece', function(event, data) {
+
+        console.log(data);
+        $scope.masterpieces.$add({
+			title: data.title,
+			composer: data.composer
+		});
+    });
 
 
 }]);
