@@ -229,7 +229,7 @@ app.controller('extravagantPiecesCtrl', ['$scope', 'auth', 'userPiece', '$fireba
         $rootScope.$emit('sharePiece', pieceInfo);
     }
 
-
+    /*
     $scope.unsharePiece = function(fileName)
     {
         console.log("unshare Piece");
@@ -249,7 +249,7 @@ app.controller('extravagantPiecesCtrl', ['$scope', 'auth', 'userPiece', '$fireba
 
     }
 
-
+    */
 
 }]);
 
@@ -270,28 +270,31 @@ function($scope, $firebaseArray, $rootScope, userPiece, $http, $window) {
         console.log(data);
         $scope.masterpieces.$add({
 			title: data.title,
-			composer: data.composer
+			composer: data.composer,
+            sharing: true
 		});
         console.log(data.title);
 
         userPiece.updateToSharing(data.title);
 
-        $window.location.reload(); 
+        $window.location.reload();
 
 
     });
 
-    $rootScope.$on('unsharePiece', function(event, data) {
+    $scope.unsharePiece = function(fileName)
+    {
+        //console.log("unshare Piece");
+        //console.log(fileName);
+        //console.log(auth.currentUser());
 
-        console.log(data);
-        $scope.masterpieces.$remove(data)
-        //console.log(data.title);
-
-        userPiece.updateToNotSharing(data.title);
+        userPiece.updateToNotSharing(fileName);
 
         $window.location.reload();
 
-    });
+    }
+
+
 
     $scope.playPiece = function(fileName)
     {

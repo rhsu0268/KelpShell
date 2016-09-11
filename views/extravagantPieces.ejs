@@ -32,7 +32,7 @@
                             <button class="btn btn-danger" ng-click='stopPiece()'>Stop</button>
                             <!--<li><audio controls><source src="file-1473360629795.mp3" type="audio/mpeg"></audio>-->
                             <button class="btn btn-warning" ng-if="piece.sharing == false" ng-click='sharePiece(piece.fileName)'>Share</button>
-                            <button class="btn btn-warning" ng-if="piece.sharing == true" ng-click='unsharePiece(piece.fileName)'>Unshare</button>
+                            <!--<button class="btn btn-warning" ng-if="piece.sharing == true" ng-click='unsharePiece(piece.fileName)'>Unshare</button>-->
                         </ul>
                     </div>
 
@@ -45,6 +45,7 @@
                            <div ng-repeat="masterpiece in masterpieces">
                                <li>{{masterpiece.title}} - {{masterpiece.composer}}</li><button class="btn btn-success" ng-click='playPiece(masterpiece.title)'>Play</button>
                                <button class="btn btn-danger" ng-click='stopPiece()'>Stop</button>
+                               <button class="btn btn-warning" ng-click='unsharePiece(masterpiece.title); masterpieces.$remove(masterpiece)'>Unshare</button>
                            </div>
 
                        </div>
