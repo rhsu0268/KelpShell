@@ -92,6 +92,7 @@ app.controller("RegisterCtrl", ["$scope", 'auth', '$location', '$window', functi
         auth.register($scope.user).error(function(error) {
             console.log("Error");
             $scope.error = error;
+            console.log($scope.error);
         }).then(function() {
 
             //$location.path( "/profile" );

@@ -71,6 +71,11 @@ router.post('/register', function(req, res, next) {
 		return res.status(400).json({message: 'Please fill out all fields'});
 	}
 
+	if (req.body.password != req.body.confirmationPassword)
+	{
+		return res.status(400).json({message: 'Your passwords did not match!'});
+	}
+
 	var user = new User();
 
 	user.username = req.body.username;
