@@ -201,13 +201,33 @@ router.get('/updatePieceToSharing/:fileName', function(req, res, next) {
 		piece.save();
 
 
-	})
+	});
 
 
 
 
 });
 
+
+router.get('/updatePieceToNotSharing/:fileName', function(req, res, next) {
+
+    console.log(req.params.fileName);
+    //console.log(req.body);
+
+
+    Piece.findOne({ fileName: req.params.fileName }, function(err, piece) {
+		console.log(piece);
+
+		piece.sharing = false;
+		piece.save();
+
+
+	});
+
+
+
+
+});
 
 
 router.get('/pieces/:userId', function(req, res, next) {

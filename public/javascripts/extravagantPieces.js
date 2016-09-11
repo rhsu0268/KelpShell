@@ -22,6 +22,18 @@ app.factory('userPiece', ['$http', function($http) {
         });
     };
 
+    userPieceService.updateToNotSharing = function(fileName)
+    {
+        console.log("Inside updatetoNotSharing");
+        console.log(fileName);
+        return $http.get('/updatePieceToNotSharing/' + fileName).success(function (data) {
+
+            //userInfoService.userInfo.push(data);
+            console.log(data);
+
+        });
+    };
+
     userPieceService.get = function(userId)
     {
         return $http.get('/pieces/' + userId).success(function(res) {
@@ -144,6 +156,8 @@ app.controller('extravagantPiecesCtrl', ['$scope', 'auth', 'userPiece', '$fireba
     function($scope, auth, userPiece, $firebaseArray, $rootScope) {
 
 
+    //$scope.sharing = false;
+
     $scope.pieces = {};
 
     var pieces;
@@ -216,13 +230,32 @@ app.controller('extravagantPiecesCtrl', ['$scope', 'auth', 'userPiece', '$fireba
     }
 
 
+    $scope.unsharePiece = function(fileName)
+    {
+        console.log("unshare Piece");
+        console.log(fileName);
+        console.log(auth.currentUser());
+
+        var pieceInfo = {};
+        pieceInfo.title = fileName;
+        pieceInfo.composer = auth.currentUser();
+
+        // need to update sharing field
+        //userPiece.update(fileName);
+
+        $rootScope.$emit('unsharePiece', pieceInfo);
+
+
+
+    }
+
 
 
 }]);
 
 
-app.controller('sharePiecesCtrl', ['$scope', '$firebaseArray', '$rootScope', 'userPiece', '$http',
-function($scope, $firebaseArray, $rootScope, userPiece, $http) {
+app.controller('sharePiecesCtrl', ['$scope', '$firebaseArray', '$rootScope', 'userPiece', '$http', '$window',
+function($scope, $firebaseArray, $rootScope, userPiece, $http, $window) {
 
 	var pieces = firebase.database().ref().child("pieces");
 	$scope.masterpieces = $firebaseArray(pieces);
@@ -242,6 +275,21 @@ function($scope, $firebaseArray, $rootScope, userPiece, $http) {
         console.log(data.title);
 
         userPiece.updateToSharing(data.title);
+
+        $window.location.reload(); 
+
+
+    });
+
+    $rootScope.$on('unsharePiece', function(event, data) {
+
+        console.log(data);
+        $scope.masterpieces.$remove(data)
+        //console.log(data.title);
+
+        userPiece.updateToNotSharing(data.title);
+
+        $window.location.reload();
 
     });
 
