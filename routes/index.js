@@ -188,6 +188,28 @@ router.post('/pieces', function(req, res, next) {
 
 });
 
+router.get('/updatePieceToSharing/:fileName', function(req, res, next) {
+
+    console.log(req.params.fileName);
+    //console.log(req.body);
+
+
+    Piece.findOne({ fileName: req.params.fileName }, function(err, piece) {
+		console.log(piece);
+
+		piece.sharing = true;
+		piece.save();
+
+
+	})
+
+
+
+
+});
+
+
+
 router.get('/pieces/:userId', function(req, res, next) {
 
     console.log(req.params.userId);

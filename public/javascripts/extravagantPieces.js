@@ -10,6 +10,18 @@ app.factory('userPiece', ['$http', function($http) {
 
     //var self = this;
 
+    userPieceService.updateToSharing = function(fileName)
+    {
+        console.log("Inside update");
+        console.log(fileName);
+        return $http.get('/updatePieceToSharing/' + fileName).success(function (data) {
+
+            //userInfoService.userInfo.push(data);
+            console.log(data);
+
+        });
+    };
+
     userPieceService.get = function(userId)
     {
         return $http.get('/pieces/' + userId).success(function(res) {
@@ -32,6 +44,8 @@ app.factory('userPiece', ['$http', function($http) {
 
         });
     };
+
+
     return userPieceService;
 }]);
 
@@ -195,6 +209,9 @@ app.controller('extravagantPiecesCtrl', ['$scope', 'auth', 'userPiece', '$fireba
         pieceInfo.title = fileName;
         pieceInfo.composer = auth.currentUser();
 
+        // need to update sharing field
+        //userPiece.update(fileName);
+
         $rootScope.$emit('sharePiece', pieceInfo);
     }
 
@@ -204,7 +221,8 @@ app.controller('extravagantPiecesCtrl', ['$scope', 'auth', 'userPiece', '$fireba
 }]);
 
 
-app.controller('sharePiecesCtrl', ['$scope', '$firebaseArray', '$rootScope', function($scope, $firebaseArray, $rootScope) {
+app.controller('sharePiecesCtrl', ['$scope', '$firebaseArray', '$rootScope', 'userPiece', '$http',
+function($scope, $firebaseArray, $rootScope, userPiece, $http) {
 
 	var pieces = firebase.database().ref().child("pieces");
 	$scope.masterpieces = $firebaseArray(pieces);
@@ -221,6 +239,10 @@ app.controller('sharePiecesCtrl', ['$scope', '$firebaseArray', '$rootScope', fun
 			title: data.title,
 			composer: data.composer
 		});
+        console.log(data.title);
+
+        userPiece.updateToSharing(data.title);
+
     });
 
     $scope.playPiece = function(fileName)

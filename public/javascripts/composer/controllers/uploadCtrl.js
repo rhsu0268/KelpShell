@@ -31,6 +31,18 @@ app.factory('userPiece', ['$http', function($http) {
 
         });
     };
+
+    userPieceService.updateToSharing = function(fileName)
+    {
+        console.log("Inside update");
+        console.log(fileName);
+        return $http.post('/updatePieceToSharing/', fileName).success(function (data) {
+
+            //userInfoService.userInfo.push(data);
+            console.log(data);
+
+        });
+    };
     return userPieceService;
 }]);
 
