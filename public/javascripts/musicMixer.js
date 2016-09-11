@@ -236,7 +236,7 @@ app.controller('musicMixerCtrl', ['$scope', 'song', '$rootScope', function($scop
 	$scope.stopEffect = function()
 	{
 		$rootScope.sound.stop();
-		sound = null;
+		$rootScope.sound = null;
 	};
 
 	$scope.pauseEffect = function()
