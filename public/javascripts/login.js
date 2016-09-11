@@ -167,6 +167,8 @@ app.controller("LoginCtrl", ["$scope", "auth", "$window", function($scope, auth,
     $scope.logIn = function()
     {
         auth.logIn($scope.user).error(function(error) {
+
+            console.log(error);
             $scope.error = error;
         }).then(function() {
             $window.location.href = '/profile';
