@@ -22,6 +22,9 @@
             <h1>Register</h1>
 
             <div ng-controller="RegisterCtrl">
+                <div ng-show="error" class="alert alert-danger row">
+                    <span>{{ error.message }}</span>
+                </div>
                 <form ng-submit="register()" style="margin-top:30px;">
                     <div class="form-group">
                         <label for="username">Username: </label>
