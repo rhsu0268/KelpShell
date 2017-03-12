@@ -8,7 +8,8 @@ var bodyParser = require('body-parser');
 //var multer = require('multer');
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/kelpshell');
+//mongoose.connect('mongodb://localhost/kelpshell');
+mongoose.connect("mongodb://mongo/kelpshell");
 
 require('./models/Users');
 require('./models/UserInfo');
