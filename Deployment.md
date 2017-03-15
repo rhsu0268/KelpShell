@@ -83,6 +83,10 @@ In the same way that MongoDB is a pain to install on the operating system, insta
 
 The following commands are coming from this article: <https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-mongodb-on-ubuntu-16-04>
 
+This is a more recent version that also mentioned how to secure mongo:
+
+<https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-mongodb-on-ubuntu-16-04>
+
 Use it as a reference if you get stuck or run into trouble.
 
 First, import the key for the official MongoDB repository:
