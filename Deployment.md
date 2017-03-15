@@ -165,5 +165,7 @@ sudo systemctl enable mongod
 Finally, to stop mongo, run the following:
 
 ```bash
-sudo systemctl start mongod
+sudo systemctl stop mongod
 ```
+
+Congratulations! You successfully installed the two main pieces of technologies we need for deployment.
