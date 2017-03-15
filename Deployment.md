@@ -76,3 +76,94 @@ sudo apt-get install build-essential
 ```
 
 The rest of the article walks through setting up a native node.js application which we will **NOT** follow.
+
+### MongoDB
+
+In the same way that MongoDB is a pain to install on the operating system, installation on the Ubuntu machine is also pretty involved.
+
+The following commands are coming from this article: <https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-mongodb-on-ubuntu-16-04>
+
+Use it as a reference if you get stuck or run into trouble.
+
+First, import the key for the official MongoDB repository:
+
+```bash
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+```
+
+Next, create a list file for mongo:
+
+```bash
+echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+```
+
+Next, update the package list:
+
+```bash
+sudo apt-get update
+```
+
+Now, install mongo with the following:
+
+```bash
+sudo apt-get install -y mongodb-org
+```
+
+Create a unit file for mongo with the following:
+
+```bash
+sudo nano /etc/systemd/system/mongodb.service
+```
+
+Paste in the following contents and close the file:
+
+```
+[Unit]
+Description=High-performance, schema-free document-oriented database
+After=network.target
+
+[Service]
+User=mongodb
+ExecStart=/usr/bin/mongod --quiet --config /etc/mongod.conf
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Start mongo with the following:
+
+```bash
+sudo systemctl start mongod
+```
+
+You can check the status of mongo with the following:
+
+```bash
+sudo systemctl status mongod
+```
+
+You should see output like the following:
+
+```
+● mongod.service - High-performance, schema-free document-oriented database
+   Loaded: loaded (/lib/systemd/system/mongod.service; disabled; vendor preset: enabled)
+   Active: active (running) since Fri 2017-02-17 18:57:26 UTC; 17min ago
+     Docs: https://docs.mongodb.org/manual
+ Main PID: 2811 (mongod)
+    Tasks: 17
+   Memory: 56.8M
+      CPU: 7.294s
+   CGroup: /system.slice/mongod.service
+           └─2811 /usr/bin/mongod --quiet --config /etc/mongod.conf
+```
+You can ensure that it restarts automatically at boot:
+
+```bash
+sudo systemctl enable mongod
+```
+
+Finally, to stop mongo, run the following:
+
+```bash
+sudo systemctl start mongod
+```
