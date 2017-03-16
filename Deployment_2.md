@@ -70,7 +70,11 @@ pm2 startup
 ```
 
 ```bash
-sudo env PATH=$PATH:/usr/local/bin pm2 startup ubuntu -u daniel
+sudo env PATH=$PATH:/usr/local/bin pm2 startup ubuntu -u root
 ```
+
+The following is the documentation where these commands are coming from:
+
+<http://blog.danyll.com/setting-up-express-with-nginx-and-pm2/>
 
 You are good! Now, you can celebrate!
